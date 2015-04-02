@@ -1,6 +1,6 @@
 projectname: yxmsw2007.github.io
 username: yxmsw2007
-baseurl: /StrayBirds
+#baseurl: /StrayBirds
 markdown: redcarpet
 safe: false
 pygments: true
