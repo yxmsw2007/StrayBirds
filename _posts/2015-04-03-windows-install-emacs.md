@@ -5,7 +5,9 @@ comments: true
 ---
 
 
-	“在这个蔚蓝色的星球上，流传着两大神器的传说：据说Emacs是神的编辑器，而Vim是编辑器之神。”
+> “在这个蔚蓝色的星球上，流传着两大神器的传说：据说Emacs是神的编辑器，而Vim是编辑器之神。”
+	
+	
 	
 冲着这句话，我不得不深入神的世界去了解这编辑器之神。
 
@@ -15,7 +17,7 @@ comments: true
 ## 下载
 
 
-Emacs Windows版下载地址：http://ftp.gnu.org/pub/gnu/emacs/windows/
+Emacs Windows版下载地址：[http://ftp.gnu.org/pub/gnu/emacs/windows/](http://ftp.gnu.org/pub/gnu/emacs/windows/)
 
 打开网页后拉到最后挑一个最新的版本，目前最新版本为emacs-24.3-bin-i386.zip，只需要一个压缩文档即可。
 	
@@ -25,6 +27,7 @@ Emacs Windows版下载地址：http://ftp.gnu.org/pub/gnu/emacs/windows/
 
 将下载的压缩包（emacs-24.3-bin-i386.zip）解压到D盘（随个人喜好）重命名为Emacs24.3（也可以不重命名），解压后目录如下
 
+![20150404001432]({{site.baseurl}}/images/2015-04-03-windows-install-emacs/20150404001432.png)
 
 双击bin文件夹里的addpm.exe进行安装，安装完后可以双击bin文件夹里的runemacs.exe启动也可以到bin目录双击emacs.exe启动，注意后者会出现一个控制台窗口。
 
@@ -49,4 +52,4 @@ Emacs Windows版下载地址：http://ftp.gnu.org/pub/gnu/emacs/windows/
 lisp目录下存放着lisp源文件（*.el）和已编译的lisp文件（*.elc），以后你也可以将自己的.el文件放在这个目录下，然后还要在.emacs文件插入相关语句。比如你有一个文件叫做abcd.el，将它复制到lisp目录下，然后打开.emacs文件插入一句(require 'abcd)就可以了（包括圆括号，不需要扩展名.el）。
 
 
-最后感谢博主flag_and_leg的分享
+最后感谢博主[flag_and_leg](http://blog.csdn.net/flag_and_leg/article/details/2900278)的分享！
