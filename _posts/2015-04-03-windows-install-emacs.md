@@ -27,7 +27,7 @@ Emacs Windows版下载地址：[http://ftp.gnu.org/pub/gnu/emacs/windows/](http:
 
 将下载的压缩包（emacs-24.3-bin-i386.zip）解压到D盘（随个人喜好）重命名为Emacs24.3（也可以不重命名），解压后目录如下
 
-![20150404001432]({{site.baseurl}}/images/2015-04-03-windows-install-emacs/20150404001432.png)
+![20150404001432](/images/2015-04-03-windows-install-emacs/20150404001432.png)
 
 双击bin文件夹里的addpm.exe进行安装，安装完后可以双击bin文件夹里的runemacs.exe启动也可以到bin目录双击emacs.exe启动，注意后者会出现一个控制台窗口。
 
