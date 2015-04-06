@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: Windows中安装Emacs
 comments: true
 ---
