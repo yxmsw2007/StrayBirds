@@ -18,3 +18,11 @@ fixScale = function(doc) {
 	}
 
 };
+
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?499d2bf81ff600ca5ff3694f225b385e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
