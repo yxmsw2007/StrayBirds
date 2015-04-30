@@ -315,7 +315,6 @@ function factor(opts, count, current) {
 			//visibility:'visible',
 			//visibility:'hidden',
 			display : 'none',
-            		padding : '5px',
 			//display : 'block',
 			//vertical-align:'middle'
 		},
