@@ -8,7 +8,7 @@ comments: true
 
 命令：
 
-    gnome-screenshot
+gnome-screenshot
 
     $ gnome-screenshot --help
 
