@@ -25,5 +25,8 @@ comments: true
 
     Ctrl + l
 
+## 命令行打开当前文件夹
+
+    nautilus .
 
 
