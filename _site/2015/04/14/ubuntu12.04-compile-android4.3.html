@@ -386,21 +386,18 @@ lunch sdk-eng
 
 <h2>在模拟器中运行编译好的内核。</h2>
 
-<ol>
-<li><p>在启动模拟器之前，先设置模拟器的目录到环境变量$PATH中去</p>
-
-<p>$ export PATH=$PATH:~/Android/out/host/linux-x86/bin</p></li>
-<li><p>设置ANDROID<em>PRODUCT</em>OUT环境变量</p>
-
-<p>$ export ANDROID<em>PRODUCT</em>OUT=~/Android/out/target/product/generic</p></li>
-<li><p>在后台中指定内核文件启动模拟器</p>
-
-<p>$  emulator -kernel ./kernel/common/arch/arm/boot/zImage &amp;</p></li>
-<li><p>用adb工具连接模拟器，查看内核版本信息，看看模拟器上跑的内核是不是我们刚才编译出来的内核</p>
-
-<p>$ adb shell</p></li>
-</ol>
-
+<p>在启动模拟器之前，先设置模拟器的目录到环境变量$PATH中去</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ export PATH=$PATH:~/Android/out/host/linux-x86/bin
+</code></pre></div>
+<p>设置ANDROID<em>PRODUCT</em>OUT环境变量</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ export ANDROID_PRODUCT_OUT=~/Android/out/target/product/generic
+</code></pre></div>
+<p>在后台中指定内核文件启动模拟器</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$  emulator -kernel ./kernel/common/arch/arm/boot/zImage &amp;
+</code></pre></div>
+<p>用adb工具连接模拟器，查看内核版本信息，看看模拟器上跑的内核是不是我们刚才编译出来的内核</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ adb shell
+</code></pre></div>
 <p>这时候如果是第一次运行 adb shell命令，会看到以下输出，不用管它，再运行一次adb shell命令就可以了。</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">* daemon not running. start it now on port 5037 *
 
