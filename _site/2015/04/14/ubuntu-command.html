@@ -3,21 +3,27 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>メiao</title>
+    <title>yxmsw2007</title>
 
     <link rel="stylesheet" href="/stylesheets/styles.css">
     <link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+	<link rel="stylesheet" href="/stylesheets/zTreeStyle.css" type="text/css"> 
     <script src="/javascripts/scale.fix.js"></script>
+	<script src="/javascripts/jquery-1.4.4.min.js"></script>
+	<script src="/javascripts/jquery.ztree.core-3.5.js"></script>
+	<script src="/javascripts/ztree_toc.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
 
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
   </head>
   <body>
+	<section id="tree" class="ztree"></section>
     <div class="wrapper">
       <header>
-      <h1><a href="http://yxmsw2007.github.io/">メiao</a></h1>
+      <h1><a href="http://yxmsw2007.github.io/">yxmsw2007</a></h1>
         <p>人生到处知何似 应似飞鸿踏雪泥</p>
         <p class="view"><a href="https://github.com/yxmsw2007/yxmsw2007.github.io">View the Project on GitHub <small>yxmsw2007/yxmsw2007.github.io</small></a></p>
         <ul>
@@ -32,42 +38,80 @@
 <h2>屏幕截图</h2>
 
 <p>命令：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">gnome-screenshot
-</code></pre></div>
-<p><img src="/images/2015-04-14-ubuntu-command/20150414220109.png" alt="20150414220109"></p>
 
+<p>gnome-screenshot</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ gnome-screenshot --help
+
+Usage:
+
+     gnome-screenshot [OPTION...] Take a picture of the screen
+
+Help Options:
+
+    -h, --help                     Show help options
+
+    --help-all                     Show all help options
+
+    --help-gtk                     Show GTK+ Options
+
+Application Options:
+
+    -c, --clipboard                Send the grab directly to the clipboard
+
+    -w, --window                   Grab a window instead of the entire screen
+
+    -a, --area                     Grab an area of the screen instead of the entire screen
+
+    -b, --include-border           Include the window border with the screenshot
+
+    -B, --remove-border            Remove the window border from the screenshot
+
+    -d, --delay=seconds            Take screenshot after specified delay [in seconds]
+
+    -e, --border-effect=effect     Effect to add to the border (shadow, border or none)
+
+    -i, --interactive              Interactively set options
+
+    --display=DISPLAY              X display to use
+</code></pre></div>
 <p>参数说明：</p>
 
-<blockquote>
-<p>无：全屏截图
--w：当前Shell窗口
--a：指定区域
--B：去除窗口边框
--d：延迟截屏
--e：给截图添加效果</p>
-</blockquote>
+<ul>
+<li>无：全屏截图</li>
+<li>-w：当前Shell窗口</li>
+<li>-a：指定区域</li>
+<li>-B：去除窗口边框</li>
+<li>-d：延迟截屏</li>
+<li>-e：给截图添加效果</li>
+</ul>
 
+<h2>清屏快捷键</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Ctrl + l
+</code></pre></div>
+<h2>命令行打开当前文件夹</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">nautilus .
+</code></pre></div>
  </section>
 <section>
 <h1>Related Posts</h1>
 <table>
 
   <tr>
-	<th><a href="/2015/04/06/save-log-by-simple-way.html">简便的log保存机制-Android</a></th>
+	<th><a href="/2015/05/01/windows-commands.html">Windows常用快捷键</a></th>
+	<td>2015-05-01</td>
+	<td><a href="/2015/05/01/windows-commands.html#disqus_thread">Comments</a></td>
+  </tr>
+
+  <tr>
+	<th><a href="/2015/04/14/ubuntu12.04-compile-android4.3.html">Ubuntu12.04编译android4.3源码问题集锦</a></th>
+	<td>2015-04-14</td>
+	<td><a href="/2015/04/14/ubuntu12.04-compile-android4.3.html#disqus_thread">Comments</a></td>
+  </tr>
+
+  <tr>
+	<th><a href="/2015/04/06/save-log-by-simple-way.html">Log保存文件-Android</a></th>
 	<td>2015-04-06</td>
 	<td><a href="/2015/04/06/save-log-by-simple-way.html#disqus_thread">Comments</a></td>
-  </tr>
-
-  <tr>
-	<th><a href="/2015/04/06/blogging-with-vim.html">用VIM写博客</a></th>
-	<td>2015-04-06</td>
-	<td><a href="/2015/04/06/blogging-with-vim.html#disqus_thread">Comments</a></td>
-  </tr>
-
-  <tr>
-	<th><a href="/2015/04/04/build-github-blog-platform.html">Github搭建博客平台</a></th>
-	<td>2015-04-04</td>
-	<td><a href="/2015/04/04/build-github-blog-platform.html#disqus_thread">Comments</a></td>
   </tr>
 
 </table>

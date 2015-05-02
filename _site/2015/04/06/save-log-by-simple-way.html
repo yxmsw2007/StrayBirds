@@ -3,21 +3,27 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>メiao</title>
+    <title>yxmsw2007</title>
 
     <link rel="stylesheet" href="/stylesheets/styles.css">
     <link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+	<link rel="stylesheet" href="/stylesheets/zTreeStyle.css" type="text/css"> 
     <script src="/javascripts/scale.fix.js"></script>
+	<script src="/javascripts/jquery-1.4.4.min.js"></script>
+	<script src="/javascripts/jquery.ztree.core-3.5.js"></script>
+	<script src="/javascripts/ztree_toc.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
 
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
   </head>
   <body>
+	<section id="tree" class="ztree"></section>
     <div class="wrapper">
       <header>
-      <h1><a href="http://yxmsw2007.github.io/">メiao</a></h1>
+      <h1><a href="http://yxmsw2007.github.io/">yxmsw2007</a></h1>
         <p>人生到处知何似 应似飞鸿踏雪泥</p>
         <p class="view"><a href="https://github.com/yxmsw2007/yxmsw2007.github.io">View the Project on GitHub <small>yxmsw2007/yxmsw2007.github.io</small></a></p>
         <ul>
@@ -26,12 +32,830 @@
       </header>
       <section>
         <h1>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a> 简便的log保存机制-Android 
+<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a> Log保存文件-Android 
         </h1>
 <section>
-<p>编辑中...</p>
+<h2>前言</h2>
+
+<p>在开发过程中尤其是项目进入测试后，为了方便定位问题，经常需要将log保存下来，当然你可以自己写个log辅助类又或者直接使用第三方的jar包，这里多多少少需要对系统的log类进行一些包装，调用也不再是系统的log类，如果你只希望调用系统的log类又想打印的log能按自己的规则保存到文件那么请继续往下看。</p>
+
+<h2>原理</h2>
+
+<p>首先启动模拟器或者用手机连接电脑，进入命令行并且输入如下命令</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">C:\Users\Administrator&gt;adb shell
+root@pisces:/ # logcat -v time *:W
+05-01 17:10:48.619 W/PushService( 2216): 2015-05-01 17:10:48,620 - [WARN::PushService] - [Process:2216][Thread:1] Service called on timer
+05-01 17:10:48.622 W/PushService( 2216): 2015-05-01 17:10:48,623 - [WARN::PushService] - [Process:2216][Thread:31] SMACK 05:10:48 下午 SENT (1122316296): &lt;iq to=&#39;xiaomi.com&#39; id=&#39;0&#39; chid=&#39;0&#39; type=&#39;get&#39;&gt;&lt;ping xmlns=&#39;urn:xmpp:ping&#39;&gt;&lt;pf&gt;&lt;p&gt;t:69&lt;/p&gt;&lt;/pf&gt;&lt;/ping&gt;&lt;/iq&gt;
+05-01 17:10:48.622 W/PushService( 2216): 
+05-01 17:10:48.701 W/PushService( 2216): 2015-05-01 17:10:48,701 - [WARN::PushService] - [Process:2216][Thread:428] SMACK 05:10:48 下午 RCV  (1122316296): &lt;iq chid=&#39;0&#39; id=&#39;0&#39; type=&#39;result&#39;/&gt;
+05-01 17:11:03.638 W/PushService( 2216): 2015-05-01 17:11:03,637 - [WARN::PushService] - [Process:2216][Thread:31] JOB: check the ping-pong.
+05-01 17:11:08.384 W/MountService(  960): getVolumeState(/storage/emulated/0/external_sd): Unknown volume
+05-01 17:11:08.385 W/MountService(  960): getVolumeState(/mnt/sdcard-ext): Unknown volume
+05-01 17:11:08.386 W/MountService(  960): getVolumeState(/mnt/ext_sdcard): Unknown volume
+05-01 17:11:08.387 W/MountService(  960): getVolumeState(/mnt/sdcard2): Unknown volume
+</code></pre></div>
+<p>上面的命令过滤出了所有的w以及w优先级以上的log（本人D等级打印太多所以选用W），按“Ctrl + c”终止刚才的命令，然后再执行如下命令</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">C:\Users\Administrator&gt;adb shell
+root@pisces:/ # logcat -v time *:W &gt;&gt; /sdcard/log.log
+logcat -v time *:W &gt; sdcard/log.log
+</code></pre></div>
+<p>这时候你再去设备的sd卡根目录看看，是不是多出来个“log.log”文件，打开看看里面的内容是不是我们保存的log。</p>
+
+<p>是的，这里我们要用到的就是上面的方式，既然命令行中的log可以保存的文件中，那我们只需要在程序中执行命令行即可</p>
+
+<h2>logcat</h2>
+
+<p>关于logcat的用法可以通过如下命令查看</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">C:\Users\Administrator&gt;adb shell
+root@pisces:/ # logcat --help
+logcat --help
+Usage: logcat [options] [filterspecs]
+options include:
+  -s              Set default filter to silent.
+                  Like specifying filterspec &#39;*:s&#39;
+  -f &lt;filename&gt;   Log to file. Default to stdout
+  -r [&lt;kbytes&gt;]   Rotate log every kbytes. (16 if unspecified). Requires -f
+  -n &lt;count&gt;      Sets max number of rotated logs to &lt;count&gt;, default 4
+  -v &lt;format&gt;     Sets the log print format, where &lt;format&gt; is one of:
+
+                  brief process tag thread raw time threadtime long
+
+  -c              clear (flush) the entire log and exit
+  -d              dump the log and then exit (don&#39;t block)
+  -t &lt;count&gt;      print only the most recent &lt;count&gt; lines (implies -d)
+  -g              get the size of the log&#39;s ring buffer and exit
+  -b &lt;buffer&gt;     Request alternate ring buffer, &#39;main&#39;, &#39;system&#39;, &#39;radio&#39;
+                  or &#39;events&#39;. Multiple -b parameters are allowed and the
+                  results are interleaved. The default is -b main -b system.
+  -B              output the log in binary
+filterspecs are a series of
+  &lt;tag&gt;[:priority]
+
+where &lt;tag&gt; is a log component tag (or * for all) and priority is:
+  V    Verbose
+  D    Debug
+  I    Info
+  W    Warn
+  E    Error
+  F    Fatal
+  S    Silent (supress all output)
+
+&#39;*&#39; means &#39;*:d&#39; and &lt;tag&gt; by itself means &lt;tag&gt;:v
+
+If not specified on the commandline, filterspec is set from ANDROID_LOG_TAGS.
+If no filterspec is found, filter defaults to &#39;*:I&#39;
+
+If not specified with -v, format is set from ANDROID_PRINTF_LOG
+or defaults to &quot;brief&quot;
+</code></pre></div>
+<p>从logcat help可以看出，logcat本身就提供了保存文件的参数“-f <filename>”，你可能要问为什么不用直接这个保存，主要是logcat也有它的局限性，从上面可以看出，logcat提供了根据tag和priority的过滤器，但如果我们想把项目中的所有log都保存到文件中，那我们就不得不将所有的tag都添加到过滤器中，这时候如果可以根据应用程序的包名或者进程ID过滤就省事多了，所以我们有用到了grep命令。</p>
+
+<h2>grep</h2>
+
+<p>grep命令的用法如下</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">root@pisces:/ # grep
+grep
+usage: grep [-abcDEFGHhIiJLlmnOoPqRSsUVvwxZz] [-A num] [-B num] [-C[num]]
+        [-e pattern] [-f file] [--binary-files=value] [--color=when]
+        [-e pattern] [-f file] [--binary-files=value] [--color=when]
+        [--context[=num]] [--directories=action] [--label] [--line-buffered]
+        [pattern] [file ...]
+</code></pre></div>
+<p>grep命令不仅支持关键字过滤还支持正则，这里我们要用到的就是他的正则过滤。</p>
+
+<h2>使用方法</h2>
+
+<p>再试试如下命令</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">logcat -v time *:W | grep &#39;(  960):&#39; &gt;&gt; /sdcard/log.txt
+</code></pre></div>
+<blockquote>
+<p>注： 关键字&quot;&#39;(  960):&#39;&quot;中的进程ID请修改为你系统中存在的ID号，最好直接从“logcat -v time *:W”命令输出的log中复制粘贴，另外“()”中有五个字符，进程ID长度不够在前面补空格</p>
+</blockquote>
+
+<p>对比下SD中的log.log和log.txt你会发现log.log中包含了所有进程warn和warn以上优先级的log而log.txt中只包含了指定关键字的log。所以我们只需根据“logcat -v time *:W”打印的log的规则再配合grep命令的正则表达式是可以根据进程ID过滤的。遗憾的是本人尝试了很多次始终由于grep无法完全支持正则表达式而未能得到一个完全匹配的正则表达式，目前只得到以下表达式，虽然不能做到百分百的过滤但也算比较靠谱，如果你写出来了麻烦也告诉我一下<a href="mailto:yxmsw2007@gmail.com">yxmsw2007@gmail.com</a></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">logcat -v time *:W | grep &#39;^.*\/.*(  960):&#39; &gt;&gt; /sdcard/log.log
+</code></pre></div>
+<h2>LogService</h2>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">example</span><span class="o">.</span><span class="na">service</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileInputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileOutputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.InputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.text.ParseException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.text.SimpleDateFormat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Calendar</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Comparator</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">android.app.AlarmManager</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.app.PendingIntent</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.app.Service</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.content.BroadcastReceiver</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.content.Context</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.content.Intent</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.content.IntentFilter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.os.Environment</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.os.IBinder</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.os.PowerManager</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.os.StatFs</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.os.PowerManager.WakeLock</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.os.StrictMode</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.util.Log</span><span class="o">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @project SampleAndroid   </span>
+<span class="cm"> * @class LogService </span>
+<span class="cm"> * @description </span>
+<span class="cm"> * 日志服务，日志默认会存储在内存中的安装目录下面并且系统每隔一段时间就会检测一下log文件的大小，</span>
+<span class="cm"> * 如果log文件超过指定的大小则会执行如下动作：</span>
+<span class="cm"> * 1.SD卡不可用，所有log文件都保存在内存中，当log文件数超出指定的数量就会删除较早的log</span>
+<span class="cm"> * 2.SD卡可用而且存储空间足够则将文件移动SD卡中，并检测SD中保存的文件是否都在指定时间日期内，如果不是则删除</span>
+<span class="cm"> * 3.SD卡可用但存储空间小于指定的大小，在操作log前会先删除SD卡中的所有log并重新检测空间，如果空间仍不足则按1操作否则按2进行</span>
+<span class="cm"> * @author yxmsw2007</span>
+<span class="cm"> * @version 1.0</span>
+<span class="cm"> * @email yxmsw2007@gmail.com  </span>
+<span class="cm"> * @data 2015-5-1 下午8:18:27    </span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LogService</span> <span class="kd">extends</span> <span class="n">Service</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">TAG</span> <span class="o">=</span> <span class="n">LogService</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getSimpleName</span><span class="o">();</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">MEMORY_LOG_FILE_MAX_SIZE</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="o">;</span> <span class="c1">// 内存中日志文件最大值，10M</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">MEMORY_LOG_FILE_MONITOR_INTERVAL</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">1000</span><span class="o">;</span> <span class="c1">// 内存中的日志文件大小监控时间间隔，10分钟</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">MEMORY_LOG_FILE_MAX_NUMBER</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span> <span class="c1">// 内存中允许保存的最大文件个数</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">SDCARD_LOG_FILE_SAVE_DAYS</span> <span class="o">=</span> <span class="mi">7</span><span class="o">;</span> <span class="c1">// sd卡中日志文件的最多保存天数</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">LOG_FOLDER</span> <span class="o">=</span> <span class="s">&quot;Log&quot;</span><span class="o">;</span> <span class="c1">//日志文件夹</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">MONITOR_LOG_PRIORITY</span> <span class="o">=</span> <span class="s">&quot;D&quot;</span><span class="o">;</span> <span class="c1">// 监听日志的最低优先级</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">MONITOR_LOG_SIZE_ACTION</span> <span class="o">=</span> <span class="s">&quot;MONITOR_LOG_SIZE&quot;</span><span class="o">;</span> <span class="c1">// 日志文件大小监测action</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * logcat -v time *:D | grep -n &#39;^.*\/.*(  828):&#39; &gt;&gt; /sdcard/download/Log.log</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">LOG_FILTER_COMMAND_FORMAT</span> <span class="o">=</span> <span class="s">&quot;logcat -v time *:%s | grep &#39;^.*\\/.*(%s):&#39; &gt;&gt; %s&quot;</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">SimpleDateFormat</span> <span class="n">sdf</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">SimpleDateFormat</span><span class="o">(</span><span class="s">&quot;yyyy-MM-dd HHmmss&quot;</span><span class="o">);</span><span class="c1">// 日志名称格式</span>
+
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">mLogFileDirMemory</span><span class="o">;</span> <span class="c1">// 日志文件在内存中的路径(日志文件在安装目录中的路径)</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">mLogFileDirSdcard</span><span class="o">;</span> <span class="c1">// 日志文件在sdcard中的路径</span>
+
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">mCurrLogFileName</span><span class="o">;</span> <span class="c1">// 如果当前的日志写在内存中，记录当前的日志文件名称</span>
+
+    <span class="kd">private</span> <span class="n">Process</span> <span class="n">process</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">WakeLock</span> <span class="n">wakeLock</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">PendingIntent</span> <span class="n">mMemoryLogFileSizeMonitor</span><span class="o">;</span> 
+    <span class="kd">private</span> <span class="n">AlarmManager</span> <span class="n">mAlarmManager</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">IBinder</span> <span class="nf">onBind</span><span class="o">(</span><span class="n">Intent</span> <span class="n">intent</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">();</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;-- onCreate() --&quot;</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">android</span><span class="o">.</span><span class="na">os</span><span class="o">.</span><span class="na">Build</span><span class="o">.</span><span class="na">VERSION</span><span class="o">.</span><span class="na">SDK_INT</span> <span class="o">&gt;</span> <span class="mi">9</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">StrictMode</span><span class="o">.</span><span class="na">ThreadPolicy</span> <span class="n">policy</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StrictMode</span><span class="o">.</span><span class="na">ThreadPolicy</span><span class="o">.</span><span class="na">Builder</span><span class="o">().</span><span class="na">permitAll</span><span class="o">().</span><span class="na">build</span><span class="o">();</span>
+            <span class="n">StrictMode</span><span class="o">.</span><span class="na">setThreadPolicy</span><span class="o">(</span><span class="n">policy</span><span class="o">);</span>
+        <span class="o">}</span>
+<span class="c1">//      注册SD卡状态监听广播</span>
+        <span class="n">IntentFilter</span> <span class="n">sdCarMonitorFilter</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">IntentFilter</span><span class="o">();</span>
+        <span class="n">sdCarMonitorFilter</span><span class="o">.</span><span class="na">addAction</span><span class="o">(</span><span class="n">Intent</span><span class="o">.</span><span class="na">ACTION_MEDIA_MOUNTED</span><span class="o">);</span>
+        <span class="n">sdCarMonitorFilter</span><span class="o">.</span><span class="na">addAction</span><span class="o">(</span><span class="n">Intent</span><span class="o">.</span><span class="na">ACTION_MEDIA_UNMOUNTED</span><span class="o">);</span>
+        <span class="n">sdCarMonitorFilter</span><span class="o">.</span><span class="na">addDataScheme</span><span class="o">(</span><span class="s">&quot;file&quot;</span><span class="o">);</span>
+        <span class="n">registerReceiver</span><span class="o">(</span><span class="n">mSDStateReceiver</span><span class="o">,</span> <span class="n">sdCarMonitorFilter</span><span class="o">);</span>
+
+
+        <span class="n">IntentFilter</span> <span class="n">logTaskFilter</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">IntentFilter</span><span class="o">();</span>
+        <span class="n">logTaskFilter</span><span class="o">.</span><span class="na">addAction</span><span class="o">(</span><span class="n">MONITOR_LOG_SIZE_ACTION</span><span class="o">);</span> <span class="c1">//注册日志大小监听广播</span>
+        <span class="n">logTaskFilter</span><span class="o">.</span><span class="na">addAction</span><span class="o">(</span><span class="n">Intent</span><span class="o">.</span><span class="na">ACTION_TIME_CHANGED</span><span class="o">);</span> <span class="c1">//如果时间被重新设置，要判断当前时间是否在有效时间内，</span>
+                                                             <span class="c1">//如果超出了范围需要将日志保存到新文件中，否则会被清除</span>
+        <span class="n">registerReceiver</span><span class="o">(</span><span class="n">mLogTaskReceiver</span><span class="o">,</span> <span class="n">logTaskFilter</span><span class="o">);</span>
+
+<span class="c1">//      部署日志大小监控任务</span>
+        <span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Intent</span><span class="o">(</span><span class="n">MONITOR_LOG_SIZE_ACTION</span><span class="o">);</span>
+        <span class="n">mMemoryLogFileSizeMonitor</span> <span class="o">=</span> <span class="n">PendingIntent</span><span class="o">.</span><span class="na">getBroadcast</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">intent</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+        <span class="n">mAlarmManager</span> <span class="o">=</span> <span class="o">(</span><span class="n">AlarmManager</span><span class="o">)</span> <span class="n">getSystemService</span><span class="o">(</span><span class="n">ALARM_SERVICE</span><span class="o">);</span>
+        <span class="n">mAlarmManager</span><span class="o">.</span><span class="na">setRepeating</span><span class="o">(</span><span class="n">AlarmManager</span><span class="o">.</span><span class="na">RTC_WAKEUP</span><span class="o">,</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">(),</span>
+                <span class="n">MEMORY_LOG_FILE_MONITOR_INTERVAL</span><span class="o">,</span> <span class="n">mMemoryLogFileSizeMonitor</span><span class="o">);</span>
+
+        <span class="n">PowerManager</span> <span class="n">pm</span> <span class="o">=</span> <span class="o">(</span><span class="n">PowerManager</span><span class="o">)</span> <span class="n">getApplicationContext</span><span class="o">().</span><span class="na">getSystemService</span><span class="o">(</span><span class="n">Context</span><span class="o">.</span><span class="na">POWER_SERVICE</span><span class="o">);</span>
+        <span class="n">wakeLock</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="na">newWakeLock</span><span class="o">(</span><span class="n">PowerManager</span><span class="o">.</span><span class="na">PARTIAL_WAKE_LOCK</span><span class="o">,</span> <span class="n">TAG</span><span class="o">);</span>
+
+        <span class="k">new</span> <span class="nf">LogCollectorThread</span><span class="o">().</span><span class="na">start</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onDestroy</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onDestroy</span><span class="o">();</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;-- onDestroy() --&quot;</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">process</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">process</span><span class="o">.</span><span class="na">destroy</span><span class="o">();</span>
+        <span class="o">}</span>
+
+<span class="c1">//      取消日志大小监控任务</span>
+        <span class="n">mAlarmManager</span><span class="o">.</span><span class="na">cancel</span><span class="o">(</span><span class="n">mMemoryLogFileSizeMonitor</span><span class="o">);</span>
+
+        <span class="n">unregisterReceiver</span><span class="o">(</span><span class="n">mSDStateReceiver</span><span class="o">);</span>
+        <span class="n">unregisterReceiver</span><span class="o">(</span><span class="n">mLogTaskReceiver</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 日志收集 </span>
+<span class="cm">     * 1.清除日志缓存 </span>
+<span class="cm">     * 2.杀死应用程序已开启的Logcat进程防止多个进程写入一个日志文件 </span>
+<span class="cm">     * 3.开启日志收集进程 </span>
+<span class="cm">     * 4.处理日志文件 移动 OR 删除</span>
+<span class="cm">     */</span>
+    <span class="kd">class</span> <span class="nc">LogCollectorThread</span> <span class="kd">extends</span> <span class="n">Thread</span> <span class="o">{</span>
+
+        <span class="kd">public</span> <span class="nf">LogCollectorThread</span><span class="o">()</span> <span class="o">{</span>
+            <span class="kd">super</span><span class="o">(</span><span class="s">&quot;LogCollectorThread&quot;</span><span class="o">);</span>
+            <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;LogCollectorThread is create&quot;</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">wakeLock</span><span class="o">.</span><span class="na">acquire</span><span class="o">();</span> <span class="c1">// 唤醒手机</span>
+                <span class="n">clearLogCache</span><span class="o">();</span>
+                <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">orgProcessList</span> <span class="o">=</span> <span class="n">getAllProcess</span><span class="o">();</span>
+                <span class="n">List</span><span class="o">&lt;</span><span class="n">ProcessInfo</span><span class="o">&gt;</span> <span class="n">processInfoList</span> <span class="o">=</span> <span class="n">getProcessInfoList</span><span class="o">(</span><span class="n">orgProcessList</span><span class="o">);</span>
+                <span class="n">killLogcatProc</span><span class="o">(</span><span class="n">processInfoList</span><span class="o">);</span>
+                <span class="n">mCurrLogFileName</span> <span class="o">=</span> <span class="n">dateToFileName</span><span class="o">(</span><span class="k">new</span> <span class="nf">Date</span><span class="o">());</span><span class="c1">//获取新的日志文件名称</span>
+                <span class="n">createLogCollector</span><span class="o">(</span><span class="n">getMemoryFilePath</span><span class="o">(</span><span class="n">mCurrLogFileName</span><span class="o">));</span>
+                <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span><span class="c1">// 休眠，创建文件，然后处理文件，不然该文件还没创建，会影响文件删除</span>
+                <span class="n">handleLog</span><span class="o">(</span><span class="n">mCurrLogFileName</span><span class="o">);</span>
+                <span class="n">wakeLock</span><span class="o">.</span><span class="na">release</span><span class="o">();</span> <span class="c1">// 释放</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 每次记录日志之前先清除日志的缓存, 不然会在两个日志文件中记录重复的日志</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">clearLogCache</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;-- clearLogCache() --&quot;</span><span class="o">);</span>
+        <span class="n">Process</span> <span class="n">proc</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">commandList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+        <span class="n">commandList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;logcat&quot;</span><span class="o">);</span>
+        <span class="n">commandList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;-c&quot;</span><span class="o">);</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">proc</span> <span class="o">=</span> <span class="n">Runtime</span><span class="o">.</span><span class="na">getRuntime</span><span class="o">().</span><span class="na">exec</span><span class="o">(</span><span class="n">commandList</span><span class="o">.</span><span class="na">toArray</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">commandList</span><span class="o">.</span><span class="na">size</span><span class="o">()]));</span>
+            <span class="n">StreamConsumer</span> <span class="n">errorGobbler</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">StreamConsumer</span><span class="o">(</span><span class="n">proc</span><span class="o">.</span><span class="na">getErrorStream</span><span class="o">());</span>
+            <span class="n">StreamConsumer</span> <span class="n">outputGobbler</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">StreamConsumer</span><span class="o">(</span><span class="n">proc</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">());</span>
+            <span class="n">errorGobbler</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+            <span class="n">outputGobbler</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">proc</span><span class="o">.</span><span class="na">waitFor</span><span class="o">()</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot; clearLogCache proc.waitFor() != 0&quot;</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;clearLogCache failed&quot;</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">proc</span><span class="o">.</span><span class="na">destroy</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;clearLogCache failed&quot;</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 关闭由本程序开启的logcat进程： 根据用户名称杀死进程(如果是本程序进程开启的Logcat收集进程那么两者的USER一致)</span>
+<span class="cm">     * 如果不关闭会有多个进程读取logcat日志缓存信息写入日志文件</span>
+<span class="cm">     * @param allProcList</span>
+<span class="cm">     * @return</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">killLogcatProc</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">ProcessInfo</span><span class="o">&gt;</span> <span class="n">allProcList</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;-- killLogcatProc() --&quot;</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">process</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">process</span><span class="o">.</span><span class="na">destroy</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="n">String</span> <span class="n">packName</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getPackageName</span><span class="o">();</span>
+        <span class="n">String</span> <span class="n">myUser</span> <span class="o">=</span> <span class="n">getAppUser</span><span class="o">(</span><span class="n">packName</span><span class="o">,</span> <span class="n">allProcList</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">ProcessInfo</span> <span class="n">processInfo</span> <span class="o">:</span> <span class="n">allProcList</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">processInfo</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">toLowerCase</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;logcat&quot;</span><span class="o">)</span>
+                    <span class="o">&amp;&amp;</span> <span class="n">processInfo</span><span class="o">.</span><span class="na">user</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">myUser</span><span class="o">))</span> <span class="o">{</span>
+                <span class="n">android</span><span class="o">.</span><span class="na">os</span><span class="o">.</span><span class="na">Process</span><span class="o">.</span><span class="na">killProcess</span><span class="o">(</span><span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">processInfo</span><span class="o">.</span><span class="na">pid</span><span class="o">));</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 获取本程序的用户名称</span>
+<span class="cm">     * @param packName</span>
+<span class="cm">     * @param allProcList</span>
+<span class="cm">     * @return</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="nf">getAppUser</span><span class="o">(</span><span class="n">String</span> <span class="n">packName</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">ProcessInfo</span><span class="o">&gt;</span> <span class="n">allProcList</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">ProcessInfo</span> <span class="n">processInfo</span> <span class="o">:</span> <span class="n">allProcList</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">processInfo</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">packName</span><span class="o">))</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="n">processInfo</span><span class="o">.</span><span class="na">user</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 根据ps命令得到的内容获取PID，User，name等信息</span>
+<span class="cm">     * @param orgProcessList</span>
+<span class="cm">     * @return</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">ProcessInfo</span><span class="o">&gt;</span> <span class="nf">getProcessInfoList</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">orgProcessList</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">ProcessInfo</span><span class="o">&gt;</span> <span class="n">procInfoList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">ProcessInfo</span><span class="o">&gt;();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">orgProcessList</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">String</span> <span class="n">processInfo</span> <span class="o">=</span> <span class="n">orgProcessList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+            <span class="n">String</span><span class="o">[]</span> <span class="n">proStr</span> <span class="o">=</span> <span class="n">processInfo</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&quot; &quot;</span><span class="o">);</span>
+            <span class="c1">// USER PID PPID VSIZE RSS WCHAN PC NAME</span>
+            <span class="c1">// root 1 0 416 300 c00d4b28 0000cd5c S /init</span>
+            <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">orgInfo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+            <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">str</span> <span class="o">:</span> <span class="n">proStr</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(!</span><span class="s">&quot;&quot;</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">str</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="n">orgInfo</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">orgInfo</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">9</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">ProcessInfo</span> <span class="n">pInfo</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">ProcessInfo</span><span class="o">();</span>
+                <span class="n">pInfo</span><span class="o">.</span><span class="na">user</span> <span class="o">=</span> <span class="n">orgInfo</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+                <span class="n">pInfo</span><span class="o">.</span><span class="na">pid</span> <span class="o">=</span> <span class="n">orgInfo</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+                <span class="n">pInfo</span><span class="o">.</span><span class="na">ppid</span> <span class="o">=</span> <span class="n">orgInfo</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+                <span class="n">pInfo</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">orgInfo</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">8</span><span class="o">);</span>
+                <span class="n">procInfoList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">pInfo</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">procInfoList</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 运行PS命令得到进程信息</span>
+<span class="cm">     * @return USER PID PPID VSIZE RSS WCHAN    PC         NAME </span>
+<span class="cm">     *         root 1   0    416   300 c00d4b28 0000cd5c S /init</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">getAllProcess</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">orgProcList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+        <span class="n">Process</span> <span class="n">proc</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">proc</span> <span class="o">=</span> <span class="n">Runtime</span><span class="o">.</span><span class="na">getRuntime</span><span class="o">().</span><span class="na">exec</span><span class="o">(</span><span class="s">&quot;ps&quot;</span><span class="o">);</span>
+            <span class="n">StreamConsumer</span> <span class="n">errorConsumer</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">StreamConsumer</span><span class="o">(</span>
+                    <span class="n">proc</span><span class="o">.</span><span class="na">getErrorStream</span><span class="o">());</span>
+
+            <span class="n">StreamConsumer</span> <span class="n">outputConsumer</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">StreamConsumer</span><span class="o">(</span>
+                    <span class="n">proc</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">(),</span> <span class="n">orgProcList</span><span class="o">);</span>
+
+            <span class="n">errorConsumer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+            <span class="n">outputConsumer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">proc</span><span class="o">.</span><span class="na">waitFor</span><span class="o">()</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;getAllProcess proc.waitFor() != 0&quot;</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;getAllProcess failed&quot;</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">proc</span><span class="o">.</span><span class="na">destroy</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;getAllProcess failed&quot;</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">orgProcList</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * eg: logcat -v time *:D | grep -n &#39;^.*\/.*(  828):&#39; &gt;&gt; /sdcard/download/Log.log</span>
+<span class="cm">     * @param priority</span>
+<span class="cm">     * @param path</span>
+<span class="cm">     * @return</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="nf">getLogFilterCommand</span><span class="o">(</span><span class="n">String</span> <span class="n">priority</span><span class="o">,</span> <span class="n">String</span> <span class="n">path</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;-- getLogFilterCommand() --&quot;</span><span class="o">);</span>
+        <span class="n">String</span> <span class="n">sid</span> <span class="o">=</span> <span class="s">&quot;&quot;</span> <span class="o">+</span> <span class="n">android</span><span class="o">.</span><span class="na">os</span><span class="o">.</span><span class="na">Process</span><span class="o">.</span><span class="na">myPid</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">sid</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">sid</span> <span class="o">=</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">sid</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">LOG_FILTER_COMMAND_FORMAT</span><span class="o">,</span> <span class="n">priority</span><span class="o">,</span> <span class="n">sid</span><span class="o">,</span> <span class="n">path</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 开始收集日志信息</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">createLogCollector</span><span class="o">(</span><span class="n">String</span> <span class="n">path</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;-- createLogCollector() --&quot;</span><span class="o">);</span>
+        <span class="n">String</span> <span class="n">command</span> <span class="o">=</span> <span class="n">getLogFilterCommand</span><span class="o">(</span><span class="n">MONITOR_LOG_PRIORITY</span><span class="o">,</span> <span class="n">path</span><span class="o">.</span><span class="na">replace</span><span class="o">(</span><span class="s">&quot; &quot;</span><span class="o">,</span> <span class="s">&quot;\\ &quot;</span><span class="o">));</span><span class="c1">//获取命令</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="n">command</span><span class="o">);</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">commandList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+        <span class="n">commandList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;sh&quot;</span><span class="o">);</span>
+        <span class="n">commandList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;-c&quot;</span><span class="o">);</span>
+        <span class="n">commandList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">command</span><span class="o">);</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">process</span> <span class="o">=</span> <span class="n">Runtime</span><span class="o">.</span><span class="na">getRuntime</span><span class="o">().</span><span class="na">exec</span><span class="o">(</span><span class="n">commandList</span><span class="o">.</span><span class="na">toArray</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">commandList</span><span class="o">.</span><span class="na">size</span><span class="o">()]));</span>
+            <span class="c1">// process.waitFor();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;CollectorThread == &gt;&quot;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 处理日志文件 </span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleLog</span><span class="o">(</span><span class="n">String</span> <span class="n">currFileName</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;-- handleLog() --&quot;</span><span class="o">);</span>
+        <span class="n">moveLogfile</span><span class="o">(</span><span class="n">currFileName</span><span class="o">);</span><span class="c1">//将内存中日志文件转移到SD中，当前正在记录的日志文件除外</span>
+        <span class="n">deleteSdcardExpiredLog</span><span class="o">(</span><span class="n">SDCARD_LOG_FILE_SAVE_DAYS</span><span class="o">);</span><span class="c1">//删除SD中过期的日志文件</span>
+        <span class="n">deleteMemoryExpiredLog</span><span class="o">(</span><span class="n">MEMORY_LOG_FILE_MAX_NUMBER</span><span class="o">,</span> <span class="n">currFileName</span><span class="o">);</span><span class="c1">//删除内存中过期的日志文件</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 检查日志文件大小是否超过了规定大小 如果超过了重新开启一个日志收集进程</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">checkLogSize</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;-- checkLogSize() --&quot;</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">mCurrLogFileName</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="s">&quot;&quot;</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">mCurrLogFileName</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">String</span> <span class="n">path</span> <span class="o">=</span> <span class="n">getMemoryFilePath</span><span class="o">(</span><span class="n">mCurrLogFileName</span><span class="o">);</span>
+            <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">File</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(!</span><span class="n">file</span><span class="o">.</span><span class="na">exists</span><span class="o">())</span> <span class="o">{</span>
+                <span class="k">return</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">file</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;=</span> <span class="n">MEMORY_LOG_FILE_MAX_SIZE</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;The log&#39;s size is too big!&quot;</span><span class="o">);</span>
+                <span class="k">new</span> <span class="nf">LogCollectorThread</span><span class="o">().</span><span class="na">start</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 将日志文件转移到SD卡下面</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">moveLogfile</span><span class="o">(</span><span class="n">String</span> <span class="n">currFileName</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;-- moveLogfile() --&quot;</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">isSdcardAvailable</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">File</span><span class="o">(</span><span class="n">getMemoryDirPath</span><span class="o">());</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">file</span><span class="o">.</span><span class="na">isDirectory</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="n">File</span><span class="o">[]</span> <span class="n">allFiles</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="na">listFiles</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">File</span> <span class="n">logFile</span> <span class="o">:</span> <span class="n">allFiles</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">String</span> <span class="n">fileName</span> <span class="o">=</span> <span class="n">logFile</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">currFileName</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">fileName</span><span class="o">))</span> <span class="o">{</span>
+                <span class="k">continue</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">logFile</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;=</span> <span class="n">getSdcardAvailableSize</span><span class="o">())</span> <span class="o">{</span>
+                <span class="n">deleteSdcardAllLog</span><span class="o">();</span>
+            <span class="o">}</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">logFile</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;=</span> <span class="n">getSdcardAvailableSize</span><span class="o">())</span> <span class="o">{</span>
+                <span class="k">return</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">copy</span><span class="o">(</span><span class="n">logFile</span><span class="o">,</span> <span class="k">new</span> <span class="nf">File</span><span class="o">(</span><span class="n">getSdcardFilePath</span><span class="o">(</span><span class="n">fileName</span><span class="o">))))</span> <span class="o">{</span>
+                <span class="n">logFile</span><span class="o">.</span><span class="na">delete</span><span class="o">();</span>
+                <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;move file success, log name is:&quot;</span> <span class="o">+</span> <span class="n">fileName</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 删除SD卡中所有日志文件</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">deleteSdcardAllLog</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;-- deleteSdcardAllLog() --&quot;</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">isSdcardAvailable</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">File</span><span class="o">(</span><span class="n">getSdcardDirPath</span><span class="o">());</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">file</span><span class="o">.</span><span class="na">isDirectory</span><span class="o">())</span> <span class="o">{</span>
+                <span class="n">File</span><span class="o">[]</span> <span class="n">allFiles</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="na">listFiles</span><span class="o">();</span>
+                <span class="k">for</span> <span class="o">(</span><span class="n">File</span> <span class="n">logFile</span> <span class="o">:</span> <span class="n">allFiles</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">logFile</span><span class="o">.</span><span class="na">delete</span><span class="o">();</span>
+                    <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;delete file success, file name is:&quot;</span> <span class="o">+</span> <span class="n">logFile</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 删除SD内过期的日志</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">deleteSdcardExpiredLog</span><span class="o">(</span><span class="kt">int</span> <span class="n">days</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;-- deleteSdcardExpiredLog() --&quot;</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">isSdcardAvailable</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">File</span><span class="o">(</span><span class="n">getSdcardDirPath</span><span class="o">());</span>
+            <span class="n">File</span><span class="o">[]</span> <span class="n">allFiles</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="na">listFiles</span><span class="o">();</span>
+            <span class="k">for</span> <span class="o">(</span><span class="n">File</span> <span class="n">logFile</span> <span class="o">:</span> <span class="n">allFiles</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">canDeleteSDLog</span><span class="o">(</span><span class="n">logFile</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="n">days</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="n">logFile</span><span class="o">.</span><span class="na">delete</span><span class="o">();</span>
+                    <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;delete file success, file name is:&quot;</span> <span class="o">+</span> <span class="n">logFile</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * </span>
+<span class="cm">     * @param createDateStr</span>
+<span class="cm">     * @return</span>
+<span class="cm">     */</span>
+    <span class="cm">/**</span>
+<span class="cm">     * 判断sdcard上的日志文件是否可以删除，规则：文件创建时间是否在days天数内</span>
+<span class="cm">     * @param fileName 文件名</span>
+<span class="cm">     * @param days 天数</span>
+<span class="cm">     * @return</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">canDeleteSDLog</span><span class="o">(</span><span class="n">String</span> <span class="n">fileName</span><span class="o">,</span> <span class="kt">int</span> <span class="n">days</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Calendar</span> <span class="n">calendar</span> <span class="o">=</span> <span class="n">Calendar</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span>
+        <span class="n">calendar</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">DAY_OF_MONTH</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">days</span><span class="o">);</span><span class="c1">// 删除7天之前日志</span>
+        <span class="n">Date</span> <span class="n">expiredDate</span> <span class="o">=</span> <span class="n">calendar</span><span class="o">.</span><span class="na">getTime</span><span class="o">();</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">Date</span> <span class="n">createDate</span> <span class="o">=</span> <span class="n">fileNameToDate</span><span class="o">(</span><span class="n">fileName</span><span class="o">);</span>
+            <span class="k">return</span> <span class="n">createDate</span><span class="o">.</span><span class="na">before</span><span class="o">(</span><span class="n">expiredDate</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ParseException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 删除内存中的过期日志，删除规则： 保存最近的number个日志文件</span>
+<span class="cm">     * @param number 保留的文件个数</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">deleteMemoryExpiredLog</span><span class="o">(</span><span class="kt">int</span> <span class="n">number</span><span class="o">,</span> <span class="n">String</span> <span class="n">currFileName</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;-- deleteMemoryExpiredLog() --&quot;</span><span class="o">);</span>
+        <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">File</span><span class="o">(</span><span class="n">getMemoryDirPath</span><span class="o">());</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">file</span><span class="o">.</span><span class="na">isDirectory</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">File</span><span class="o">[]</span> <span class="n">allFiles</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="na">listFiles</span><span class="o">();</span>
+            <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">allFiles</span><span class="o">,</span> <span class="k">new</span> <span class="nf">FileComparator</span><span class="o">());</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">allFiles</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">number</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="n">File</span> <span class="n">f</span> <span class="o">=</span> <span class="n">allFiles</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">f</span><span class="o">.</span><span class="na">getName</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="n">currFileName</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="k">continue</span><span class="o">;</span>
+                <span class="o">}</span>
+                <span class="n">f</span><span class="o">.</span><span class="na">delete</span><span class="o">();</span>
+                <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;delete file success, file name is:&quot;</span> <span class="o">+</span> <span class="n">f</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 拷贝文件</span>
+<span class="cm">     * @param source</span>
+<span class="cm">     * @param target</span>
+<span class="cm">     * @return</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">copy</span><span class="o">(</span><span class="n">File</span> <span class="n">source</span><span class="o">,</span> <span class="n">File</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">FileInputStream</span> <span class="n">in</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="n">FileOutputStream</span> <span class="n">out</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(!</span><span class="n">target</span><span class="o">.</span><span class="na">exists</span><span class="o">())</span> <span class="o">{</span>
+                <span class="kt">boolean</span> <span class="n">createSucc</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="na">createNewFile</span><span class="o">();</span>
+                <span class="k">if</span> <span class="o">(!</span><span class="n">createSucc</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+            <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">FileInputStream</span><span class="o">(</span><span class="n">source</span><span class="o">);</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">FileOutputStream</span><span class="o">(</span><span class="n">target</span><span class="o">);</span>
+            <span class="kt">byte</span><span class="o">[]</span> <span class="n">buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="mi">8</span> <span class="o">*</span> <span class="mi">1024</span><span class="o">];</span>
+            <span class="kt">int</span> <span class="n">count</span><span class="o">;</span>
+            <span class="k">while</span> <span class="o">((</span><span class="n">count</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buffer</span><span class="o">))</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">out</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">buffer</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">count</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">in</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">in</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                <span class="o">}</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">out</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">out</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">class</span> <span class="nc">ProcessInfo</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="n">String</span> <span class="n">user</span><span class="o">;</span>
+        <span class="kd">public</span> <span class="n">String</span> <span class="n">pid</span><span class="o">;</span>
+        <span class="kd">public</span> <span class="n">String</span> <span class="n">ppid</span><span class="o">;</span>
+        <span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="s">&quot;user=&quot;</span> <span class="o">+</span> <span class="n">user</span> <span class="o">+</span> <span class="s">&quot; pid=&quot;</span> <span class="o">+</span> <span class="n">pid</span> <span class="o">+</span> <span class="s">&quot; ppid=&quot;</span> <span class="o">+</span> <span class="n">ppid</span> <span class="o">+</span> <span class="s">&quot; name=&quot;</span> <span class="o">+</span> <span class="n">name</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">class</span> <span class="nc">StreamConsumer</span> <span class="kd">extends</span> <span class="n">Thread</span> <span class="o">{</span>
+        <span class="n">InputStream</span> <span class="n">is</span><span class="o">;</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">;</span>
+
+        <span class="n">StreamConsumer</span><span class="o">(</span><span class="n">InputStream</span> <span class="n">is</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">is</span> <span class="o">=</span> <span class="n">is</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="n">StreamConsumer</span><span class="o">(</span><span class="n">InputStream</span> <span class="n">is</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">is</span> <span class="o">=</span> <span class="n">is</span><span class="o">;</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">list</span> <span class="o">=</span> <span class="n">list</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">InputStreamReader</span> <span class="n">isr</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">InputStreamReader</span><span class="o">(</span><span class="n">is</span><span class="o">);</span>
+                <span class="n">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">BufferedReader</span><span class="o">(</span><span class="n">isr</span><span class="o">);</span>
+                <span class="n">String</span> <span class="n">line</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+                <span class="k">while</span> <span class="o">((</span><span class="n">line</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">list</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">line</span><span class="o">);</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">ioe</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">ioe</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 监控SD卡状态</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="n">BroadcastReceiver</span> <span class="n">mSDStateReceiver</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">BroadcastReceiver</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onReceive</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="n">Intent</span> <span class="n">intent</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">String</span> <span class="n">action</span> <span class="o">=</span> <span class="n">intent</span><span class="o">.</span><span class="na">getAction</span><span class="o">();</span>
+            <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;mLogTaskReceiver： &quot;</span> <span class="o">+</span> <span class="n">action</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">Intent</span><span class="o">.</span><span class="na">ACTION_MEDIA_UNMOUNTED</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getAction</span><span class="o">()))</span> <span class="o">{</span> <span class="c1">// 存储卡被卸载</span>
+
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span> <span class="c1">// 存储卡被挂载</span>
+
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+    <span class="o">};</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 监控日志大小</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="n">BroadcastReceiver</span> <span class="n">mLogTaskReceiver</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">BroadcastReceiver</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onReceive</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="n">Intent</span> <span class="n">intent</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">String</span> <span class="n">action</span> <span class="o">=</span> <span class="n">intent</span><span class="o">.</span><span class="na">getAction</span><span class="o">();</span>
+            <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;mLogTaskReceiver： &quot;</span> <span class="o">+</span> <span class="n">action</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">MONITOR_LOG_SIZE_ACTION</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">action</span><span class="o">))</span> <span class="o">{</span>
+                <span class="n">checkLogSize</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">Intent</span><span class="o">.</span><span class="na">ACTION_TIME_CHANGED</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">action</span><span class="o">))</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">canDeleteSDLog</span><span class="o">(</span><span class="n">mCurrLogFileName</span><span class="o">,</span> <span class="n">SDCARD_LOG_FILE_SAVE_DAYS</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;The log is out of date !&quot;</span><span class="o">);</span>
+                    <span class="k">new</span> <span class="nf">LogCollectorThread</span><span class="o">().</span><span class="na">start</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+    <span class="o">};</span>
+
+    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">FileComparator</span> <span class="kd">implements</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">File</span><span class="o">&gt;</span> <span class="o">{</span>
+
+        <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">File</span> <span class="n">file1</span><span class="o">,</span> <span class="n">File</span> <span class="n">file2</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">Date</span> <span class="n">create1</span> <span class="o">=</span> <span class="n">fileNameToDate</span><span class="o">(</span><span class="n">file1</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+                <span class="n">Date</span> <span class="n">create2</span> <span class="o">=</span> <span class="n">fileNameToDate</span><span class="o">(</span><span class="n">file2</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">create1</span><span class="o">.</span><span class="na">before</span><span class="o">(</span><span class="n">create2</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+                <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ParseException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * SD卡是否可用</span>
+<span class="cm">     * @return</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isSdcardAvailable</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">Environment</span><span class="o">.</span><span class="na">getExternalStorageState</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="n">Environment</span><span class="o">.</span><span class="na">MEDIA_MOUNTED</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * SD卡剩余空间</span>
+<span class="cm">     * @return</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="kt">long</span> <span class="nf">getSdcardAvailableSize</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">isSdcardAvailable</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">String</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Environment</span><span class="o">.</span><span class="na">getExternalStorageDirectory</span><span class="o">().</span><span class="na">getAbsolutePath</span><span class="o">();</span>
+            <span class="n">StatFs</span> <span class="n">fileStats</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">StatFs</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+            <span class="n">fileStats</span><span class="o">.</span><span class="na">restat</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+            <span class="k">return</span> <span class="n">fileStats</span><span class="o">.</span><span class="na">getAvailableBlocksLong</span><span class="o">()</span> <span class="o">*</span> <span class="n">fileStats</span><span class="o">.</span><span class="na">getBlockSizeLong</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">creatDir</span><span class="o">(</span><span class="n">String</span> <span class="n">path</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">File</span> <span class="n">f</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">File</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="na">exists</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">f</span><span class="o">.</span><span class="na">isDirectory</span><span class="o">()</span> <span class="o">||</span> <span class="n">f</span><span class="o">.</span><span class="na">mkdirs</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">creatFile</span><span class="o">(</span><span class="n">String</span> <span class="n">path</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">path</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">path</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">File</span><span class="o">.</span><span class="na">separator</span><span class="o">)</span> 
+                <span class="o">&amp;&amp;</span> <span class="n">creatDir</span><span class="o">(</span><span class="n">path</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">path</span><span class="o">.</span><span class="na">lastIndexOf</span><span class="o">(</span><span class="n">File</span><span class="o">.</span><span class="na">separator</span><span class="o">))))</span> <span class="o">{</span>
+            <span class="n">File</span> <span class="n">f</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">File</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="na">exists</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">f</span><span class="o">.</span><span class="na">isFile</span><span class="o">()</span> <span class="o">||</span> <span class="n">f</span><span class="o">.</span><span class="na">createNewFile</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">Log</span><span class="o">.</span><span class="na">w</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 日志文件名转日期</span>
+<span class="cm">     * @param fileName</span>
+<span class="cm">     * @return</span>
+<span class="cm">     * @throws ParseException</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="n">Date</span> <span class="nf">fileNameToDate</span><span class="o">(</span><span class="n">String</span> <span class="n">fileName</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ParseException</span> <span class="o">{</span>
+        <span class="n">fileName</span> <span class="o">=</span> <span class="n">fileName</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">fileName</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="s">&quot;.&quot;</span><span class="o">));</span><span class="c1">//去除文件的扩展类型（.log）</span>
+        <span class="k">return</span> <span class="n">sdf</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">fileName</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 日期转日志文件名</span>
+<span class="cm">     * @param date</span>
+<span class="cm">     * @return</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="nf">dateToFileName</span><span class="o">(</span><span class="n">Date</span> <span class="n">date</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">sdf</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">date</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot;.log&quot;</span><span class="o">;</span><span class="c1">//日志文件名称</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 文件在内存中的路径</span>
+<span class="cm">     * @param fileName</span>
+<span class="cm">     * @return</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="nf">getMemoryFilePath</span><span class="o">(</span><span class="n">String</span> <span class="n">fileName</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">getMemoryDirPath</span><span class="o">()</span> <span class="o">+</span> <span class="n">File</span><span class="o">.</span><span class="na">separator</span> <span class="o">+</span> <span class="n">fileName</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 内存中日志文件保存目录</span>
+<span class="cm">     * @return</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="nf">getMemoryDirPath</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">mLogFileDirMemory</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">mLogFileDirMemory</span> <span class="o">=</span> <span class="n">getFilesDir</span><span class="o">().</span><span class="na">getAbsolutePath</span><span class="o">()</span> <span class="o">+</span> <span class="n">File</span><span class="o">.</span><span class="na">separator</span> <span class="o">+</span> <span class="n">LOG_FOLDER</span><span class="o">;</span>
+            <span class="n">creatDir</span><span class="o">(</span><span class="n">mLogFileDirMemory</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">mLogFileDirMemory</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * 文件在SD中的路径</span>
+<span class="cm">     * @param fileName</span>
+<span class="cm">     * @return</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="nf">getSdcardFilePath</span><span class="o">(</span><span class="n">String</span> <span class="n">fileName</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">getSdcardDirPath</span><span class="o">()</span> <span class="o">+</span> <span class="n">File</span><span class="o">.</span><span class="na">separator</span> <span class="o">+</span> <span class="n">fileName</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * SD卡中日志文件保存目录</span>
+<span class="cm">     * @return</span>
+<span class="cm">     */</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="nf">getSdcardDirPath</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">mLogFileDirSdcard</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">isSdcardAvailable</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">mLogFileDirSdcard</span> <span class="o">=</span> <span class="n">Environment</span><span class="o">.</span><span class="na">getExternalStorageDirectory</span><span class="o">().</span><span class="na">getAbsolutePath</span><span class="o">()</span> 
+                    <span class="o">+</span> <span class="n">File</span><span class="o">.</span><span class="na">separator</span>
+                    <span class="o">+</span> <span class="n">getString</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">string</span><span class="o">.</span><span class="na">app_name</span><span class="o">)</span>
+                    <span class="o">+</span> <span class="n">File</span><span class="o">.</span><span class="na">separator</span>
+                    <span class="o">+</span> <span class="n">LOG_FOLDER</span><span class="o">;</span>
+            <span class="n">creatDir</span><span class="o">(</span><span class="n">mLogFileDirSdcard</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">mLogFileDirSdcard</span><span class="o">;</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div>
+<h2>源码下载</h2>
+
+<p><a href="https://github.com/yxmsw2007/SampleAndroid.git">SampleAndroid</a></p>
 
 <h2>参考资料</h2>
+
+<p><a href="http://lovelease.iteye.com/blog/1886907">android 写log到文件</a></p>
 
  </section>
 <section>
@@ -39,21 +863,21 @@
 <table>
 
   <tr>
+	<th><a href="/2015/05/01/windows-commands.html">Windows常用快捷键</a></th>
+	<td>2015-05-01</td>
+	<td><a href="/2015/05/01/windows-commands.html#disqus_thread">Comments</a></td>
+  </tr>
+
+  <tr>
+	<th><a href="/2015/04/14/ubuntu12.04-compile-android4.3.html">Ubuntu12.04编译android4.3源码问题集锦</a></th>
+	<td>2015-04-14</td>
+	<td><a href="/2015/04/14/ubuntu12.04-compile-android4.3.html#disqus_thread">Comments</a></td>
+  </tr>
+
+  <tr>
 	<th><a href="/2015/04/14/ubuntu-command.html">Ubuntu常用命令</a></th>
 	<td>2015-04-14</td>
 	<td><a href="/2015/04/14/ubuntu-command.html#disqus_thread">Comments</a></td>
-  </tr>
-
-  <tr>
-	<th><a href="/2015/04/06/blogging-with-vim.html">用VIM写博客</a></th>
-	<td>2015-04-06</td>
-	<td><a href="/2015/04/06/blogging-with-vim.html#disqus_thread">Comments</a></td>
-  </tr>
-
-  <tr>
-	<th><a href="/2015/04/04/build-github-blog-platform.html">Github搭建博客平台</a></th>
-	<td>2015-04-04</td>
-	<td><a href="/2015/04/04/build-github-blog-platform.html#disqus_thread">Comments</a></td>
   </tr>
 
 </table>

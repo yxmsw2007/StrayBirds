@@ -32,59 +32,58 @@
       </header>
       <section>
         <h1>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a> Windows中安装Emacs 
+<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a> Windows常用快捷键 
         </h1>
 <section>
+<h2>命令行清屏</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ cls
+</code></pre></div>
+<h2>右键菜单添加Command</h2>
+
+<p>1.win7/win8: Shift + 鼠标右键</p>
+
+<p>2.修改注册表</p>
+
 <blockquote>
-<p>“在这个蔚蓝色的星球上，流传着两大神器的传说：据说Emacs是神的编辑器，而Vim是编辑器之神。”</p>
+<p>运行中输入：regedit</p>
+
+<p>在目录&quot;HKEY<em>LOCAL</em>MACHINE/Software/Classes/Folder/Shell&quot;中添加&quot;command&quot;子项</p>
+
+<p>在子项中新建一个字符串值&quot;command&quot;值修改为&quot;cmd.exe /k pushd %1&quot;</p>
 </blockquote>
 
-<p>冲着这句话，我不得不深入神的世界去了解这编辑器之神。</p>
+<p>3.更多</p>
 
-<p>那进入神的世界要如何开始，当然是install了，下面我说下如何在在windows中安装Emacs。</p>
+<p>请参考<a href="https://www.petri.com/add_command_prompt_here_shortcut_to_windows_explorer">https://www.petri.com/add<em>command</em>prompt<em>here</em>shortcut<em>to</em>windows_explorer</a></p>
 
-<h2>下载</h2>
+<h2>双屏显示</h2>
 
-<p>Emacs Windows版下载地址：<a href="http://ftp.gnu.org/pub/gnu/emacs/windows/">http://ftp.gnu.org/pub/gnu/emacs/windows/</a></p>
+<blockquote>
+<p>win + p</p>
+</blockquote>
 
-<p>打开网页后拉到最后挑一个最新的版本，目前最新版本为emacs-24.3-bin-i386.zip，只需要一个压缩文档即可。</p>
+<h2>定时关机</h2>
 
-<h2>安装</h2>
+<p>1.win7/win8</p>
 
-<p>将下载的压缩包（emacs-24.3-bin-i386.zip）解压到D盘（随个人喜好）重命名为Emacs24.3（也可以不重命名），解压后目录如下</p>
+<blockquote>
+<p>控制面板-&gt;管理工具-&gt;计划任务-&gt;创建基本任务-&gt;任务名称(shutdown)-&gt;选择时间-&gt;程序或脚本(shutdown)</p>
+</blockquote>
 
-<p><img src="/images/2015-04-03-windows-install-emacs/20150404001432.png" alt="20150404001432"></p>
+<p>2.命令行</p>
 
-<p>双击bin文件夹里的addpm.exe进行安装，安装完后可以双击bin文件夹里的runemacs.exe启动也可以到bin目录双击emacs.exe启动，注意后者会出现一个控制台窗口。</p>
-
-<h2>配置HOME目录</h2>
-
-<p>配制方法有很多，不知道的可以到网上搜索一下；下面介绍一下我的配制方法：</p>
-
-<p>打开注册表，找到HKEY<em>LOCAL</em>MACHINE\Software\Wow6432Node\GNU\Emacs\HOME=D:\Emacs24.3（如果没有则手动添加，也有人说是HKEY<em>LOCAL</em>MACHINE\SOFTWARE\GNU\Emacs这个目录，但我的机器设置无效）。</p>
-
-<p>如何验证HOME目录是否有效，那就请继续往下看。</p>
-
-<h2>创建.emacs.d目录和.emacs文件</h2>
-
-<p>启动emacs，找到最上面的Options菜单，任意修改一两个选项，比如Highlight Active Region，然后点击Save Options保存。在Emacs窗口最后一行会显示“Wrote d:/Emacs24.3/.emacs”，此时.emacs.d目录和.emacs文件就算创建完了。这里你也许已经猜到窗口显示的这个目录就是Emacs的HOME目录，所以也可以用它来验证HOME设置是否正确。</p>
-
-<h2>加载.el文件</h2>
-
-<p>lisp目录下存放着lisp源文件（<em>.el）和已编译的lisp文件（</em>.elc），以后你也可以将自己的.el文件放在这个目录下，然后还要在.emacs文件插入相关语句。比如你有一个文件叫做abcd.el，将它复制到lisp目录下，然后打开.emacs文件插入一句(require &#39;abcd)就可以了（包括圆括号，不需要扩展名.el）。</p>
-
-<p>最后感谢博主<a href="http://blog.csdn.net/flag_and_leg/article/details/2900278">flag<em>and</em>leg</a>的分享！</p>
+<p>延时指定时间后关机</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">shutdown -s -t 时间
+</code></pre></div>
+<p>具体时间点关机</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">at 时间 shutdown -s
+</code></pre></div>
+<h2>参考资料</h2>
 
  </section>
 <section>
 <h1>Related Posts</h1>
 <table>
-
-  <tr>
-	<th><a href="/2015/05/01/windows-commands.html">Windows常用快捷键</a></th>
-	<td>2015-05-01</td>
-	<td><a href="/2015/05/01/windows-commands.html#disqus_thread">Comments</a></td>
-  </tr>
 
   <tr>
 	<th><a href="/2015/04/14/ubuntu12.04-compile-android4.3.html">Ubuntu12.04编译android4.3源码问题集锦</a></th>
@@ -96,6 +95,12 @@
 	<th><a href="/2015/04/14/ubuntu-command.html">Ubuntu常用命令</a></th>
 	<td>2015-04-14</td>
 	<td><a href="/2015/04/14/ubuntu-command.html#disqus_thread">Comments</a></td>
+  </tr>
+
+  <tr>
+	<th><a href="/2015/04/06/save-log-by-simple-way.html">Log保存文件-Android</a></th>
+	<td>2015-04-06</td>
+	<td><a href="/2015/04/06/save-log-by-simple-way.html#disqus_thread">Comments</a></td>
   </tr>
 
 </table>
