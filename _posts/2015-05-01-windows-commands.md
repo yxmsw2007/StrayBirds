@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Windows常用快捷键 
+title: Windows常用命令
 comments: true
 ---
 
