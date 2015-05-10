@@ -209,6 +209,9 @@ h参数， 表示使用「Human-readable」的输出，即是输出GB、MB方式
    
     Ctrl + Alt + 下箭头，然后按住 Ctrl + Alt 和左/右箭头选择桌面
 
-参考资料
+## 安装内核源码
+
+    sudo apt-get install linux-source //会自动安装当前版本内核的源代码到 /usr/src 
+
 
 
