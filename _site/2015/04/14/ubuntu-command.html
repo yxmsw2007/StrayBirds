@@ -37,9 +37,7 @@
 <section>
 <h2>屏幕截图</h2>
 
-<p>命令：</p>
-
-<p>gnome-screenshot</p>
+<p>命令：gnome-screenshot</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">$ gnome-screenshot --help
 
 Usage:
@@ -91,27 +89,151 @@ Application Options:
 <h2>命令行打开当前文件夹</h2>
 <div class="highlight"><pre><code class="language-text" data-lang="text">nautilus .
 </code></pre></div>
+<h2>df</h2>
+
+<p>df只能查看一级文件夹大小、使用比例、档案系统及其挂入点</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ sudo df -h
+
+Filesystem      Size  Used Avail Use% Mounted on
+
+/dev/sda1        98G   70G   23G  76% /
+
+udev            2.0G  4.0K  2.0G   1% /dev
+
+tmpfs           395M  800K  394M   1% /run
+
+none            5.0M     0  5.0M   0% /run/lock
+
+none            2.0G  352K  2.0G   1% /run/shm
+</code></pre></div>
+<p>h参数， 表示使用「Human-readable」的输出，即是输出GB、MB方式 </p>
+
+<h2>du</h2>
+
+<p>max-depth参数表示指定深入目录的层数,很重要，不指定的话，会显示所有层次目录</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ du -h --max-depth=1
+
+18M ./developers
+
+45M ./libcore
+
+1.2G    ./frameworks
+
+184K    ./libnativehelper
+
+24G ./out
+
+18M ./bionic
+
+11M ./build
+</code></pre></div>
+<p>h参数， 表示使用「Human-readable」的输出，即是输出GB、MB方式 </p>
+
+<h2>打开主菜单</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Alt + F1
+</code></pre></div>
+<h2>运行</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Alt + F2
+</code></pre></div>
+<h2>显示桌面</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Ctrl + Alt + d
+</code></pre></div>
+<h2>最小化当前窗口</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Alt + F9
+</code></pre></div>
+<h2>最大化当前窗口</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Alt + F10
+</code></pre></div>
+<h2>关闭当前窗口</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Alt + F4
+</code></pre></div>
+<h2>截取全屏</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Print Screen
+</code></pre></div>
+<h2>截取窗口</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Alt + Print Screen
+</code></pre></div>
+<h2>展示所有窗口程序</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">F10
+</code></pre></div>
+<h2>展示当前窗口最上层程序</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">F11
+</code></pre></div>
+<h2>展示当前窗口所有程序</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">F12
+</code></pre></div>
+<h2>切换窗口</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Alt + Tab
+</code></pre></div>
+<h2>旋转3D桌面</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Ctrl + Alt + 左/右箭头（也可以把鼠标放在标题栏或桌面使用滚轮切换）
+</code></pre></div>
+<h2>旋转3D桌面（ 活动窗口跟随）</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Ctrl + Shift + Alt + 左/右箭头
+</code></pre></div>
+<h2>手动旋转3D桌面</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Ctrl + Alt + 左键单击并拖拽桌面空白处
+</code></pre></div>
+<h2>窗口透明/不透明</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">possible with the “transset” utility or Alt + 滚轮
+</code></pre></div>
+<h2>放大一次</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">超级键 + 右击
+</code></pre></div>
+<h2>手动放大</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">超级键 + 滚轮向上
+</code></pre></div>
+<h2>手动缩小</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">超级键 + 滚轮向下
+</code></pre></div>
+<h2>移动窗口</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Alt + 左键单击
+</code></pre></div>
+<h2>移动窗口时贴住边框</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">左键开始拖动后再 Ctrl + Alt
+</code></pre></div>
+<h2>调整窗口大小</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Alt + 中击
+</code></pre></div>
+<h2>Bring up the window below the top window</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Alt + middle-click
+</code></pre></div>
+<h2>动态效果减速</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Shift + F10
+</code></pre></div>
+<h2>水纹</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">按住 Ctrl+超级键
+</code></pre></div>
+<h2>雨点</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Shift-F9
+</code></pre></div>
+<h2>桌面展开</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Ctrl + Alt + 下箭头，然后按住 Ctrl + Alt 和左/右箭头选择桌面
+</code></pre></div>
+<h2>安装内核源码</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">sudo apt-get install linux-source //会自动安装当前版本内核的源代码到 /usr/src 
+</code></pre></div>
  </section>
 <section>
 <h1>Related Posts</h1>
 <table>
 
   <tr>
-	<th><a href="/2015/05/01/windows-commands.html">Windows常用快捷键</a></th>
+	<th><a href="/2015/05/10/vim-commands.html">VIM常用命令</a></th>
+	<td>2015-05-10</td>
+	<td><a href="/2015/05/10/vim-commands.html#disqus_thread">Comments</a></td>
+  </tr>
+
+  <tr>
+	<th><a href="/2015/05/10/read_and_write_file_c.html">C读写文件方式</a></th>
+	<td>2015-05-10</td>
+	<td><a href="/2015/05/10/read_and_write_file_c.html#disqus_thread">Comments</a></td>
+  </tr>
+
+  <tr>
+	<th><a href="/2015/05/01/windows-commands.html">Windows常用命令</a></th>
 	<td>2015-05-01</td>
 	<td><a href="/2015/05/01/windows-commands.html#disqus_thread">Comments</a></td>
-  </tr>
-
-  <tr>
-	<th><a href="/2015/04/14/ubuntu12.04-compile-android4.3.html">Ubuntu12.04编译android4.3源码问题集锦</a></th>
-	<td>2015-04-14</td>
-	<td><a href="/2015/04/14/ubuntu12.04-compile-android4.3.html#disqus_thread">Comments</a></td>
-  </tr>
-
-  <tr>
-	<th><a href="/2015/04/06/save-log-by-simple-way.html">Log保存文件-Android</a></th>
-	<td>2015-04-06</td>
-	<td><a href="/2015/04/06/save-log-by-simple-way.html#disqus_thread">Comments</a></td>
   </tr>
 
 </table>

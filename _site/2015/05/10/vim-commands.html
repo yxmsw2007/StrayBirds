@@ -32,52 +32,48 @@
       </header>
       <section>
         <h1>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a> Windows常用命令 
+<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a> VIM常用命令 
         </h1>
 <section>
-<h2>命令行清屏</h2>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ cls
-</code></pre></div>
-<h2>右键菜单添加Command</h2>
-
-<p>1.win7/win8: Shift + 鼠标右键</p>
-
-<p>2.修改注册表</p>
+<h2>对标点内的内容进行操作</h2>
 
 <blockquote>
-<p>运行中输入：regedit</p>
+<p>ci&#39;、ci&quot;、ci(、ci[、ci{、ci&lt; - 分别更改这些配对标点符号中的文本内容</p>
 
-<p>在目录&quot;HKEY<em>LOCAL</em>MACHINE/Software/Classes/Folder/Shell&quot;中添加&quot;command&quot;子项</p>
+<p>di&#39;、di&quot;、di(或dib、di[、di{或diB、di&lt; - 分别删除这些配对标点符号中的文本内容</p>
 
-<p>在子项中新建一个字符串值&quot;command&quot;值修改为&quot;cmd.exe /k pushd %1&quot;</p>
+<p>yi&#39;、yi&quot;、yi(、yi[、yi{、yi&lt; - 分别复制这些配对标点符号中的文本内容</p>
+
+<p>vi&#39;、vi&quot;、vi(、vi[、vi{、vi&lt; - 分别选中这些配对标点符号中的文本内容}])}])}])}])&quot;</p>
 </blockquote>
 
-<p>3.更多</p>
-
-<p>请参考<a href="https://www.petri.com/add_command_prompt_here_shortcut_to_windows_explorer">https://www.petri.com/add<em>command</em>prompt<em>here</em>shortcut<em>to</em>windows_explorer</a></p>
-
-<h2>双屏显示</h2>
+<h2>复制或移动内容到指定位置</h2>
 
 <blockquote>
-<p>win + p</p>
+<p>行号9 ，行号15 copy 行号16                                        将行号9到行号15的内容复制到行号16所在行的后面。</p>
+
+<p>行号9 ，行号15 move 行号16                                       将行号9到行号15的文本内容移动到行号16所在行的后面。</p>
 </blockquote>
 
-<h2>定时关机</h2>
+<h2>复制到系统剪切板</h2>
 
-<p>1.win7/win8</p>
+<p>在普通模式下按v进入可视模式，选中要复制的内容后按</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&quot; + y 
+</code></pre></div>
+<p>三个键就可以把内容复制到系统粘贴板，下面在终端那里按Ctrl+Shift+v就可以粘贴了</p>
+
+<h2>VIM格式化代码</h2>
 
 <blockquote>
-<p>控制面板-&gt;管理工具-&gt;计划任务-&gt;创建基本任务-&gt;任务名称(shutdown)-&gt;选择时间-&gt;程序或脚本(shutdown)</p>
+<p>按两下小写g，即gg，定位光标到第一行。</p>
+
+<p>按住Shift+v，即大写V，进入可视化编辑的列编辑模式。</p>
+
+<p>Shift+g，即大写G，选中整个代码。</p>
+
+<p>按下等号=，格式化所有代码。&quot;</p>
 </blockquote>
 
-<p>2.命令行</p>
-
-<p>延时指定时间后关机</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">shutdown -s -t 时间
-</code></pre></div>
-<p>具体时间点关机</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">at 时间 shutdown -s
-</code></pre></div>
 <h2>参考资料</h2>
 
  </section>
@@ -86,15 +82,15 @@
 <table>
 
   <tr>
-	<th><a href="/2015/05/10/vim-commands.html">VIM常用命令</a></th>
-	<td>2015-05-10</td>
-	<td><a href="/2015/05/10/vim-commands.html#disqus_thread">Comments</a></td>
-  </tr>
-
-  <tr>
 	<th><a href="/2015/05/10/read_and_write_file_c.html">C读写文件方式</a></th>
 	<td>2015-05-10</td>
 	<td><a href="/2015/05/10/read_and_write_file_c.html#disqus_thread">Comments</a></td>
+  </tr>
+
+  <tr>
+	<th><a href="/2015/05/01/windows-commands.html">Windows常用命令</a></th>
+	<td>2015-05-01</td>
+	<td><a href="/2015/05/01/windows-commands.html#disqus_thread">Comments</a></td>
   </tr>
 
   <tr>
