@@ -154,7 +154,7 @@ int main(int argc, char* argv[]) {
 
 ## fscanf和fprintf
 
-nt fscanf(FILE *stream,char *format,arg_list)
+int fscanf(FILE *stream,char *format,arg_list)
 
 int fprintf(FILE *stream,char *format,arg_list)
 
@@ -167,11 +167,8 @@ int fprintf(FILE *stream,char *format,arg_list)
 #include <stdio.h>
 
 /*
-
-将一些格式化的数据写入文本文件，再从该文件中医格式化方法读出显示在屏幕上，
-
-其格式化数据是两个学生记录，包括姓名、学号、两科成绩。
-
+ * 将一些格式化的数据写入文本文件，再从该文件中医格式化方法读出显示在屏幕上，
+ * 其格式化数据是两个学生记录，包括姓名、学号、两科成绩。
  * */ 
 
  int main(int argc, char* argv[]) {
