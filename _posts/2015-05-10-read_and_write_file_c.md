@@ -104,7 +104,7 @@ int fputc(int ch,FILE *stream)
 
 fputc()函数完成将字符ch的值写入所指定的流文件的当前位置处，并将文件指针后移一位。fputc()函数的返回值是所写入字符的值，出错时返回EOF。
 
-```C
+```c
 
 #include <stdio.h>
 
@@ -162,7 +162,7 @@ int fprintf(FILE *stream,char *format,arg_list)
 
 其中，stream为流文件指针，其余两个参数与scanf(  )和printf(  )用法完全相同。
 
-``c
+```c
 
 #include <stdio.h>
 
