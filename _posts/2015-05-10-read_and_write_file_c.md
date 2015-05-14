@@ -94,6 +94,35 @@ open和fopen的区别：
 
 后者是在前者的基础上扩充而来的，在大多数情况下，用后者
 
+## fdopen和fileno
+
+C语言文件指针与文件描述符之间可以相互转换
+
+```c
+
+#include <stdio.h>
+
+FILE *fdopen (int filedes, const char * opentype);
+
+int fileno (file * stream);
+
+```
+
+## rewind
+
+函数名: rewind()
+
+功 能: 将文件内部的位置指针重新指向一个流（数据流/文件）的开头
+
+注意：不是文件指针而是文件内部的位置指针，随着对文件的读写文件的位置指针（指向当前读写字节）向后移动。而文件指针是指向整个文件，如果不重新赋值文件指针不会改变。
+rewind函数作用等同于 (void)fseek(stream, 0L, SEEK_SET);[1] 
+
+用 法: void rewind(FILE *stream);
+
+头文件： stdio.h
+
+返回值：无
+
 ## fgetc和fputc
 
 int fgetc(FILE *stream)
@@ -335,6 +364,65 @@ int main(int argc, char* argv[]) {
     }
 
     fclose(fp);
+
+    return 0;
+
+}
+
+```
+
+## fseek和ftell
+
+函数名: fseek()
+
+功 能: 重定位流(数据流/文件)上的文件内部位置指针
+
+注 意: 文件指针指向文件/流。位置指针指向文件内部的字节位置，随着文件的读取会移动，文件指针如果不重新赋值将不会改变指向别的文件。
+
+用 法: int fseek(FILE *stream, long offset, int fromwhere); 
+
+头文件: stdio.h
+
+返回值: 成功，返回0，失败返回-1，并设置errno的值，可以用perror()函数输出错误
+
+函数名: ftell()
+
+功 能: 用于得到文件位置指针当前位置相对于文件首的偏移字节数,使用fseek函数后再调用函数ftell()就能非常容易地确定文件的当前位置
+
+用 法: long ftell(FILE *stream);
+
+头文件: stdio.h
+
+返回值: 获取stream指定的文件的当前读写位置
+
+> ftell(fp);利用函数 ftell() 也能方便地知道一个文件的长。如以下语句序列： fseek(fp, 0L,SEEK_END); len =ftell(fp); 
+> 首先将文件的当前位置移到文件的末尾，然后调用函数ftell()获得当前位置相对于文件首的位移，该位移值等于文件所含字节数。
+
+```c
+
+#include <stdio.h>
+
+int main(int argc, char* argv[]) {
+
+    long len;
+
+    FILE *fp;
+    
+    if ((fp = fopen(argv[1], "rb")) == NULL) {
+
+        printf("not open!");
+
+        return 0;
+    
+    }
+
+    fseek(fp, 0, SEEK_END);
+
+    len = ftell(fp);
+
+    fclose(fp);
+
+    printf("len = %ld\n", len);
 
     return 0;
 

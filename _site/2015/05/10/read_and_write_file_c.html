@@ -125,6 +125,30 @@
 
 <p>后者是在前者的基础上扩充而来的，在大多数情况下，用后者</p>
 
+<h2>fdopen和fileno</h2>
+
+<p>C语言文件指针与文件描述符之间可以相互转换</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="kt">FILE</span> <span class="o">*</span><span class="nf">fdopen</span> <span class="p">(</span><span class="kt">int</span> <span class="n">filedes</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">opentype</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">fileno</span> <span class="p">(</span><span class="n">file</span> <span class="o">*</span> <span class="n">stream</span><span class="p">);</span>
+</code></pre></div>
+<h2>rewind</h2>
+
+<p>函数名: rewind()</p>
+
+<p>功 能: 将文件内部的位置指针重新指向一个流（数据流/文件）的开头</p>
+
+<p>注意：不是文件指针而是文件内部的位置指针，随着对文件的读写文件的位置指针（指向当前读写字节）向后移动。而文件指针是指向整个文件，如果不重新赋值文件指针不会改变。
+rewind函数作用等同于 (void)fseek(stream, 0L, SEEK_SET);[1] </p>
+
+<p>用 法: void rewind(FILE *stream);</p>
+
+<p>头文件： stdio.h</p>
+
+<p>返回值：无</p>
+
 <h2>fgetc和fputc</h2>
 
 <p>int fgetc(FILE *stream)</p>
@@ -134,7 +158,7 @@
 <p>int fputc(int ch,FILE *stream)</p>
 
 <p>fputc()函数完成将字符ch的值写入所指定的流文件的当前位置处，并将文件指针后移一位。fputc()函数的返回值是所写入字符的值，出错时返回EOF。</p>
-<div class="highlight"><pre><code class="language-C" data-lang="C"><span class="cp">#include &lt;stdio.h&gt;</span>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;</span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
 
@@ -180,127 +204,118 @@
 </code></pre></div>
 <h2>fscanf和fprintf</h2>
 
-<p>nt fscanf(FILE *stream,char *format,arg_list)</p>
+<p>int fscanf(FILE *stream,char *format,arg_list)</p>
 
 <p>int fprintf(FILE *stream,char *format,arg_list)</p>
 
 <p>对文件的格式化读写就是在上述函数的前面加一个字母f成为fscanf(  )和fprintf(  ) </p>
 
 <p>其中，stream为流文件指针，其余两个参数与scanf(  )和printf(  )用法完全相同。</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;</span>
 
-<p>``c</p>
+<span class="cm">/*</span>
+<span class="cm"> * 将一些格式化的数据写入文本文件，再从该文件中医格式化方法读出显示在屏幕上，</span>
+<span class="cm"> * 其格式化数据是两个学生记录，包括姓名、学号、两科成绩。</span>
+<span class="cm"> * */</span> 
 
-<h1>include <stdio.h></h1>
+ <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
 
-<p>/*</p>
+     <span class="k">struct</span> <span class="n">stu</span> <span class="p">{</span> <span class="cm">/* 定义结构体类型 */</span> 
 
-<p>将一些格式化的数据写入文本文件，再从该文件中医格式化方法读出显示在屏幕上，</p>
+        <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">15</span><span class="p">];</span>
 
-<p>其格式化数据是两个学生记录，包括姓名、学号、两科成绩。</p>
+        <span class="kt">char</span> <span class="n">num</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span>
 
-<ul>
-<li>*/ </li>
-</ul>
+        <span class="kt">float</span> <span class="n">score</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
 
-<p>int main(int argc, char* argv[]) {</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"> struct stu { /* 定义结构体类型 */ 
+     <span class="p">}</span> <span class="n">student</span><span class="p">;</span> <span class="cm">/* 说明结构体变量 */</span> 
 
-    char name[15];
+     <span class="kt">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
 
-    char num[6];
+     <span class="k">if</span> <span class="p">((</span><span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&quot;w&quot;</span><span class="p">))</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
 
-    float score[2];
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;not open %s!&quot;</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
 
- } student; /* 说明结构体变量 */ 
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 
- FILE *fp;
+     <span class="p">}</span>
 
- if ((fp = fopen(argv[1], &quot;w&quot;)) == NULL) {
+     <span class="kt">int</span> <span class="n">i</span><span class="p">;</span> <span class="cm">/* 在循环条件中声明变量的话，只在C99标准中支持，C90标准不支持 */</span> 
 
-    printf(&quot;not open %s!&quot;, argv[1]);
+     <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
 
-    return 0;
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%s %s %f %f&quot;</span><span class="p">,</span> <span class="n">student</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">student</span><span class="p">.</span><span class="n">num</span><span class="p">,</span>
+                <span class="o">&amp;</span><span class="n">student</span><span class="p">.</span><span class="n">score</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">student</span><span class="p">.</span><span class="n">score</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="cm">/* 从键盘键入 */</span> 
 
- }
+        <span class="n">fprintf</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="s">&quot;%s %s %7.2f %7.2f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">student</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> 
+                <span class="n">student</span><span class="p">.</span><span class="n">num</span><span class="p">,</span> <span class="n">student</span><span class="p">.</span><span class="n">score</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">student</span><span class="p">.</span><span class="n">score</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="cm">/* 写入文件 */</span> 
 
- int i; /* 在循环条件中声明变量的话，只在C99标准中支持，C90标准不支持 */ 
+     <span class="p">}</span>
 
- for (i = 0; i &lt; 2; i++) {
+     <span class="k">while</span><span class="p">(</span><span class="n">fscanf</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="s">&quot;%s %s %f %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">student</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">student</span><span class="p">.</span><span class="n">num</span><span class="p">,</span> 
+                    <span class="o">&amp;</span><span class="n">student</span><span class="p">.</span><span class="n">score</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">student</span><span class="p">.</span><span class="n">score</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">!=</span> <span class="n">EOF</span><span class="p">)</span> <span class="p">{</span>
 
-    scanf(&quot;%s %s %f %f&quot;, student.name, student.num,
-            &amp;student.score[0], &amp;student.score[1]); /* 从键盘键入 */ 
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s %s %7.2f %7.2f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">student</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">student</span><span class="p">.</span><span class="n">num</span><span class="p">,</span> 
+                    <span class="n">student</span><span class="p">.</span><span class="n">score</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">student</span><span class="p">.</span><span class="n">score</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="cm">/* 显示到屏幕 */</span> 
 
-    fprintf(fp, &quot;%s %s %7.2f %7.2f\n&quot;, student.name, 
-            student.num, student.score[0], student.score[1]); /* 写入文件 */ 
+     <span class="p">}</span>
 
- }
+     <span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
 
- while(fscanf(fp, &quot;%s %s %f %f\n&quot;, student.name, student.num, 
-                &amp;student.score[0], &amp;student.score[1]) != EOF) {
+     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 
-    printf(&quot;%s %s %7.2f %7.2f\n&quot;, student.name, student.num, 
-                student.score[0], student.score[1]); /* 显示到屏幕 */ 
-
- }
-
- fclose(fp);
-
- return 0;
+ <span class="p">}</span>
 </code></pre></div>
-<p>}</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">## fgets和fputs
+<h2>fgets和fputs</h2>
 
-char *fgets(char *str,int num,FILE *stream) // 感觉是在读一行数据
+<p>char *fgets(char *str,int num,FILE *stream) // 感觉是在读一行数据</p>
 
-int fputs(char *str,FILE *stream)
+<p>int fputs(char *str,FILE *stream)</p>
 
-fgets() 函数从流文件stream中读取至多num-1个字符，并把它们放入str指向的字符数组中。读取字符直到遇见回车符或EOF（文件结束符）为止，或读入了所限定的字符数。
+<p>fgets() 函数从流文件stream中读取至多num-1个字符，并把它们放入str指向的字符数组中。读取字符直到遇见回车符或EOF（文件结束符）为止，或读入了所限定的字符数。</p>
 
-fputs(  )函数将str指向的字符串写入流文件。操作成功时，函数返回0值，失败返回非零值。 
+<p>fputs(  )函数将str指向的字符串写入流文件。操作成功时，函数返回0值，失败返回非零值。 </p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;</span>
 
-```c
+<span class="cp">#include &lt;string.h&gt;</span>
 
-#include &lt;stdio.h&gt;
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
 
-#include &lt;string.h&gt;
+    <span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="mi">128</span><span class="p">];</span>
 
-int main(int argc, char* argv[]) {
+    <span class="kt">FILE</span> <span class="o">*</span><span class="n">fp1</span><span class="p">,</span> <span class="o">*</span><span class="n">fp2</span><span class="p">;</span>
 
-    char str[128];
+    <span class="k">if</span> <span class="p">((</span><span class="n">fp1</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&quot;r&quot;</span><span class="p">))</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
 
-    FILE *fp1, *fp2;
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;not open %s!&quot;</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
 
-    if ((fp1 = fopen(argv[1], &quot;r&quot;)) == NULL) {
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 
-        printf(&quot;not open %s!&quot;, argv[1]);
+    <span class="p">}</span>
 
-        return 0;
+    <span class="k">if</span> <span class="p">((</span><span class="n">fp2</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s">&quot;w&quot;</span><span class="p">))</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
 
-    }
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;not open %s!&quot;</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
 
-    if ((fp2 = fopen(argv[2], &quot;w&quot;)) == NULL) {
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 
-        printf(&quot;not open %s!&quot;, argv[2]);
+    <span class="p">}</span>
 
-        return 0;
+    <span class="k">while</span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="mi">128</span><span class="p">,</span><span class="n">fp1</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
 
-    }
+        <span class="n">fputs</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">fp2</span><span class="p">);</span>    <span class="c1">//从文件1读字符串并写入文件2</span>
 
-    while(fgets(str,128,fp1) != NULL) {
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d, %s&quot;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">strlen</span><span class="p">(</span><span class="n">str</span><span class="p">),</span> <span class="n">str</span><span class="p">);</span>
 
-        fputs(str, fp2);    //从文件1读字符串并写入文件2
+    <span class="p">}</span>
 
-        printf(&quot;%d, %s&quot;, (int) strlen(str), str);
+    <span class="n">fclose</span><span class="p">(</span><span class="n">fp1</span><span class="p">);</span>
 
-    }
+    <span class="n">fclose</span><span class="p">(</span><span class="n">fp2</span><span class="p">);</span>
 
-    fclose(fp1);
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 
-    fclose(fp2);
-
-    return 0;
-
-}
+<span class="p">}</span>
 </code></pre></div>
 <h2>fread和fwrite</h2>
 
@@ -357,6 +372,62 @@ int main(int argc, char* argv[]) {
     <span class="p">}</span>
 
     <span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<h2>fseek和ftell</h2>
+
+<p>函数名: fseek()</p>
+
+<p>功 能: 重定位流(数据流/文件)上的文件内部位置指针</p>
+
+<p>注 意: 文件指针指向文件/流。位置指针指向文件内部的字节位置，随着文件的读取会移动，文件指针如果不重新赋值将不会改变指向别的文件。</p>
+
+<p>用 法: int fseek(FILE *stream, long offset, int fromwhere); </p>
+
+<p>头文件: stdio.h</p>
+
+<p>返回值: 成功，返回0，失败返回-1，并设置errno的值，可以用perror()函数输出错误</p>
+
+<p>函数名: ftell()</p>
+
+<p>功 能: 用于得到文件位置指针当前位置相对于文件首的偏移字节数,使用fseek函数后再调用函数ftell()就能非常容易地确定文件的当前位置</p>
+
+<p>用 法: long ftell(FILE *stream);</p>
+
+<p>头文件: stdio.h</p>
+
+<p>返回值: 获取stream指定的文件的当前读写位置</p>
+
+<blockquote>
+<p>ftell(fp);利用函数 ftell() 也能方便地知道一个文件的长。如以下语句序列： fseek(fp, 0L,SEEK_END); len =ftell(fp); 
+首先将文件的当前位置移到文件的末尾，然后调用函数ftell()获得当前位置相对于文件首的位移，该位移值等于文件所含字节数。</p>
+</blockquote>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+
+    <span class="kt">long</span> <span class="n">len</span><span class="p">;</span>
+
+    <span class="kt">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">((</span><span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&quot;rb&quot;</span><span class="p">))</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;not open!&quot;</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="p">}</span>
+
+    <span class="n">fseek</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SEEK_END</span><span class="p">);</span>
+
+    <span class="n">len</span> <span class="o">=</span> <span class="n">ftell</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+
+    <span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;len = %ld</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
 
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 
