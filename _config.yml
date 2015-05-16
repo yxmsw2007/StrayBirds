@@ -2,6 +2,8 @@ projectname: yxmsw2007.github.io
 username: yxmsw2007
 baseurl: /yxmsw2007.github.io
 markdown: redcarpet
+redcarpet: 
+    extensions: ["fenced_code_blocks", "tables", "highlight", "with_toc_data", "strikethrough", "underline"]
 safe: false
 pygments: true
 title: yxmsw2007
