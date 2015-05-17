@@ -2,6 +2,8 @@
 layout: post
 title: Github搭建博客平台
 comments: true
+category: Internet
+tags: [Github Pages, GitHub博客, Jekyll, Markdown]
 ---
 
 其实有关在Github平台上搭建博客的文章其实网上有很多，而且都写得很好相对也比较全面。不过每个人都有自己的思维方式，也许他觉得按这个步骤来最简单，但不一定适合你。下面就让我来给大家介绍下我觉得最好理解的方式来搭建这个平台，也许会适合你哟。

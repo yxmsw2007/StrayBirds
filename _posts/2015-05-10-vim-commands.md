@@ -2,6 +2,8 @@
 layout: post
 title: VIM常用命令
 comments: true
+category: Tools
+tags: [vim命令, vim commands]
 ---
 
 ## 对标点内的内容进行操作 

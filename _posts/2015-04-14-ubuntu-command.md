@@ -2,6 +2,8 @@
 layout: post
 title: Ubuntu常用命令 
 comments: true
+category: Ubuntu
+tags: [command, 常用命令]
 ---
 
 ## 屏幕截图

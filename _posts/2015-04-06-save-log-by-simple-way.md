@@ -2,6 +2,8 @@
 layout: post
 title: Log保存文件-Android
 comments: true
+category: Android
+tags: [log, logcat, LogService]
 ---
 
 ## 前言

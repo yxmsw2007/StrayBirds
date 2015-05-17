@@ -2,6 +2,8 @@
 layout: post
 title: C读写文件方式
 comments: true
+category: C/C++
+tags: [读写, IO, 文件]
 ---
 
 ## open与fopen

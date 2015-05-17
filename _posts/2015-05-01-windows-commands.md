@@ -2,6 +2,8 @@
 layout: post
 title: Windows常用命令
 comments: true
+category: Windows
+tags: [command, 命令]
 ---
 
 ## 命令行清屏

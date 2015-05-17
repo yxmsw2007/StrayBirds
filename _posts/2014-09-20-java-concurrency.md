@@ -2,6 +2,8 @@
 layout: post
 title: Java 中的并发
 comments: true
+category: Java
+tags: [Thread, 并发]
 ---
 
 
