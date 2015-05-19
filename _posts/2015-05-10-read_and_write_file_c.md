@@ -1,6 +1,6 @@
 ---
 layout: post
-title: C读写文件方式
+title: 读写文件-C
 comments: true
 category: C/C++
 tags: [读写, IO, 文件]
