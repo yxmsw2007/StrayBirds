@@ -33,8 +33,11 @@ https://www.kernel.com/
 ## 生成配置
 
 >	make menuconfig //图形界面
+
 >	make config //命令行
+
 >	make xconfig //图形界面，树形结构
+
 >	make defconfig
 
 ### make menuconfig
