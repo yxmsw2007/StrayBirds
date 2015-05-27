@@ -22,7 +22,7 @@ tags: [kernel, 编译, linux, 内核]
 
 ## 超有用的资料网站
 
-https://www.kernel.com/
+[kernel](https://www.kernel.com/)
 
 [内核源码下载](https://www.kernel.org/)
 
