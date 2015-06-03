@@ -273,3 +273,24 @@ Linux系统中的wc(Word Count)命令的功能为统计指定文件中的字节�
 
     $ sudo dmesg | tail -f
 
+## top
+
+查看系统进程
+
+    top
+
+退出
+
+    q
+
+## kill
+
+按进程ID杀死进程
+
+    kill -9 PID
+
+按进程名称杀死进程
+
+    killall PNAME
+
+
