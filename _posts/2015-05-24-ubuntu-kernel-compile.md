@@ -89,7 +89,7 @@ E: Package 'ncurses' has no installation candidate
 
 ```
 
-提示找不到可用包，没办法，被逼使用终极大招
+提示找不到可用包，没办法，被迫使用终极大招
 
 ```sh
 
@@ -114,6 +114,48 @@ make install //安装
 make -jn
 
 make
+
+## 目录结构
+
+```sh
+
+\u251c\u2500\u2500 arch             //arch是architecture的缩写。内核所支持的每种CPU体系，在该目录下都有对应的子目录。
+                                    //每个CPU的子目录，又进一步分解为boot,mm,kernel等子目录，分别包含控制系统引导，
+                                    //内存管理，系统调用等。
+\u251c\u2500\u2500 block            //部分块设备驱动程序
+\u251c\u2500\u2500 COPYING
+\u251c\u2500\u2500 CREDITS
+\u251c\u2500\u2500 crypto           //加密、压缩、CRC校验算法
+\u251c\u2500\u2500 Documentation    //内核的文档
+\u251c\u2500\u2500 drivers          //设备驱动程序
+\u251c\u2500\u2500 dropped.txt
+\u251c\u2500\u2500 firmware
+\u251c\u2500\u2500 fs               //存放各种文件系统的实现代码。每个子目录对应一种文件系统的实现，公用的源程序用于实现
+                                    //虚拟文件系统vfs。
+\u251c\u2500\u2500 include          //内核所需要的头文件。与平台无关的头文件在include/linux 子目录下，与平台相关的头文件
+                                    //则放在相应的子目录中。
+\u251c\u2500\u2500 init             //内核初始化代码
+\u251c\u2500\u2500 ipc              //进程间通信的实现代码
+\u251c\u2500\u2500 Kbuild
+\u251c\u2500\u2500 Kconfig
+\u251c\u2500\u2500 kernel           //Linux大多数关键的核心功能都是在这个目录实现。（调度程序，进程控制，模块化）
+\u251c\u2500\u2500 lib              //库文件代码
+\u251c\u2500\u2500 MAINTAINERS
+\u251c\u2500\u2500 Makefile
+\u251c\u2500\u2500 mm               //mm目录中的文件用于实现内存管理中与体系结构无关的部分，与处理器相关的代码位于arch/*/mm目录下
+\u251c\u2500\u2500 net              //网络协议的实现代码| |--802 /*802无线通讯协议核心支持代码*/
+\u251c\u2500\u2500 README
+\u251c\u2500\u2500 REPORTING-BUGS
+\u251c\u2500\u2500 samples          //一些内核编程的范例
+\u251c\u2500\u2500 scripts          //配置内核的脚本
+\u251c\u2500\u2500 security         //安全、密钥相关代码
+\u251c\u2500\u2500 sound            //音频设备的驱动程序
+\u251c\u2500\u2500 tools
+\u251c\u2500\u2500 ubuntu
+\u251c\u2500\u2500 usr              //改目录中的代码为内核尚未完全启动时执行用户空间代码提供了支持（initrd镜像）
+\u2514\u2500\u2500 virt             //内核虚拟机
+
+```
 
 ## 参考资料
 
