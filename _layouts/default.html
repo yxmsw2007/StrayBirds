@@ -10,6 +10,8 @@
 	<link rel="stylesheet" href="/stylesheets/zTreeStyle.css" type="text/css"> 
     <script src="/javascripts/scale.fix.js"></script>
 	<script src="/javascripts/jquery-1.4.4.min.js"></script>
+    <script src="/javascripts/jquery.ztree.core-3.5.js"></script>
+    <script src="/javascripts/ztree_toc.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
 
@@ -18,7 +20,6 @@
     <![endif]-->
   </head>
   <body>
-	<section id="tree" class="ztree"></section>
     <div class="wrapper">
       <header>
       <h1><a href="http://{{site.username}}.github.io/">{{site.title}}</a></h1>
@@ -33,7 +34,8 @@
 <a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a> {{ page.title }} 
         </h1>
 {{ content }}
-      </section>	
+      </section>
+	<section id="tree" class="ztree"></section>	
 	  <section class="footer">
 	  	<a href="http://indexed.webmasterhome.cn/?domain=yxmblog.com" target="_blank">收录查询</a> | 
       <a href="http://www.coodir.com/" target="_blank" title="免费收录各类优秀网站" >酷帝网站目录</a>
@@ -45,7 +47,5 @@
     </footer>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
-    <script src="/javascripts/jquery.ztree.core-3.5.js"></script>
-    <script src="/javascripts/ztree_toc.js"></script>
   </body>
 </html>
