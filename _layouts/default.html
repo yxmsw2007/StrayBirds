@@ -39,12 +39,16 @@
 		<div class="wrapper">
 			<header>
 				<h1>
-					<a href="http://{{site.username}}.github.io/" > { { site.title } } </a>  
+					<a href="http://{{site.username}}.github.io/" > {{ site.title }} </a>  
 				</h1>
 				<p> 人生到处知何似 应似飞鸿踏雪泥 </p>
 				<ul>
-					<li>  <a href="http://{{site.username}}.github.io/feed.xml" target="_blank"> Feed <strong> RSS订阅 </strong></a></li>
-					<li>  <a href="https://github.com/{{site.username}}/{{site.projectname}}" target="_blank"> View On <strong> GitHub </strong></a></li>
+					<li>  
+						<a href="http://{{site.username}}.github.io/feed.xml" target="_blank"> Feed <strong> RSS订阅 </strong></a>
+					</li>
+					<li>  
+						<a href="https://github.com/{{site.username}}/{{site.projectname}}" target="_blank"> View On <strong> GitHub </strong></a>
+					</li>
 				</ul>
 				<input type="text" class="st-default-search-input" >
 			</header>
@@ -52,7 +56,7 @@
 				<h1>
 					<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages">  <span class="octicon octicon-link"></span></a> {{ page.title }}
 				</h1>
-				{ { content } }
+				{{ content }}
 			</section >
 			<section id="tree" class="ztree"></section>
 			<section class="footer">

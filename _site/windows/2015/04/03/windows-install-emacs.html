@@ -39,12 +39,16 @@
 		<div class="wrapper">
 			<header>
 				<h1>
-					<a href="http://yxmsw2007.github.io/" > { { site.title } } </a>  
+					<a href="http://yxmsw2007.github.io/" > yxmsw2007 </a>  
 				</h1>
 				<p> 人生到处知何似 应似飞鸿踏雪泥 </p>
 				<ul>
-					<li>  <a href="http://yxmsw2007.github.io/feed.xml" target="_blank"> Feed <strong> RSS订阅 </strong></a></li>
-					<li>  <a href="https://github.com/yxmsw2007/yxmsw2007.github.io" target="_blank"> View On <strong> GitHub </strong></a></li>
+					<li>  
+						<a href="http://yxmsw2007.github.io/feed.xml" target="_blank"> Feed <strong> RSS订阅 </strong></a>
+					</li>
+					<li>  
+						<a href="https://github.com/yxmsw2007/yxmsw2007.github.io" target="_blank"> View On <strong> GitHub </strong></a>
+					</li>
 				</ul>
 				<input type="text" class="st-default-search-input" >
 			</header>
@@ -52,7 +56,98 @@
 				<h1>
 					<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages">  <span class="octicon octicon-link"></span></a> Windows中安装Emacs
 				</h1>
-				{ { content } }
+				<section>
+<blockquote>
+<p>“在这个蔚蓝色的星球上，流传着两大神器的传说：据说Emacs是神的编辑器，而Vim是编辑器之神。”</p>
+</blockquote>
+
+<p>既然有人这么说肯定有他的道理，为了体验下不一样的感觉本人不得不深入神的世界去了。</p>
+
+<p>那进入神的世界要如何开始，当然是install了，下面我说下如何在在windows中安装Emacs。</p>
+
+<h2>下载</h2>
+
+<p>Emacs Windows版下载地址：<a href="http://ftp.gnu.org/pub/gnu/emacs/windows/">http://ftp.gnu.org/pub/gnu/emacs/windows/</a></p>
+
+<p>打开网页后拉到最后挑一个最新的版本，目前最新版本为emacs-24.3-bin-i386.zip，只需要一个压缩文档即可。</p>
+
+<h2>安装</h2>
+
+<p>将下载的压缩包（emacs-24.3-bin-i386.zip）解压到D盘（随个人喜好）重命名为Emacs24.3（也可以不重命名），解压后目录如下</p>
+
+<p><img src="/images/2015-04-03-windows-install-emacs/20150404001432.png" alt="20150404001432"></p>
+
+<p>双击bin文件夹里的addpm.exe进行安装，安装完后可以双击bin文件夹里的runemacs.exe启动也可以到bin目录双击emacs.exe启动，注意后者会出现一个控制台窗口。</p>
+
+<h2>配置HOME目录</h2>
+
+<p>配制方法有很多，不知道的可以到网上搜索一下；下面介绍一下我的配制方法：</p>
+
+<p>打开注册表，找到HKEY<em>LOCAL</em>MACHINE\Software\Wow6432Node\GNU\Emacs\HOME=D:\Emacs24.3（如果没有则手动添加，也有人说是HKEY<em>LOCAL</em>MACHINE\SOFTWARE\GNU\Emacs这个目录，但我的机器设置无效）。</p>
+
+<p>如何验证HOME目录是否有效，那就请继续往下看。</p>
+
+<h2>创建.emacs.d目录和.emacs文件</h2>
+
+<p>启动emacs，找到最上面的Options菜单，任意修改一两个选项，比如Highlight Active Region，然后点击Save Options保存。在Emacs窗口最后一行会显示“Wrote d:/Emacs24.3/.emacs”，此时.emacs.d目录和.emacs文件就算创建完了。这里你也许已经猜到窗口显示的这个目录就是Emacs的HOME目录，所以也可以用它来验证HOME设置是否正确。</p>
+
+<h2>加载.el文件</h2>
+
+<p>lisp目录下存放着lisp源文件（<em>.el）和已编译的lisp文件（</em>.elc），以后你也可以将自己的.el文件放在这个目录下，然后还要在.emacs文件插入相关语句。比如你有一个文件叫做abcd.el，将它复制到lisp目录下，然后打开.emacs文件插入一句(require &#39;abcd)就可以了（包括圆括号，不需要扩展名.el）。</p>
+
+<h2>参考资料</h2>
+
+<p><a href="http://blog.csdn.net/flag_and_leg/article/details/2900278">windows下Emacs的安装与配置</a></p>
+
+ </section>
+<section>
+<h1>Related Posts</h1>
+<table>
+
+  <tr>
+	<th><a href="/ubuntu/2015/05/24/ubuntu-kernel-compile.html">Kernel-3.2.0编译-Ubuntu12.04</a></th>
+	<td>2015-05-24</td>
+	<td><a href="/ubuntu/2015/05/24/ubuntu-kernel-compile.html#disqus_thread">Comments</a></td>
+  </tr>
+
+  <tr>
+	<th><a href="/c/c++/2015/05/19/thread-c.html">Thread编程-C</a></th>
+	<td>2015-05-19</td>
+	<td><a href="/c/c++/2015/05/19/thread-c.html#disqus_thread">Comments</a></td>
+  </tr>
+
+  <tr>
+	<th><a href="/c/c++/2015/05/16/socket-c.html">Socket编程-C</a></th>
+	<td>2015-05-16</td>
+	<td><a href="/c/c++/2015/05/16/socket-c.html#disqus_thread">Comments</a></td>
+  </tr>
+
+</table>
+</section>
+<section>
+
+  <div id="disqus_thread"></div>
+ <script type="text/javascript">
+     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+     var disqus_shortname = 'yxmsw2007'; // required: replace example with your forum shortname
+
+     /* * * DON'T EDIT BELOW THIS LINE * * */
+     (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+ </script>
+ <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+
+
+
+</section>
+
+
+
 			</section >
 			<section id="tree" class="ztree"></section>
 			<section class="footer">

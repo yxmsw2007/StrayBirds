@@ -39,12 +39,16 @@
 		<div class="wrapper">
 			<header>
 				<h1>
-					<a href="http://yxmsw2007.github.io/" > { { site.title } } </a>  
+					<a href="http://yxmsw2007.github.io/" > yxmsw2007 </a>  
 				</h1>
 				<p> 人生到处知何似 应似飞鸿踏雪泥 </p>
 				<ul>
-					<li>  <a href="http://yxmsw2007.github.io/feed.xml" target="_blank"> Feed <strong> RSS订阅 </strong></a></li>
-					<li>  <a href="https://github.com/yxmsw2007/yxmsw2007.github.io" target="_blank"> View On <strong> GitHub </strong></a></li>
+					<li>  
+						<a href="http://yxmsw2007.github.io/feed.xml" target="_blank"> Feed <strong> RSS订阅 </strong></a>
+					</li>
+					<li>  
+						<a href="https://github.com/yxmsw2007/yxmsw2007.github.io" target="_blank"> View On <strong> GitHub </strong></a>
+					</li>
 				</ul>
 				<input type="text" class="st-default-search-input" >
 			</header>
@@ -52,7 +56,300 @@
 				<h1>
 					<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages">  <span class="octicon octicon-link"></span></a> Ubuntu常用命令
 				</h1>
-				{ { content } }
+				<section>
+<h2>屏幕截图</h2>
+
+<p>命令：gnome-screenshot</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ gnome-screenshot --help
+
+Usage:
+
+     gnome-screenshot [OPTION...] Take a picture of the screen
+
+Help Options:
+
+    -h, --help                     Show help options
+
+    --help-all                     Show all help options
+
+    --help-gtk                     Show GTK+ Options
+
+Application Options:
+
+    -c, --clipboard                Send the grab directly to the clipboard
+
+    -w, --window                   Grab a window instead of the entire screen
+
+    -a, --area                     Grab an area of the screen instead of the entire screen
+
+    -b, --include-border           Include the window border with the screenshot
+
+    -B, --remove-border            Remove the window border from the screenshot
+
+    -d, --delay=seconds            Take screenshot after specified delay [in seconds]
+
+    -e, --border-effect=effect     Effect to add to the border (shadow, border or none)
+
+    -i, --interactive              Interactively set options
+
+    --display=DISPLAY              X display to use
+</code></pre></div>
+<p>参数说明：</p>
+
+<ul>
+<li>无：全屏截图</li>
+<li>-w：当前Shell窗口</li>
+<li>-a：指定区域</li>
+<li>-B：去除窗口边框</li>
+<li>-d：延迟截屏</li>
+<li>-e：给截图添加效果</li>
+</ul>
+
+<h2>清屏快捷键</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Ctrl + l
+</code></pre></div>
+<h2>命令行打开当前文件夹</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">nautilus .
+</code></pre></div>
+<h2>df</h2>
+
+<p>df只能查看一级文件夹大小、使用比例、档案系统及其挂入点</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ sudo df -h
+
+Filesystem      Size  Used Avail Use% Mounted on
+
+/dev/sda1        98G   70G   23G  76% /
+
+udev            2.0G  4.0K  2.0G   1% /dev
+
+tmpfs           395M  800K  394M   1% /run
+
+none            5.0M     0  5.0M   0% /run/lock
+
+none            2.0G  352K  2.0G   1% /run/shm
+</code></pre></div>
+<p>h参数， 表示使用「Human-readable」的输出，即是输出GB、MB方式 </p>
+
+<h2>du</h2>
+
+<p>max-depth参数表示指定深入目录的层数,很重要，不指定的话，会显示所有层次目录</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ du -h --max-depth=1
+
+18M ./developers
+
+45M ./libcore
+
+1.2G    ./frameworks
+
+184K    ./libnativehelper
+
+24G ./out
+
+18M ./bionic
+
+11M ./build
+</code></pre></div>
+<p>h参数， 表示使用「Human-readable」的输出，即是输出GB、MB方式 </p>
+
+<h2>打开主菜单</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Alt + F1
+</code></pre></div>
+<h2>运行</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Alt + F2
+</code></pre></div>
+<h2>显示桌面</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Ctrl + Alt + d
+</code></pre></div>
+<h2>最小化当前窗口</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Alt + F9
+</code></pre></div>
+<h2>最大化当前窗口</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Alt + F10
+</code></pre></div>
+<h2>关闭当前窗口</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Alt + F4
+</code></pre></div>
+<h2>截取全屏</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Print Screen
+</code></pre></div>
+<h2>截取窗口</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Alt + Print Screen
+</code></pre></div>
+<h2>展示所有窗口程序</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">F10
+</code></pre></div>
+<h2>展示当前窗口最上层程序</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">F11
+</code></pre></div>
+<h2>展示当前窗口所有程序</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">F12
+</code></pre></div>
+<h2>切换窗口</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Alt + Tab
+</code></pre></div>
+<h2>旋转3D桌面</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Ctrl + Alt + 左/右箭头（也可以把鼠标放在标题栏或桌面使用滚轮切换）
+</code></pre></div>
+<h2>旋转3D桌面（ 活动窗口跟随）</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Ctrl + Shift + Alt + 左/右箭头
+</code></pre></div>
+<h2>手动旋转3D桌面</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Ctrl + Alt + 左键单击并拖拽桌面空白处
+</code></pre></div>
+<h2>窗口透明/不透明</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">possible with the “transset” utility or Alt + 滚轮
+</code></pre></div>
+<h2>放大一次</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">超级键 + 右击
+</code></pre></div>
+<h2>手动放大</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">超级键 + 滚轮向上
+</code></pre></div>
+<h2>手动缩小</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">超级键 + 滚轮向下
+</code></pre></div>
+<h2>移动窗口</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Alt + 左键单击
+</code></pre></div>
+<h2>移动窗口时贴住边框</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">左键开始拖动后再 Ctrl + Alt
+</code></pre></div>
+<h2>调整窗口大小</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Alt + 中击
+</code></pre></div>
+<h2>Bring up the window below the top window</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Alt + middle-click
+</code></pre></div>
+<h2>动态效果减速</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Shift + F10
+</code></pre></div>
+<h2>水纹</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">按住 Ctrl+超级键
+</code></pre></div>
+<h2>雨点</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Shift-F9
+</code></pre></div>
+<h2>桌面展开</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Ctrl + Alt + 下箭头，然后按住 Ctrl + Alt 和左/右箭头选择桌面
+</code></pre></div>
+<h2>安装内核源码</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">sudo apt-get install linux-source //会自动安装当前版本内核的源代码到 /usr/src 
+</code></pre></div>
+<h2>wc</h2>
+
+<p>Linux系统中的wc(Word Count)命令的功能为统计指定文件中的字节数、字数、行数，并将统计结果显示输出。</p>
+
+<p>命令格式</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">wc [选项]文件...
+</code></pre></div>
+<p>命令功能</p>
+
+<p>统计指定文件中的字节数、字数、行数，并将统计结果显示输出。该命令统计指定文件中的字节数、字数、行数。如果没有给出文件名，则从标准输入读取。wc同时也给出所指定文件的总统计数。</p>
+
+<p>命令参数：</p>
+
+<ul>
+<li><p>-c 统计字节数。</p></li>
+<li><p>-l 统计行数。</p></li>
+<li><p>-m 统计字符数。这个标志不能与 -c 标志一起使用。</p></li>
+<li><p>-w 统计字数。一个字被定义为由空白、跳格或换行字符分隔的字符串。</p></li>
+<li><p>-L 打印最长行的长度。</p></li>
+<li><p>-help 显示帮助信息</p></li>
+<li><p>--version 显示版本信息</p></li>
+</ul>
+
+<p>统计文件个数</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">ls -l | grep &quot;^-&quot; | wc -l
+</code></pre></div>
+<h2>dmesg</h2>
+
+<p>功能说明：显示开机信息。</p>
+
+<p>语　　法：dmesg [-cn][-s &lt;缓冲区大小&gt;]</p>
+
+<p>补充说明：kernel会将开机信息存储在ring buffer中。您若是开机时来不及查看信息，可利用dmesg来查看。开机信息亦保存在/var/log目录中，名称为dmesg的文件里。</p>
+
+<p>参　　数：</p>
+
+<p>　-c 　显示信息后，清除ring buffer中的内容。 </p>
+
+<p>　-s&lt;缓冲区大小&gt; 　预设置为8196，刚好等于ring buffer的大小。 </p>
+
+<p>　-n 　设置记录信息的层级。</p>
+
+<p>示例</p>
+
+<p>将系统启动信息保存到文件中：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ sudo dmesg &gt; messages.txt
+</code></pre></div>
+<p>打印输出最近一次的信息：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ sudo dmesg | tail -f
+</code></pre></div>
+<h2>top</h2>
+
+<p>查看系统进程</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">top
+</code></pre></div>
+<p>退出</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">q
+</code></pre></div>
+<h2>kill</h2>
+
+<p>按进程ID杀死进程</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">kill -9 PID
+</code></pre></div>
+<p>按进程名称杀死进程</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">killall PNAME
+</code></pre></div>
+ </section>
+<section>
+<h1>Related Posts</h1>
+<table>
+
+  <tr>
+	<th><a href="/ubuntu/2015/05/24/ubuntu-kernel-compile.html">Kernel-3.2.0编译-Ubuntu12.04</a></th>
+	<td>2015-05-24</td>
+	<td><a href="/ubuntu/2015/05/24/ubuntu-kernel-compile.html#disqus_thread">Comments</a></td>
+  </tr>
+
+  <tr>
+	<th><a href="/c/c++/2015/05/19/thread-c.html">Thread编程-C</a></th>
+	<td>2015-05-19</td>
+	<td><a href="/c/c++/2015/05/19/thread-c.html#disqus_thread">Comments</a></td>
+  </tr>
+
+  <tr>
+	<th><a href="/c/c++/2015/05/16/socket-c.html">Socket编程-C</a></th>
+	<td>2015-05-16</td>
+	<td><a href="/c/c++/2015/05/16/socket-c.html#disqus_thread">Comments</a></td>
+  </tr>
+
+</table>
+</section>
+<section>
+
+  <div id="disqus_thread"></div>
+ <script type="text/javascript">
+     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+     var disqus_shortname = 'yxmsw2007'; // required: replace example with your forum shortname
+
+     /* * * DON'T EDIT BELOW THIS LINE * * */
+     (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+ </script>
+ <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+
+
+
+</section>
+
+
+
 			</section >
 			<section id="tree" class="ztree"></section>
 			<section class="footer">

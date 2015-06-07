@@ -39,12 +39,16 @@
 		<div class="wrapper">
 			<header>
 				<h1>
-					<a href="http://yxmsw2007.github.io/" > { { site.title } } </a>  
+					<a href="http://yxmsw2007.github.io/" > yxmsw2007 </a>  
 				</h1>
 				<p> 人生到处知何似 应似飞鸿踏雪泥 </p>
 				<ul>
-					<li>  <a href="http://yxmsw2007.github.io/feed.xml" target="_blank"> Feed <strong> RSS订阅 </strong></a></li>
-					<li>  <a href="https://github.com/yxmsw2007/yxmsw2007.github.io" target="_blank"> View On <strong> GitHub </strong></a></li>
+					<li>  
+						<a href="http://yxmsw2007.github.io/feed.xml" target="_blank"> Feed <strong> RSS订阅 </strong></a>
+					</li>
+					<li>  
+						<a href="https://github.com/yxmsw2007/yxmsw2007.github.io" target="_blank"> View On <strong> GitHub </strong></a>
+					</li>
 				</ul>
 				<input type="text" class="st-default-search-input" >
 			</header>
@@ -52,7 +56,214 @@
 				<h1>
 					<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages">  <span class="octicon octicon-link"></span></a> VIM常用命令
 				</h1>
-				{ { content } }
+				<section>
+<h2>对标点内的内容进行操作</h2>
+
+<blockquote>
+<p>ci&#39;、ci&quot;、ci(、ci[、ci{、ci&lt; - 分别更改这些配对标点符号中的文本内容</p>
+
+<p>di&#39;、di&quot;、di(或dib、di[、di{或diB、di&lt; - 分别删除这些配对标点符号中的文本内容</p>
+
+<p>yi&#39;、yi&quot;、yi(、yi[、yi{、yi&lt; - 分别复制这些配对标点符号中的文本内容</p>
+
+<p>vi&#39;、vi&quot;、vi(、vi[、vi{、vi&lt; - 分别选中这些配对标点符号中的文本内容}])}])}])}])&quot;</p>
+</blockquote>
+
+<h2>复制或移动内容到指定位置</h2>
+
+<blockquote>
+<p>行号9 ，行号15 copy 行号16                                        将行号9到行号15的内容复制到行号16所在行的后面。</p>
+
+<p>行号9 ，行号15 move 行号16                                       将行号9到行号15的文本内容移动到行号16所在行的后面。</p>
+</blockquote>
+
+<h2>复制到系统剪切板</h2>
+
+<p>在普通模式下按v进入可视模式，选中要复制的内容后按</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&quot; + y 
+</code></pre></div>
+<p>三个键就可以把内容复制到系统粘贴板，下面在终端那里按Ctrl+Shift+v就可以粘贴了</p>
+
+<h2>VIM格式化代码</h2>
+
+<blockquote>
+<p>按两下小写g，即gg，定位光标到第一行。</p>
+
+<p>按住Shift+v，即大写V，进入可视化编辑的列编辑模式。</p>
+
+<p>Shift+g，即大写G，选中整个代码。</p>
+
+<p>按下等号=，格式化所有代码。&quot;</p>
+</blockquote>
+
+<h2>进入头文件</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">gf
+</code></pre></div>
+<h2>移动到当前的行的中间</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">gm
+</code></pre></div>
+<h2>查看字符ascii码</h2>
+
+<blockquote>
+<p>在normal模式下光标停在某个字符上ga可以查看该字符的ascii码</p>
+</blockquote>
+
+<h2>跳到行首非空白字符</h2>
+
+<blockquote>
+<p>^</p>
+</blockquote>
+
+<h2>粘贴系统剪切板内容</h2>
+
+<p>不带自动缩进</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">“ + p
+</code></pre></div>
+<h2>替换命令</h2>
+
+<p>替换命令的完整形式</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">:[range]s/from/to/[flags]
+</code></pre></div>
+<h3>[range]</h3>
+
+<p>不写range   ：  默认为光标所在的行。</p>
+
+<p>.           ：  光标所在的行。</p>
+
+<p>1           ：  第一行。</p>
+
+<p>$           ：  最后一行。</p>
+
+<p>33          ：  第33行。</p>
+
+<p>&#39;a          ：  标记a所在的行（之前要使用ma做过标记）。</p>
+
+<p>.+1         ：  当前光标所在行的下面一行。</p>
+
+<p>$-1         ：  倒数第二行。（这里说明我们可以对某一行加减某个数值来取得相对的行）</p>
+
+<p>22,33       ：  第22～33行。</p>
+
+<p>1,$         ：  第1行 到 最后一行。</p>
+
+<p>1,.         ：  第1行 到 当前行。</p>
+
+<p>.,$         ：  当前行 到 最后一行。</p>
+
+<p>&#39;a,&#39;b       ：  标记a所在的行 到 标记b所在的行。</p>
+
+<p>%           ：  所有行（与 1,$ 等价）。</p>
+
+<p>?chapter?   ：  从当前位置向上搜索，找到的第一个chapter所在的行。（其中chapter可以是任何字符串或者正则表达式）</p>
+
+<p>/chapter/   ：  从当前位置向下搜索，找到的第一个chapter所在的行。（其中chapter可以是任何字符串或者正则表达式）</p>
+
+<blockquote>
+<p>注意，上面的所有用于range的表示方法都可以通过 +、- 操作来设置相对偏移量。</p>
+</blockquote>
+
+<h3>s/from/to/</h3>
+
+<p>把from指定的字符串替换成to指定的字符串，from可以是正则表达式。</p>
+
+<h3>[flags]</h3>
+
+<p>无      ：  只对指定范围内的第一个匹配项进行替换。</p>
+
+<p>g       ：  对指定范围内的所有匹配项进行替换。</p>
+
+<p>c       ：  在替换前请求用户确认。</p>
+
+<p>e       ：  忽略执行过程中的错误。</p>
+
+<blockquote>
+<p>注意：上面的所有flags都可以组合起来使用，比如gc表示对指定范围内的所有匹配项进行替换，并且在每一次替换之前都会请用户确认。</p>
+</blockquote>
+
+<h2>vimdiff</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">vim -d file1 file2
+</code></pre></div>
+<p>或</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">vimdiff file1 file2
+</code></pre></div>
+<p>如果已经打开了文件file1，再打开另一个文件file2进行比较</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">:vert diffsplit file2
+</code></pre></div>
+<p>如果已经用split方式打开了两个文件file1，file2，又想比较两文件的不同，分别在两个窗口里面输入命令</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">:diffthis
+</code></pre></div>
+<p>如果更改了某个窗口的内容，vim又没有自动更新diff检查，可以使用如下命令更新</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">:diffupdate
+</code></pre></div>
+<p>跳到前一个不同点</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[c]
+</code></pre></div>
+<p>跳到后一个不同点</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">]c
+</code></pre></div>
+<p>将差异点的当前文档内容应用到另一文档（diff put）</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">dp
+</code></pre></div>
+<p>将差异点的另一文档的内容拷贝到当前文档（diff get）</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">do
+</code></pre></div>
+<p>用折叠命令来临时展开被折叠的相同的文本行(folding open, z这个字母看上去比较像折叠的折）</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">zo
+</code></pre></div>
+<p>重新折叠(folding close)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">zc
+</code></pre></div>
+<h2>参考资料</h2>
+
+ </section>
+<section>
+<h1>Related Posts</h1>
+<table>
+
+  <tr>
+	<th><a href="/ubuntu/2015/05/24/ubuntu-kernel-compile.html">Kernel-3.2.0编译-Ubuntu12.04</a></th>
+	<td>2015-05-24</td>
+	<td><a href="/ubuntu/2015/05/24/ubuntu-kernel-compile.html#disqus_thread">Comments</a></td>
+  </tr>
+
+  <tr>
+	<th><a href="/c/c++/2015/05/19/thread-c.html">Thread编程-C</a></th>
+	<td>2015-05-19</td>
+	<td><a href="/c/c++/2015/05/19/thread-c.html#disqus_thread">Comments</a></td>
+  </tr>
+
+  <tr>
+	<th><a href="/c/c++/2015/05/16/socket-c.html">Socket编程-C</a></th>
+	<td>2015-05-16</td>
+	<td><a href="/c/c++/2015/05/16/socket-c.html#disqus_thread">Comments</a></td>
+  </tr>
+
+</table>
+</section>
+<section>
+
+  <div id="disqus_thread"></div>
+ <script type="text/javascript">
+     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+     var disqus_shortname = 'yxmsw2007'; // required: replace example with your forum shortname
+
+     /* * * DON'T EDIT BELOW THIS LINE * * */
+     (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+ </script>
+ <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+
+
+
+</section>
+
+
+
 			</section >
 			<section id="tree" class="ztree"></section>
 			<section class="footer">

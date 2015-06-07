@@ -39,12 +39,16 @@
 		<div class="wrapper">
 			<header>
 				<h1>
-					<a href="http://yxmsw2007.github.io/" > { { site.title } } </a>  
+					<a href="http://yxmsw2007.github.io/" > yxmsw2007 </a>  
 				</h1>
 				<p> 人生到处知何似 应似飞鸿踏雪泥 </p>
 				<ul>
-					<li>  <a href="http://yxmsw2007.github.io/feed.xml" target="_blank"> Feed <strong> RSS订阅 </strong></a></li>
-					<li>  <a href="https://github.com/yxmsw2007/yxmsw2007.github.io" target="_blank"> View On <strong> GitHub </strong></a></li>
+					<li>  
+						<a href="http://yxmsw2007.github.io/feed.xml" target="_blank"> Feed <strong> RSS订阅 </strong></a>
+					</li>
+					<li>  
+						<a href="https://github.com/yxmsw2007/yxmsw2007.github.io" target="_blank"> View On <strong> GitHub </strong></a>
+					</li>
 				</ul>
 				<input type="text" class="st-default-search-input" >
 			</header>
@@ -52,7 +56,478 @@
 				<h1>
 					<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages">  <span class="octicon octicon-link"></span></a> 读写文件-C
 				</h1>
-				{ { content } }
+				<section>
+<h2>open与fopen</h2>
+
+<p>int open(const char *path, int access,int mode)</p>
+
+<p>path 要打开的文件路径和名称</p>
+
+<p>access 访问模式，宏定义和含义如下：</p>
+
+<p>O_RDONLY         1    只读打开</p>
+
+<p>O_WRONLY         2    只写打开</p>
+
+<p>O_RDWR           4    读写打开</p>
+
+<p>还可选择以下模式与以上3种基本模式相与：</p>
+
+<p>O_CREAT     0x0100   创建一个文件并打开</p>
+
+<p>O_TRUNC     0x0200   打开一个已存在的文件并将文件长度设置为0，其他属性保持</p>
+
+<p>O_EXCL      0x0400   未使用</p>
+
+<p>O_APPEND    0x0800   追加打开文件</p>
+
+<p>O_TEXT      0x4000   打开文本文件翻译CR-LF控制字符</p>
+
+<p>O_BINARY    0x8000   打开二进制字符，不作CR-LF翻译</p>
+
+<p>mode 该参数仅在access=O_CREAT方式下使用，其取值如下：</p>
+
+<p>S_IFMT      0xF000   文件类型掩码</p>
+
+<p>S_IFDIR     0x4000   目录</p>
+
+<p>S_IFIFO     0x1000   FIFO 专用</p>
+
+<p>S_IFCHR     0x2000   字符专用</p>
+
+<p>S_IFBLK     0x3000   块专用</p>
+
+<p>S_IFREG     0x8000   只为0x0000</p>
+
+<p>S_IREAD     0x0100   可读</p>
+
+<p>S_IWRITE    0x0080   可写</p>
+
+<p>S_IEXEC     0x0040   可执行</p>
+
+<p>FILE *fopen(char *filename, char *mode)</p>
+
+<p>filename 文件名称</p>
+
+<p>mode 打开模式：</p>
+
+<p>r   只读方式打开一个文本文件</p>
+
+<p>rb  只读方式打开一个二进制文件</p>
+
+<p>w   只写方式打开一个文本文件</p>
+
+<p>wb  只写方式打开一个二进制文件</p>
+
+<p>a   追加方式打开一个文本文件</p>
+
+<p>ab  追加方式打开一个二进制文件</p>
+
+<p>r+  可读可写方式打开一个文本文件</p>
+
+<p>rb+ 可读可写方式打开一个二进制文件</p>
+
+<p>w+  可读可写方式创建一个文本文件</p>
+
+<p>wb+ 可读可写方式生成一个二进制文件</p>
+
+<p>a+  可读可写追加方式打开一个文本文件</p>
+
+<p>ab+ 可读可写方式追加一个二进制文件</p>
+
+<p>open和fopen的区别：</p>
+
+<p>前者属于低级IO，后者是高级IO。</p>
+
+<p>前者返回一个文件描述符，后者返回一个文件指针。</p>
+
+<p>前者无缓冲，后者有缓冲。</p>
+
+<p>前者与 read, write 等配合使用， 后者与 fread, fwrite等配合使用。</p>
+
+<p>后者是在前者的基础上扩充而来的，在大多数情况下，用后者</p>
+
+<h2>fdopen和fileno</h2>
+
+<p>C语言文件指针与文件描述符之间可以相互转换</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="kt">FILE</span> <span class="o">*</span><span class="nf">fdopen</span> <span class="p">(</span><span class="kt">int</span> <span class="n">filedes</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">opentype</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">fileno</span> <span class="p">(</span><span class="n">file</span> <span class="o">*</span> <span class="n">stream</span><span class="p">);</span>
+</code></pre></div>
+<h2>rewind</h2>
+
+<p>函数名: rewind()</p>
+
+<p>功 能: 将文件内部的位置指针重新指向一个流（数据流/文件）的开头</p>
+
+<p>注意：不是文件指针而是文件内部的位置指针，随着对文件的读写文件的位置指针（指向当前读写字节）向后移动。而文件指针是指向整个文件，如果不重新赋值文件指针不会改变。
+rewind函数作用等同于 (void)fseek(stream, 0L, SEEK_SET);[1] </p>
+
+<p>用 法: void rewind(FILE *stream);</p>
+
+<p>头文件： stdio.h</p>
+
+<p>返回值：无</p>
+
+<h2>fgetc和fputc</h2>
+
+<p>int fgetc(FILE *stream)</p>
+
+<p>fgetc()函数从输入流的当前位置返回一个字符，并将文件指针指示器移到下一个字符处，如果已到文件尾，函数返回EOF，此时表示本次操作结束，若读写文件完成，则应关闭文件。</p>
+
+<p>int fputc(int ch,FILE *stream)</p>
+
+<p>fputc()函数完成将字符ch的值写入所指定的流文件的当前位置处，并将文件指针后移一位。fputc()函数的返回值是所写入字符的值，出错时返回EOF。</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+
+    <span class="kt">char</span> <span class="n">ch</span><span class="p">;</span>
+
+    <span class="kt">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">,</span> <span class="o">*</span><span class="n">fp2</span><span class="p">;</span>
+
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">((</span><span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&quot;r&quot;</span><span class="p">))</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;not open!&quot;</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">((</span><span class="n">fp2</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s">&quot;w&quot;</span><span class="p">))</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;not open fp2!&quot;</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="p">}</span>
+
+    <span class="k">while</span><span class="p">((</span><span class="n">ch</span> <span class="o">=</span> <span class="n">fgetc</span><span class="p">(</span><span class="n">fp</span><span class="p">))</span> <span class="o">!=</span> <span class="n">EOF</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="n">putchar</span><span class="p">(</span><span class="n">ch</span><span class="p">);</span> 
+
+        <span class="n">fputc</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span> <span class="n">fp2</span><span class="p">);</span>
+
+    <span class="p">}</span>
+
+    <span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+
+    <span class="n">fclose</span><span class="p">(</span><span class="n">fp2</span><span class="p">);</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<h2>fscanf和fprintf</h2>
+
+<p>int fscanf(FILE *stream,char *format,arg_list)</p>
+
+<p>int fprintf(FILE *stream,char *format,arg_list)</p>
+
+<p>对文件的格式化读写就是在上述函数的前面加一个字母f成为fscanf(  )和fprintf(  ) </p>
+
+<p>其中，stream为流文件指针，其余两个参数与scanf(  )和printf(  )用法完全相同。</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="cm">/*</span>
+<span class="cm"> * 将一些格式化的数据写入文本文件，再从该文件中医格式化方法读出显示在屏幕上，</span>
+<span class="cm"> * 其格式化数据是两个学生记录，包括姓名、学号、两科成绩。</span>
+<span class="cm"> * */</span> 
+
+ <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+
+     <span class="k">struct</span> <span class="n">stu</span> <span class="p">{</span> <span class="cm">/* 定义结构体类型 */</span> 
+
+        <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">15</span><span class="p">];</span>
+
+        <span class="kt">char</span> <span class="n">num</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span>
+
+        <span class="kt">float</span> <span class="n">score</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+
+     <span class="p">}</span> <span class="n">student</span><span class="p">;</span> <span class="cm">/* 说明结构体变量 */</span> 
+
+     <span class="kt">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
+
+     <span class="k">if</span> <span class="p">((</span><span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&quot;w&quot;</span><span class="p">))</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;not open %s!&quot;</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+     <span class="p">}</span>
+
+     <span class="kt">int</span> <span class="n">i</span><span class="p">;</span> <span class="cm">/* 在循环条件中声明变量的话，只在C99标准中支持，C90标准不支持 */</span> 
+
+     <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%s %s %f %f&quot;</span><span class="p">,</span> <span class="n">student</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">student</span><span class="p">.</span><span class="n">num</span><span class="p">,</span>
+                <span class="o">&amp;</span><span class="n">student</span><span class="p">.</span><span class="n">score</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">student</span><span class="p">.</span><span class="n">score</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="cm">/* 从键盘键入 */</span> 
+
+        <span class="n">fprintf</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="s">&quot;%s %s %7.2f %7.2f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">student</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> 
+                <span class="n">student</span><span class="p">.</span><span class="n">num</span><span class="p">,</span> <span class="n">student</span><span class="p">.</span><span class="n">score</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">student</span><span class="p">.</span><span class="n">score</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="cm">/* 写入文件 */</span> 
+
+     <span class="p">}</span>
+
+     <span class="k">while</span><span class="p">(</span><span class="n">fscanf</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="s">&quot;%s %s %f %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">student</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">student</span><span class="p">.</span><span class="n">num</span><span class="p">,</span> 
+                    <span class="o">&amp;</span><span class="n">student</span><span class="p">.</span><span class="n">score</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">student</span><span class="p">.</span><span class="n">score</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">!=</span> <span class="n">EOF</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s %s %7.2f %7.2f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">student</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">student</span><span class="p">.</span><span class="n">num</span><span class="p">,</span> 
+                    <span class="n">student</span><span class="p">.</span><span class="n">score</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">student</span><span class="p">.</span><span class="n">score</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="cm">/* 显示到屏幕 */</span> 
+
+     <span class="p">}</span>
+
+     <span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+
+     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+ <span class="p">}</span>
+</code></pre></div>
+<h2>fgets和fputs</h2>
+
+<p>char *fgets(char *str,int num,FILE *stream) // 感觉是在读一行数据</p>
+
+<p>int fputs(char *str,FILE *stream)</p>
+
+<p>fgets() 函数从流文件stream中读取至多num-1个字符，并把它们放入str指向的字符数组中。读取字符直到遇见回车符或EOF（文件结束符）为止，或读入了所限定的字符数。</p>
+
+<p>fputs(  )函数将str指向的字符串写入流文件。操作成功时，函数返回0值，失败返回非零值。 </p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="cp">#include &lt;string.h&gt;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+
+    <span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="mi">128</span><span class="p">];</span>
+
+    <span class="kt">FILE</span> <span class="o">*</span><span class="n">fp1</span><span class="p">,</span> <span class="o">*</span><span class="n">fp2</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">((</span><span class="n">fp1</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&quot;r&quot;</span><span class="p">))</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;not open %s!&quot;</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">((</span><span class="n">fp2</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s">&quot;w&quot;</span><span class="p">))</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;not open %s!&quot;</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="p">}</span>
+
+    <span class="k">while</span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="mi">128</span><span class="p">,</span><span class="n">fp1</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="n">fputs</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">fp2</span><span class="p">);</span>    <span class="c1">//从文件1读字符串并写入文件2</span>
+
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d, %s&quot;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">strlen</span><span class="p">(</span><span class="n">str</span><span class="p">),</span> <span class="n">str</span><span class="p">);</span>
+
+    <span class="p">}</span>
+
+    <span class="n">fclose</span><span class="p">(</span><span class="n">fp1</span><span class="p">);</span>
+
+    <span class="n">fclose</span><span class="p">(</span><span class="n">fp2</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<h2>fread和fwrite</h2>
+
+<p>int fread(void *buf,int size,int count,FILE *stream)</p>
+
+<p>int fwrite(void *buf,int size,int count,FILE *stream)</p>
+
+<p>fread（）函数从stream 指向的流文件读取count （字段数）个字段，每个字段为size(字段长度)个字符长，并把它们放到b u f（缓冲区）指向的字符数组中。</p>
+
+<p>fread（）函数返回实际已读取的字段数。若函数调用时要求读取的字段数超过文件存放的字段数，则出错或已到文件尾，实际在操作时应注意检测。</p>
+
+<p>fwrite(  )函数从buf(缓冲区)指向的字符数组中，把count(字段数)个字段写到stream所指向的流中，每个字段为size个字符长，函数操作成功时返回所写字段数。</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+
+    <span class="k">struct</span> <span class="n">stu</span> <span class="p">{</span> <span class="cm">/* 定义结构体类型 */</span> 
+
+        <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">15</span><span class="p">];</span>
+
+        <span class="kt">char</span> <span class="n">num</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span>
+
+        <span class="kt">float</span> <span class="n">score</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+
+    <span class="p">}</span> <span class="n">student</span><span class="p">;</span> <span class="cm">/* 说明结构体变量 */</span> 
+
+    <span class="kt">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">((</span><span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&quot;wb+&quot;</span><span class="p">))</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/* 以二进制读写方式打开文件 */</span> 
+
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;not open %s!&quot;</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span> <span class="cm">/* 在循环条件中声明变量的话，只在C99标准中支持，C90标准不支持 */</span> 
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%s %s %f %f&quot;</span><span class="p">,</span> <span class="n">student</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">student</span><span class="p">.</span><span class="n">num</span><span class="p">,</span>
+                    <span class="o">&amp;</span><span class="n">student</span><span class="p">.</span><span class="n">score</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">student</span><span class="p">.</span><span class="n">score</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="cm">/* 从键盘键入 */</span> 
+
+        <span class="n">fwrite</span><span class="p">(</span><span class="o">&amp;</span><span class="n">student</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">student</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">fp</span><span class="p">);</span>
+
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="n">fread</span><span class="p">(</span><span class="o">&amp;</span><span class="n">student</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">student</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">fp</span><span class="p">);</span>
+
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s %s %7.2f %7.2f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">student</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">student</span><span class="p">.</span><span class="n">num</span><span class="p">,</span> 
+                    <span class="n">student</span><span class="p">.</span><span class="n">score</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">student</span><span class="p">.</span><span class="n">score</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="cm">/* 显示到屏幕 */</span> 
+
+    <span class="p">}</span>
+
+    <span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<h2>fseek和ftell</h2>
+
+<p>函数名: fseek()</p>
+
+<p>功 能: 重定位流(数据流/文件)上的文件内部位置指针</p>
+
+<p>注 意: 文件指针指向文件/流。位置指针指向文件内部的字节位置，随着文件的读取会移动，文件指针如果不重新赋值将不会改变指向别的文件。</p>
+
+<p>用 法: int fseek(FILE *stream, long offset, int fromwhere); </p>
+
+<p>头文件: stdio.h</p>
+
+<p>返回值: 成功，返回0，失败返回-1，并设置errno的值，可以用perror()函数输出错误</p>
+
+<p>函数名: ftell()</p>
+
+<p>功 能: 用于得到文件位置指针当前位置相对于文件首的偏移字节数,使用fseek函数后再调用函数ftell()就能非常容易地确定文件的当前位置</p>
+
+<p>用 法: long ftell(FILE *stream);</p>
+
+<p>头文件: stdio.h</p>
+
+<p>返回值: 获取stream指定的文件的当前读写位置</p>
+
+<blockquote>
+<p>ftell(fp);利用函数 ftell() 也能方便地知道一个文件的长。如以下语句序列： fseek(fp, 0L,SEEK_END); len =ftell(fp); 
+首先将文件的当前位置移到文件的末尾，然后调用函数ftell()获得当前位置相对于文件首的位移，该位移值等于文件所含字节数。</p>
+</blockquote>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+
+    <span class="kt">long</span> <span class="n">len</span><span class="p">;</span>
+
+    <span class="kt">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">((</span><span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&quot;rb&quot;</span><span class="p">))</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;not open!&quot;</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="p">}</span>
+
+    <span class="n">fseek</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SEEK_END</span><span class="p">);</span>
+
+    <span class="n">len</span> <span class="o">=</span> <span class="n">ftell</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+
+    <span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;len = %ld</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<h2>atoi、stof和atol</h2>
+
+<p>关于成块的文件读写，在创建文件时只能以二进制文件格式创建。</p>
+
+<p>通常，对于输入数据的格式较为复杂的话，我们可采取将各种格式的数据当做字符串输入，然后将字符串转换为所需的格式。C提供函数:</p>
+
+<p>int atoi(char *ptr)</p>
+
+<p>float atof(char *ptr)</p>
+
+<p>long int atol(char *ptr)</p>
+
+<p>它们分别将字符串转换为整型、实型和长整型。使用时请将其包含的头文件math.h或stdlib.h写在程序的前面。</p>
+
+<h2>源码下载</h2>
+
+<p><a href="https://github.com/yxmsw2007/SampleC-CPP.git">SampleC-CPP</a></p>
+
+<h2>参考资料</h2>
+
+<p><a href="http://blog.chinaunix.net/uid-25749806-id-461233.html">open和fopen区别</a></p>
+
+<p><a href="http://www.cnblogs.com/findumars/archive/2012/04/01/2429435.html">几个能用的C语言IO读写数据的例子</a></p>
+
+ </section>
+<section>
+<h1>Related Posts</h1>
+<table>
+
+  <tr>
+	<th><a href="/ubuntu/2015/05/24/ubuntu-kernel-compile.html">Kernel-3.2.0编译-Ubuntu12.04</a></th>
+	<td>2015-05-24</td>
+	<td><a href="/ubuntu/2015/05/24/ubuntu-kernel-compile.html#disqus_thread">Comments</a></td>
+  </tr>
+
+  <tr>
+	<th><a href="/c/c++/2015/05/19/thread-c.html">Thread编程-C</a></th>
+	<td>2015-05-19</td>
+	<td><a href="/c/c++/2015/05/19/thread-c.html#disqus_thread">Comments</a></td>
+  </tr>
+
+  <tr>
+	<th><a href="/c/c++/2015/05/16/socket-c.html">Socket编程-C</a></th>
+	<td>2015-05-16</td>
+	<td><a href="/c/c++/2015/05/16/socket-c.html#disqus_thread">Comments</a></td>
+  </tr>
+
+</table>
+</section>
+<section>
+
+  <div id="disqus_thread"></div>
+ <script type="text/javascript">
+     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+     var disqus_shortname = 'yxmsw2007'; // required: replace example with your forum shortname
+
+     /* * * DON'T EDIT BELOW THIS LINE * * */
+     (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+ </script>
+ <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+
+
+
+</section>
+
+
+
 			</section >
 			<section id="tree" class="ztree"></section>
 			<section class="footer">

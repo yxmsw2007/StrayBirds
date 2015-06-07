@@ -39,12 +39,16 @@
 		<div class="wrapper">
 			<header>
 				<h1>
-					<a href="http://yxmsw2007.github.io/" > { { site.title } } </a>  
+					<a href="http://yxmsw2007.github.io/" > yxmsw2007 </a>  
 				</h1>
 				<p> 人生到处知何似 应似飞鸿踏雪泥 </p>
 				<ul>
-					<li>  <a href="http://yxmsw2007.github.io/feed.xml" target="_blank"> Feed <strong> RSS订阅 </strong></a></li>
-					<li>  <a href="https://github.com/yxmsw2007/yxmsw2007.github.io" target="_blank"> View On <strong> GitHub </strong></a></li>
+					<li>  
+						<a href="http://yxmsw2007.github.io/feed.xml" target="_blank"> Feed <strong> RSS订阅 </strong></a>
+					</li>
+					<li>  
+						<a href="https://github.com/yxmsw2007/yxmsw2007.github.io" target="_blank"> View On <strong> GitHub </strong></a>
+					</li>
 				</ul>
 				<input type="text" class="st-default-search-input" >
 			</header>
@@ -52,7 +56,189 @@
 				<h1>
 					<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages">  <span class="octicon octicon-link"></span></a> Kernel-3.2.0编译-Ubuntu12.04
 				</h1>
-				{ { content } }
+				<section>
+<h2>学习资料</h2>
+
+<p>英本网的免费视频，推荐给大家，讲的比较清楚，适合入门</p>
+
+<p><a href="http://v.youku.com/v_show/id_XNjc1NzEzODAw.html">01.Linux内核学习入门</a>     </p>
+
+<p><a href="http://v.youku.com/v_show/id_XNjc1NzE0OTAw.html">02.Linux内核介绍</a></p>
+
+<p><a href="http://v.youku.com/v_show/id_XNjc1NzE1NDQ0.html">03.Linux内核编译</a></p>
+
+<p><a href="http://v.youku.com/v_show/id_XNjc1NzE2MjQw.html">04.Linux内核源码介绍及剪裁</a></p>
+
+<p><a href="http://v.youku.com/v_show/id_XNjc1NzE3MDI4.html">06.Linux内核模块例子</a></p>
+
+<h2>超有用的资料网站</h2>
+
+<p><a href="https://www.kernel.com/">kernel</a></p>
+
+<p><a href="https://www.kernel.org/">内核源码下载</a></p>
+
+<p><a href="http://www.linuxsir.org/">linux论坛</a></p>
+
+<p><a href="http://lxr.linux.no/">在线阅读内核源码</a></p>
+
+<h2>生成配置</h2>
+
+<blockquote>
+<p>make menuconfig //图形界面</p>
+
+<p>make config //命令行</p>
+
+<p>make xconfig //图形界面，树形结构</p>
+
+<p>make defconfig</p>
+</blockquote>
+
+<h3>make menuconfig</h3>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"> *** Unable to find the ncurses libraries or the
+ *** required header files.
+ *** <span class="s1">&#39;make menuconfig&#39;</span> requires the ncurses libraries.
+ *** 
+ *** Install ncurses <span class="o">(</span>ncurses-devel<span class="o">)</span> and try again.
+ *** 
+make<span class="o">[</span>1<span class="o">]</span>: *** <span class="o">[</span>scripts/kconfig/dochecklxdialog<span class="o">]</span> Error 1
+make: *** <span class="o">[</span>menuconfig<span class="o">]</span> Error 2
+</code></pre></div>
+<p>按网上说的执行以下命令</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>sudo apt-get install libncurses5-dev
+<span class="o">[</span>sudo<span class="o">]</span> password <span class="k">for</span> siuming: 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+libncurses5-dev is already the newest version.
+The following packages were automatically installed and are no longer required:
+  libwayland-ltst-client0 libtxc-dxtn-s2tc0 libosmesa6 libxrandr-ltst2
+  libwayland-ltst-server0 libxcb-xfixes0 libllvm3.4
+Use <span class="s1">&#39;apt-get autoremove&#39;</span> to remove them.
+<span class="m">0</span> upgraded, <span class="m">0</span> newly installed, <span class="m">0</span> to remove and <span class="m">0</span> not upgraded.
+</code></pre></div>
+<p>发现还是不行，再执行如下命令</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>sudo apt-get install ncurses
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Package ncurses is not available, but is referred to by another package.
+This may mean that the package is missing, has been obsoleted, or
+is only available from another <span class="nb">source</span>
+
+E: Package <span class="s1">&#39;ncurses&#39;</span> has no installation candidate
+</code></pre></div>
+<p>提示找不到可用包，没办法，被迫使用终极大招</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">sudo apt-get install libncurses*
+</code></pre></div>
+<p>所有的都安装后就可以使用了</p>
+
+<h2>编译</h2>
+
+<p>make</p>
+
+<p>make modules //编译模块</p>
+
+<p>make modules_install //安装模块</p>
+
+<p>make install //安装</p>
+
+<p>/sbin/depmod 2.6.31.8 //产生依赖文件，*.dep</p>
+
+<p>make -jn</p>
+
+<p>make</p>
+
+<h2>目录结构</h2>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">.
+├── arch      //arch是architecture的缩写。内核所支持的每种CPU体系，在该目录下都有对应的子目录。
+            //每个CPU的子目录，又进一步分解为boot,mm,kernel等子目录，分别包含控制系统引导，
+            //内存管理，系统调用等。
+├── block     //部分块设备驱动程序
+├── COPYING
+├── CREDITS
+├── crypto        //加密、压缩、CRC校验算法
+├── Documentation //内核的文档
+├── drivers       //设备驱动程序
+├── dropped.txt
+├── firmware      //固件（固化到主板内的程序）
+├── fs            //存放各种文件系统的实现代码。每个子目录对应一种文件系统的实现，公用的源程序用于实现
+            //虚拟文件系统vfs。
+├── include       //内核所需要的头文件。与平台无关的头文件在include/linux 子目录下，与平台相关的头文件
+            //则放在相应的子目录中。
+├── init      //内核初始化代码
+├── ipc           //进程间通信的实现代码
+├── Kbuild
+├── Kconfig
+├── kernel        //Linux大多数关键的核心功能都是在这个目录实现。（调度程序，进程控制，模块化）
+├── lib           //库文件代码
+├── MAINTAINERS
+├── Makefile
+├── mm            //mm目录中的文件用于实现内存管理中与体系结构无关的部分，与处理器相关的代码位于arch/*/mm目录下
+├── net           //网络协议的实现代码<span class="p">|</span> <span class="p">|</span>--802 /*802无线通讯协议核心支持代码*/
+├── README
+├── REPORTING-BUGS
+├── samples       //一些内核编程的范例
+├── scripts       //配置内核的脚本
+├── security      //安全、密钥相关代码
+├── sound     //音频设备的驱动程序
+├── tools
+├── ubuntu
+├── usr           //改目录中的代码为内核尚未完全启动时执行用户空间代码提供了支持（initrd镜像）
+└── virt      //内核虚拟机
+</code></pre></div>
+<h2>参考资料</h2>
+
+<p><a href="http://blog.sina.com.cn/s/blog_726684020100r1oo.html">解决ubuntu下make menuconfig错误问题</a></p>
+
+ </section>
+<section>
+<h1>Related Posts</h1>
+<table>
+
+  <tr>
+	<th><a href="/c/c++/2015/05/19/thread-c.html">Thread编程-C</a></th>
+	<td>2015-05-19</td>
+	<td><a href="/c/c++/2015/05/19/thread-c.html#disqus_thread">Comments</a></td>
+  </tr>
+
+  <tr>
+	<th><a href="/c/c++/2015/05/16/socket-c.html">Socket编程-C</a></th>
+	<td>2015-05-16</td>
+	<td><a href="/c/c++/2015/05/16/socket-c.html#disqus_thread">Comments</a></td>
+  </tr>
+
+  <tr>
+	<th><a href="/tools/2015/05/10/vim-commands.html">VIM常用命令</a></th>
+	<td>2015-05-10</td>
+	<td><a href="/tools/2015/05/10/vim-commands.html#disqus_thread">Comments</a></td>
+  </tr>
+
+</table>
+</section>
+<section>
+
+  <div id="disqus_thread"></div>
+ <script type="text/javascript">
+     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+     var disqus_shortname = 'yxmsw2007'; // required: replace example with your forum shortname
+
+     /* * * DON'T EDIT BELOW THIS LINE * * */
+     (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+ </script>
+ <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+
+
+
+</section>
+
+
+
 			</section >
 			<section id="tree" class="ztree"></section>
 			<section class="footer">
