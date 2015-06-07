@@ -98,13 +98,13 @@ header p.view small {
   font-weight: 400;
 }
 header ul {
-  margin: 10px;
+  margin: 0 15px;
   padding: 0;
   list-style: none;
   position: absolute;
   z-index: 1;
   right: 20px;
-  top: 20px;
+  top: 10px;
   height: 38px;
   padding: 1px 0;
   background: #5198DF;
@@ -172,6 +172,15 @@ header ul a strong {
   display: block;
   color: #fff;
   -webkit-font-smoothing: antialiased;
+}
+
+input {
+  margin: 0 10px;
+  position: absolute;
+  right: 20px;
+  top: 60px;
+  buttom: 10px;
+  width: auto;
 }
 
 section {

@@ -1,0 +1,1355 @@
+commit 13c736f9666303a7a2eeaf34df67fa645b7ffa8b
+Author: yxmsw2007 <yxmsw2007@gmail.com>
+Date:   Wed May 20 22:17:38 2015 +0800
+
+    transferred _
+
+commit 4c4ec6a5a2103142d2a101179d45d96f804c8dfa
+Author: yxmsw2007 <yxmsw2007@gmail.com>
+Date:   Wed May 20 00:29:34 2015 +0800
+
+    add Thread c
+
+commit 5eca684c1f406418e9d4590311da54d9e7878b19
+Author: yxmsw2007 <yxmsw2007@gmail.com>
+Date:   Sun May 17 23:24:28 2015 +0800
+
+    modify socket-c style incorrect
+
+commit 595581b9835063ffd1832540abdc85371af17224
+Author: yxmsw2007 <yxmsw2007@gmail.com>
+Date:   Sun May 17 22:26:28 2015 +0800
+
+    add category and tags
+
+commit d94f3c1d3c749854409659bd53332291a183e5fd
+Author: yxmsw2007 <yxmsw2007@gmail.com>
+Date:   Sun May 17 01:39:31 2015 +0800
+
+    add support table for markdown
+
+commit 13244b28553cb25f6f53356fe30bebfdad08ca11
+Author: yxmsw2007 <yxmsw2007@gmail.com>
+Date:   Sun May 17 00:47:31 2015 +0800
+
+    update socket coding
+
+commit 44185e6301faab7731779e0c1aa25bd2368c3095
+Author: yxmsw2007 <yxmsw2007@gmail.com>
+Date:   Sun May 17 00:12:59 2015 +0800
+
+    add C socket
+
+commit 1adb9f2ac983a275311ddcd062a8870e67d06021
+Author: yxmsw2007 <yxmsw2007@gmail.com>
+Date:   Thu May 14 23:16:33 2015 +0800
+
+    add fdopen fileno rewind fseek ftell func info
+
+commit ab5cad9baf51b58e0c41eb5dd3994140be4d73c5
+Author: メiao <yxmsw2007@163.com>
+Date:   Thu May 14 00:32:14 2015 +0800
+
+    Update 2015-05-10-read_and_write_file_c.md
+
+commit 00a97c96b65dff050f903372451fb81ae078b40c
+Author: メiao <yxmsw2007@163.com>
+Date:   Thu May 14 00:30:17 2015 +0800
+
+    Update 2015-05-10-read_and_write_file_c.md
+    
+    update code style incorrect
+
+commit 79855da029526a5c08cb9b9666657c00ed73f587
+Author: yxmsw2007 <yxmsw2007@gmail.com>
+Date:   Thu May 14 00:25:19 2015 +0800
+
+    add read and write file by c article
+
+commit 2837b6008eeb4079fd7f754cd28741533e441c7a
+Author: yxmsw2007 <yxmsw2007@gmail.com>
+Date:   Sun May 10 09:14:12 2015 +0800
+
+    add vim commands & update ubuntu commands
+
+commit a900d3d688ee9d442e00eb96135ec7ca8fd353b6
+Author: yxmsw2007 <yxmsw2007@gmail.com>
+Date:   Sun May 3 19:15:52 2015 +0800
+
+    add some ubuntu keyboard shortcuts
+
+commit d826a65d28a343b67791b8423afb347bedfac505
+Author: yxmsw2007 <yxmsw2007@gmail.com>
+Date:   Sun May 3 18:59:58 2015 +0800
+
+    add df du commands and modify 'Windows常用快捷键' to 'Windows常用命令'
+
+commit e3d430eabd4c3229ad810bec94a4f7639c1a5590
+Author: yxmsw2007 <yxmsw2007@gmail.com>
+Date:   Sat May 2 10:00:01 2015 +0800
+
+    update markdown style
+
+commit ec8dbf271398aa34a9ae211d96d8fac1cdfa0194
+Author: yxmsw2007 <yxmsw2007@gmail.com>
+Date:   Sat May 2 09:52:03 2015 +0800
+
+    add run emulator with a special kernel
+
+commit 9a618d43e514a8206104e96555d240f7a34cc399
+Author: yxmsw2007 <yxmsw2007@gmail.com>
+Date:   Fri May 1 21:48:07 2015 +0800
+
+    delete a tab
+
+commit 93f4300651c6b2ce999b2373f1bcd581ca0dafc7
+Author: yxmsw2007 <yxmsw2007@gmail.com>
+Date:   Fri May 1 21:43:09 2015 +0800
+
+    remove a picture
+
+commit a19eafe08bb8c89e82eb2b55283d04596e275248
+Author: yxmsw2007 <yxmsw2007@163.com>
+Date:   Fri May 1 21:26:33 2015 +0800
+
+    update log save for android
+
+commit a6ce437f942832eb9e0e539c12e5d8de4783b491
+Author: yxmsw2007 <yxmsw2007@163.com>
+Date:   Fri May 1 20:35:52 2015 +0800
+
+    modify nickname
+
+commit 75f0a2f25793dfdc9f747df3fe2882b31fdb2187
+Author: yxmsw2007 <yxmsw2007@163.com>
+Date:   Fri May 1 13:48:40 2015 +0800
+
+    add windows commands
+
+commit 6374628f8fb431220f17e94dcec46e895be32b93
+Author: メiao <yxmsw2007@163.com>
+Date:   Fri May 1 00:43:31 2015 +0800
+
+    Update ztree_toc.js
+
+commit 48e03da535d5a97bf5c251dad31d495b90c704ea
+Author: メiao <yxmsw2007@163.com>
+Date:   Fri May 1 00:42:03 2015 +0800
+
+    Update ztree_toc.js
+
+commit c2275a2545c5132817729142d595c77371832f66
+Author: yxmsw2007 <yxmsw2007@gmail.com>
+Date:   Fri May 1 00:40:40 2015 +0800
+
+    add table of content padding
+
+commit 85d162adf4ff7daed9129cd7ef7bf2a401ef4761
+Author: メiao <yxmsw2007@163.com>
+Date:   Thu Apr 23 01:10:54 2015 +0800
+
+    Update scale.fix.js
+
+commit 0ccb8a604f42b2af6ba32c0d63d14c10aaab5ed8
+Author: メiao <yxmsw2007@163.com>
+Date:   Thu Apr 23 01:10:25 2015 +0800
+
+    Update default.html
+
+commit e68cf687512e2c96045e41be68add02469005cc0
+Author: メiao <yxmsw2007@163.com>
+Date:   Thu Apr 23 01:08:00 2015 +0800
+
+    Update analytics.ext
+
+commit 1ab63d8dad473ee7245111955658bfcf068af14f
+Author: メiao <yxmsw2007@163.com>
+Date:   Thu Apr 23 00:55:42 2015 +0800
+
+    Update default.html
+
+commit e6a220106078423a0da35e5033f1167047a0fd62
+Author: メiao <yxmsw2007@163.com>
+Date:   Thu Apr 23 00:55:09 2015 +0800
+
+    Update default.html
+
+commit ac234c76669487c33dd291435894ffdb91a71f55
+Author: yxmsw2007 <yxmsw2007@163.com>
+Date:   Thu Apr 23 00:44:48 2015 +0800
+
+    test
+
+commit ab83803af2781a9dc9cb6e28d7cd648599d545e9
+Author: yxmsw2007 <yxmsw2007@163.com>
+Date:   Thu Apr 23 00:23:55 2015 +0800
+
+    add analytics.ext
+
+commit d26cc47b2d33035f8215e536ee2537949ef2c9fc
+Author: yxmsw2007 <yxmsw2007@163.com>
+Date:   Tue Apr 21 01:19:53 2015 +0800
+
+    update js path
+
+commit 200569505ac526ed2fea9e88b6ed363531a3a3d8
+Author: yxmsw2007 <yxmsw2007@163.com>
+Date:   Tue Apr 21 01:17:18 2015 +0800
+
+    add table of content
+
+commit c620a0d35f75abdedaba481b5d2c25a78be3b5fc
+Author: メiao <yxmsw2007@163.com>
+Date:   Wed Apr 15 01:00:35 2015 +0800
+
+    Update 2015-04-14-ubuntu12.04-compile-android4.3.md
+
+commit cdc05b4cd0e3d64ca04bdaf7e8fa966e2d786863
+Author: yxmsw2007 <yxmsw2007@163.com>
+Date:   Wed Apr 15 00:58:54 2015 +0800
+
+    add ubuntu compiled android issues
+
+commit fe9d8d13da807b48b99c6ab76646cbfc9bbf97f8
+Author: yxmsw2007 <yxmsw2007@gmail.com>
+Date:   Tue Apr 14 22:28:39 2015 +0800
+
+    fomate commands
+
+commit d2c4a6dd65f73d998c0fb94e440ecf9e511057fa
+Author: yxmsw2007 <yxmsw2007@gmail.com>
+Date:   Tue Apr 14 22:21:13 2015 +0800
+
+    add Ubunt commands
+
+commit 63d4d0e59a748eb25589a5f794000068688266c0
+Author: メiao <yxmsw2007@163.com>
+Date:   Tue Apr 14 21:25:33 2015 +0800
+
+    Update styles.css
+
+commit 06be41973eb6b7580b717bd2d8aaacda1d4223a1
+Author: yxmsw2007 <yxmsw2007@163.com>
+Date:   Mon Apr 6 21:27:58 2015 +0800
+
+    add blogs 'blogging-with-vim' and 'simple-to-save-log'
+
+commit 6abd59d897f3c4cbffe4632395f72150474e20d6
+Author: メiao <yxmsw2007@163.com>
+Date:   Mon Apr 6 21:01:29 2015 +0800
+
+    Update post.html
+
+commit 1d4a3b2f40f157b481e5c7acbb23738400a8ece8
+Merge: b0bbfae 23e84d2
+Author: yxmsw2007 <yxmsw2007@163.com>
+Date:   Mon Apr 6 20:51:43 2015 +0800
+
+    Merge branch 'master' of https://github.com/yxmsw2007/yxmsw2007.github.io
+
+commit b0bbfae9232eade23cfa377bbaf106c8c504ca6e
+Author: yxmsw2007 <yxmsw2007@163.com>
+Date:   Mon Apr 6 20:49:52 2015 +0800
+
+    add blog 'Github搭建博客平台'
+
+commit 23e84d2c787b11c6bb69d6f2aad11868d327db61
+Author: メiao <yxmsw2007@163.com>
+Date:   Sat Apr 4 21:40:40 2015 +0800
+
+    Update default.html
+
+commit cbe4a6d0b571f999e660f072d7b3029277c3e648
+Author: メiao <yxmsw2007@163.com>
+Date:   Sat Apr 4 21:14:08 2015 +0800
+
+    Update default.html
+
+commit 169cc6a91359ade4ec12a8985de85ccd3f541b79
+Author: メiao <yxmsw2007@163.com>
+Date:   Sat Apr 4 11:47:15 2015 +0800
+
+    Update default.html
+
+commit 147ea712a9bec8b1358a0c824405f00ccbf93e12
+Author: メiao <yxmsw2007@163.com>
+Date:   Sat Apr 4 08:57:51 2015 +0800
+
+    Update comments.ext
+
+commit 391a2d6ae901819e0c90fe55483adc93d1a5787d
+Author: メiao <yxmsw2007@163.com>
+Date:   Sat Apr 4 08:24:15 2015 +0800
+
+    Update 2015-04-03-windows-install-emacs.md
+
+commit d04ba8c4953e3a552e78c0c53318fce518005028
+Author: yxmsw2007 <yxmsw2007@163.com>
+Date:   Sat Apr 4 08:17:11 2015 +0800
+
+    blog windows-install-emacs add some hyperlinks
+
+commit f2e9ba03bbca8899b443d4f1363f54c22e836032
+Author: yxmsw2007 <yxmsw2007@gmail.com>
+Date:   Sat Apr 4 01:29:25 2015 +0800
+
+    add blog windows-install-emacs
+
+commit ba444b349c8179526f75bd1c49f4ea65c4ed6496
+Author: メiao <yxmsw2007@163.com>
+Date:   Fri Apr 3 23:04:52 2015 +0800
+
+    Update index.html
+
+commit 116755b0a6088aaddd6e84767cfeaf9a00ae7dd0
+Author: メiao <yxmsw2007@163.com>
+Date:   Fri Apr 3 23:04:22 2015 +0800
+
+    Update default.html
+
+commit ed0109199661277b8d722647bd6203f8f0813d62
+Author: メiao <yxmsw2007@163.com>
+Date:   Fri Apr 3 19:51:47 2015 +0800
+
+    Update index.html
+
+commit b4f9c55ed6e6f39763c90c82a956ff14126d60cb
+Author: メiao <yxmsw2007@163.com>
+Date:   Fri Apr 3 19:51:12 2015 +0800
+
+    Update index.html
+
+commit 3b3304c32fd6794b09f98dcbac15b12824ded526
+Author: メiao <yxmsw2007@163.com>
+Date:   Fri Apr 3 00:58:42 2015 +0800
+
+    Update default.html
+
+commit 88a390ae4e95a78d7d37329ab2b354b0165acd19
+Author: メiao <yxmsw2007@163.com>
+Date:   Fri Apr 3 00:48:59 2015 +0800
+
+    Update default.html
+
+commit f7507c0a3a1eb788f232ff883e68113c9975d203
+Author: メiao <yxmsw2007@163.com>
+Date:   Fri Apr 3 00:42:37 2015 +0800
+
+    Update default.html
+
+commit 9da778cb5fce63c39c2c348dc3173468057ab5ca
+Author: メiao <yxmsw2007@163.com>
+Date:   Fri Apr 3 00:31:52 2015 +0800
+
+    Update _config.yml
+
+commit 119bb83b4ffd7e55207ac972a7100e8af4cb5595
+Author: メiao <yxmsw2007@163.com>
+Date:   Fri Apr 3 00:31:19 2015 +0800
+
+    Update _config.yml
+
+commit 6b21523aae517a8f52951e736e1d4a239472fcdc
+Author: メiao <yxmsw2007@163.com>
+Date:   Thu Apr 2 23:55:17 2015 +0800
+
+    Update default.html
+
+commit f8a9d6874cca510382033713b344e5a3f11976e4
+Author: メiao <yxmsw2007@163.com>
+Date:   Thu Apr 2 23:53:24 2015 +0800
+
+    Update default.html
+
+commit b0c59c4620de399f622d01816780a18231fbca74
+Author: メiao <yxmsw2007@163.com>
+Date:   Thu Apr 2 23:48:43 2015 +0800
+
+    Update _config.yml
+
+commit 01f0af8aae8132b7d57743911b096169a4a91d67
+Author: メiao <yxmsw2007@163.com>
+Date:   Thu Apr 2 23:24:06 2015 +0800
+
+    Update comments.ext
+
+commit 0b585141c561f75804b51a6d69686c21923ae8de
+Author: メiao <yxmsw2007@163.com>
+Date:   Thu Apr 2 23:23:33 2015 +0800
+
+    Update _config.yml
+
+commit da198ed972b7d4739f9c13e8b86d849293ba3d90
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Jan 30 11:27:33 2015 +0800
+
+    Update README.md
+
+commit 1c3a594e724cb5e01ef4cca135c824f01517fd72
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Jan 23 21:52:41 2015 +0800
+
+    Update 2014-09-20-java-concurrency.md
+
+commit c2ba80d6ebe526b9161e08ef4bb0fe181bd05775
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Jan 23 21:51:26 2015 +0800
+
+    Update default.html
+
+commit ac4ae9398e4390afa95e86b3e6fe90717f49cd01
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Jan 23 21:50:17 2015 +0800
+
+    Create comments.ext
+
+commit 20cd53a03e3a4230cc698dafe377d192c0543ef5
+Author: zhaoxk <xkzalpha@gmail.com>
+Date:   Sun Oct 26 14:32:30 2014 +0800
+
+    add gif tutorial
+
+commit 2f0fe696d3eda56972c24f7c8c2603e19cef1117
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sun Oct 26 12:20:51 2014 +0800
+
+    Update README.md
+
+commit b4a6ee03cc14d283827404dec5223a47bbe61d0c
+Author: zhaoxk <xkzalpha@gmail.com>
+Date:   Sun Oct 26 12:18:33 2014 +0800
+
+    remove useless posts, change ui-demo.png position
+
+commit fad199ee6322e542b9b6b8c9f284c1a27bf9e563
+Author: zhaoxk <xkzalpha@gmail.com>
+Date:   Sun Oct 26 12:13:37 2014 +0800
+
+    add description and tutorial
+
+commit 84e04ff69c51bfcad902f4d9b3858ece386a305b
+Merge: 30f82b9 f4a2f4b
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Oct 23 22:32:07 2014 +0800
+
+    Merge pull request #1 from minixalpha/master
+    
+    extract to configure
+
+commit f4a2f4b2418abd3fbc8d07ec437245c9ff851908
+Author: zhaoxk <xkzalpha@gmail.com>
+Date:   Thu Oct 23 22:27:03 2014 +0800
+
+    extract to configure
+
+commit 30f82b9f038aaebcfd6c83261d79c33be2af565f
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Oct 14 20:19:02 2014 +0800
+
+    Create 2014-10-14-leetcode-palindrome-number.md
+
+commit afc38ccfbe153557850feee231f91f2eb1cf756f
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Oct 14 20:06:05 2014 +0800
+
+    Create 2014-10-14-leetcode-atoi.md
+
+commit 723e8eee9fa3a0a35238d8a8065e0e68e16d68a7
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Oct 14 16:59:54 2014 +0800
+
+    Create 2014-10-14-leetcode-length-of-last-word.md
+
+commit 42c0389d03ceb69a0e3919090d7e06932bf72487
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Oct 14 16:57:43 2014 +0800
+
+    Update 2014-10-14-leetcode-maximum-product-subarray.md
+
+commit bded5722077dae9ccaf836576552caa8f8b19a56
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Oct 14 16:56:42 2014 +0800
+
+    Update 2014-10-14-leetcode-maximum-product-subarray.md
+
+commit af4124ee62e65474688cf0ec48360ebdbb1fb4e6
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Oct 14 16:54:26 2014 +0800
+
+    Create 2014-10-14-leetcode-maximum-product-subarray.md
+
+commit 6c56b594e68880d4a1366ab7142c70eaecaf6fa4
+Author: xkz <xkzalpha@gmail.com>
+Date:   Mon Oct 13 21:49:39 2014 +0800
+
+    Update 2014-08-28-java-gc.md
+
+commit ce087741d57b4ac5f9c603e4965c2bd91d82ae8f
+Author: xkz <xkzalpha@gmail.com>
+Date:   Mon Oct 13 21:44:40 2014 +0800
+
+    Update 2014-08-28-java-gc.md
+
+commit 1d28ab4665841aac5782c9527b2e904e9fcb6d74
+Author: xkz <xkzalpha@gmail.com>
+Date:   Mon Oct 13 19:29:16 2014 +0800
+
+    Create 2014-10-13-android-communicate-with-ui-thread.md
+
+commit 067a89d0d493f8edb81b83afeb791bccb09ace51
+Author: xkz <xkzalpha@gmail.com>
+Date:   Mon Oct 13 17:33:55 2014 +0800
+
+    Update 2014-10-13-android-process.md
+
+commit 9522be1241a694d911871f13418d96fe27483e46
+Author: xkz <xkzalpha@gmail.com>
+Date:   Mon Oct 13 17:30:50 2014 +0800
+
+    Create 2014-10-13-android-process.md
+
+commit f4396afde031d314bd0c6895074243c17d7d4290
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Sep 26 22:53:25 2014 +0800
+
+    Update 2014-09-26-os.md
+
+commit 981992952dd4549c16364900657a0810f2abf8c6
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Sep 26 15:52:32 2014 +0800
+
+    Create 2014-09-26-os.md
+
+commit 8bee698db4481b40719cd6138a0bcbd8fc29b50f
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Sep 26 15:22:41 2014 +0800
+
+    Update 2014-09-26-database.md
+
+commit d9872ae0dadb2263e83cdf47858fbdf16f6293ea
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Sep 26 15:15:31 2014 +0800
+
+    Update 2014-09-26-database.md
+
+commit c79176e21073ef6d6dad453981243af528cf64bf
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Sep 26 15:08:13 2014 +0800
+
+    Update 2014-09-26-database.md
+
+commit 402086747e7b1b550718f3729f5ba49f23da1ab8
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Sep 26 14:48:44 2014 +0800
+
+    Create 2014-09-26-database.md
+
+commit 548d74aefcec8d36c329ffdc33b81d3047bdeb82
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Sep 26 10:49:57 2014 +0800
+
+    Update default.html
+
+commit b0abcb310aed899e0969e1d49212170127ffbb92
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Sep 26 10:38:10 2014 +0800
+
+    Create 2014-09-26-tcpip.md
+
+commit fe23fdd55b5657bb6bebe0b03089d3a5809ecb65
+Author: xkz <xkzalpha@gmail.com>
+Date:   Mon Sep 22 18:15:56 2014 +0800
+
+    Update 2014-09-22-http.md
+
+commit 84745655fe813dbefe2790d2bb32c9aebab2b334
+Author: xkz <xkzalpha@gmail.com>
+Date:   Mon Sep 22 17:57:46 2014 +0800
+
+    Update 2014-09-22-http.md
+
+commit c378c332508eee246c76a61f328956b6fac07ace
+Author: xkz <xkzalpha@gmail.com>
+Date:   Mon Sep 22 17:56:47 2014 +0800
+
+    Update 2014-09-22-http.md
+
+commit 2ff3b79a20f2222dea8b22216750624ad52d0955
+Author: xkz <xkzalpha@gmail.com>
+Date:   Mon Sep 22 17:52:00 2014 +0800
+
+    Update 2014-09-22-http.md
+
+commit 67868a403054a6f47aac38d61a287a2ce11d1c49
+Author: xkz <xkzalpha@gmail.com>
+Date:   Mon Sep 22 17:37:51 2014 +0800
+
+    Create 2014-09-22-http.md
+
+commit df08f251cccbe0f29568aafc28bf5d1812094c41
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sun Sep 21 15:21:53 2014 +0800
+
+    Update 2014-09-21-java-class-loader.md
+
+commit 9f4511569020773a32f1f0c0247c6f3a6adaf1d3
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sun Sep 21 15:18:55 2014 +0800
+
+    Update 2014-09-21-java-class-loader.md
+
+commit 0ebdd4d46d2aeb0a99065cc75134ec53d1be5944
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sun Sep 21 15:08:17 2014 +0800
+
+    Update 2014-09-21-java-class-loader.md
+
+commit 2f2d255b7a3d4cb2de580f29e935e90358f8ddc6
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sun Sep 21 14:43:57 2014 +0800
+
+    Create 2014-09-21-java-class-loader.md
+
+commit bab86dabe06d88ff866fff797213025deede1917
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sun Sep 21 10:27:07 2014 +0800
+
+    Update 2014-09-16-java-why.md
+
+commit e09d0846f5e71ae0841703e1cd34c819418ad715
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sat Sep 20 15:29:56 2014 +0800
+
+    Update 2014-09-20-java-concurrency.md
+
+commit 16732bf92019a63431bb30300309505eac44366e
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sat Sep 20 15:09:35 2014 +0800
+
+    Update 2014-09-20-java-concurrency.md
+
+commit 68c125bb14ecf09ab3e2da2d535ec0afad5f084d
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sat Sep 20 14:17:03 2014 +0800
+
+    Update 2014-09-20-java-concurrency.md
+
+commit 15fce128cf89f268329e94b71b26d17724d545cd
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sat Sep 20 11:09:16 2014 +0800
+
+    Update 2014-09-20-java-concurrency.md
+
+commit 0ede4ad2a8d40b0c6bfa1df737cdffdbd1d3641d
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sat Sep 20 10:26:47 2014 +0800
+
+    Create 2014-09-20-java-concurrency.md
+
+commit 381475fb3643372f3c6ffd6bdf84752d4f834f26
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Sep 19 19:08:45 2014 +0800
+
+    Update 2014-09-19-java-io.md
+
+commit 96ff1eef19edf1d70ec12d609f8ac92c8b806953
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Sep 19 18:44:06 2014 +0800
+
+    Update 2014-09-19-java-io.md
+
+commit 615c907da24b6ae54c2a6c5c59e996a41ce2da47
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Sep 19 16:26:48 2014 +0800
+
+    Update 2014-09-19-java-io.md
+
+commit 8cb0f4a7648f546170e2546aa0ce283bbb6a949a
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Sep 19 16:16:42 2014 +0800
+
+    Update 2014-09-19-java-io.md
+
+commit 22e6510e956c18c78cd4dc202fcec01b5de97f69
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Sep 19 15:39:34 2014 +0800
+
+    Update 2014-09-19-java-io.md
+
+commit d8992ec376aaef8181448b55bfcc413ade281941
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Sep 19 11:19:56 2014 +0800
+
+    Update 2014-09-19-java-io.md
+
+commit 67d0b1ac46a277e9fa485bd39d91c69a7a76aa32
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Sep 19 11:16:50 2014 +0800
+
+    Update 2014-09-19-java-io.md
+
+commit fb98e6abb2a44c560d683fa60881ee1c68b562ee
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Sep 19 11:15:32 2014 +0800
+
+    Update 2014-09-19-java-io.md
+
+commit 4ed8c386ff748aaa71878aae64ce9e08dce2fb64
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Sep 19 09:49:26 2014 +0800
+
+    Create 2014-09-19-java-io.md
+
+commit f3100fc494f0adaa7d296fa6dbdf7821656629ee
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Sep 18 18:41:01 2014 +0800
+
+    Update 2014-09-18-why-java-no-generic-array.md
+
+commit 4836259217aa9bbb57da343451e9108e9c4fe602
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Sep 18 17:37:12 2014 +0800
+
+    Update 2014-09-18-why-java-no-generic-array.md
+
+commit 6dcd81e8bef9042e8ee3630d2395cc7b71db583f
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Sep 18 17:24:37 2014 +0800
+
+    Create 2014-09-18-why-java-no-generic-array.md
+
+commit 4e6ef023286e4e2d58b207183b9b5ac5a0dd9d87
+Author: xkz <xkzalpha@gmail.com>
+Date:   Wed Sep 17 23:17:43 2014 +0800
+
+    Update 2014-09-09-java-tips.md
+
+commit a9f0c2ab54bca690b4244d32c1df836de645aee8
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Sep 16 11:11:07 2014 +0800
+
+    Update 2014-09-16-java-why.md
+
+commit 25e234b909f5b9a9e36bfe07cb668f878e538acf
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Sep 16 11:10:09 2014 +0800
+
+    Update 2014-09-16-java-why.md
+
+commit 2a9843610da6b51fa8c3b6adcd7e866367588fc5
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Sep 16 10:29:03 2014 +0800
+
+    Update 2014-09-16-java-why.md
+
+commit aef37dee6e5768afdb2959dbf89d7452ed20d233
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Sep 16 10:15:50 2014 +0800
+
+    Update 2014-09-16-java-why.md
+
+commit d1f7a9b450738a9064365ce4811579ce2129557c
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Sep 16 10:09:13 2014 +0800
+
+    Update 2014-09-16-java-why.md
+
+commit 3a50fdbe73c09b467658a7b01a45177743cff299
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Sep 16 09:48:51 2014 +0800
+
+    Update 2014-09-16-java-why.md
+
+commit 550fe3f29dc62f01104e50691dd3710ea85b6ee3
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Sep 16 09:40:51 2014 +0800
+
+    Create 2014-09-16-java-why.md
+
+commit 10705af7dbb52844bf49a3d8457641a843069df0
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Sep 11 09:25:31 2014 +0800
+
+    Update 2014-09-09-java-tips.md
+
+commit 5b46e720994a78a418543c3e3858bb37f5703a96
+Author: xkz <xkzalpha@gmail.com>
+Date:   Wed Sep 10 15:09:25 2014 +0800
+
+    Update 2014-09-09-java-tips.md
+
+commit 4ece0a4df854fb36554a2951c523acfec72bdabe
+Author: xkz <xkzalpha@gmail.com>
+Date:   Wed Sep 10 11:36:50 2014 +0800
+
+    Update 2014-09-09-java-tips.md
+
+commit 939f0c58d425c25a653552bd12db4b11c9042780
+Author: xkz <xkzalpha@gmail.com>
+Date:   Wed Sep 10 11:36:08 2014 +0800
+
+    Update 2014-09-09-java-tips.md
+
+commit e1c2e67e7c4d30dbfbcd48fe07234ba7e0e889b0
+Author: xkz <xkzalpha@gmail.com>
+Date:   Wed Sep 10 09:40:55 2014 +0800
+
+    Update 2014-09-09-java-tips.md
+
+commit 6aa7b73a1c98d45e620d2de7b7d63fc79f7ba9dc
+Author: xkz <xkzalpha@gmail.com>
+Date:   Wed Sep 10 09:21:42 2014 +0800
+
+    Update 2014-09-09-java-tips.md
+
+commit 693a71f217a049a3926020e8f87fc91226b04757
+Author: xkz <xkzalpha@gmail.com>
+Date:   Wed Sep 10 09:11:57 2014 +0800
+
+    Update 2014-09-09-java-tips.md
+
+commit 17c3213eebd34ce1fbd85fc74ddb3312e6fad781
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Sep 9 17:15:03 2014 +0800
+
+    Update 2014-09-09-java-tips.md
+
+commit 8b08aa0ce9317246afe78ab4de8b90a5a5152cc6
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Sep 9 17:11:40 2014 +0800
+
+    Update 2014-09-09-java-tips.md
+
+commit 9443bfc644a7ba87241a802d326954173fb72e46
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Sep 9 11:16:25 2014 +0800
+
+    Update 2014-09-09-java-tips.md
+
+commit e75f42c31d0ddd779053c4d7d8047d4ee99eda88
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Sep 9 10:59:00 2014 +0800
+
+    Update 2014-09-09-java-tips.md
+
+commit 32766ddde99e40fdee2c8e8c35666d18406abe32
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Sep 9 10:32:54 2014 +0800
+
+    Rename 2014-09-09-java-tips to 2014-09-09-java-tips.md
+
+commit 7f18827e6bc847a358c8c4e6b0fb7405e119bebe
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Sep 9 10:32:26 2014 +0800
+
+    Update 2014-09-09-java-tips
+
+commit bc145bcfce663fff7f59025d55d4a6e86c01be01
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Sep 9 10:31:31 2014 +0800
+
+    Create 2014-09-09-java-tips
+
+commit 34b787965335593a10da6b75d8034273cf1b3db7
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sun Sep 7 19:12:48 2014 +0800
+
+    Update README.md
+
+commit ffb7a33227f73c29cc3c1d78cbebfa96b205cdcb
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Sep 4 19:22:37 2014 +0800
+
+    Update 2014-08-28-java-gc.md
+
+commit 659bf72309981268d24efe0b877df4d3a28796d9
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Sep 4 19:14:15 2014 +0800
+
+    Update 2014-08-28-java-gc.md
+
+commit e45eb2563457ab05f56ce7725111158653e360bb
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Sep 4 17:05:37 2014 +0800
+
+    Update 2014-09-02-jvm-static-var.md
+
+commit 9d0e28fe86042bfb0a94c34b7205ebdc98dfd620
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Sep 4 15:45:27 2014 +0800
+
+    Update 2014-09-02-jvm-static-var.md
+
+commit b5fede23b8d9e739a715821a6983d3b361d8982f
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Sep 4 15:43:37 2014 +0800
+
+    Update 2014-09-02-jvm-static-var.md
+
+commit 6bce4a10b4f71254c9ff69c41ccfbb85ed2471d1
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Sep 4 14:19:26 2014 +0800
+
+    Update 2014-09-02-jvm-static-var.md
+
+commit 0e1302c09b3968599b8f91c36cc06f30030fc4b0
+Author: xkz <xkzalpha@gmail.com>
+Date:   Wed Sep 3 22:18:55 2014 +0800
+
+    Update 2014-09-03-python-tips.md
+
+commit a5ab68454260b798d491072aeaf8413d0b0f9b24
+Author: xkz <xkzalpha@gmail.com>
+Date:   Wed Sep 3 22:18:09 2014 +0800
+
+    Create 2014-09-03-python-tips.md
+
+commit 119f982ef07c8fccf3ce3a2183933b337b223431
+Author: xkz <xkzalpha@gmail.com>
+Date:   Wed Sep 3 21:02:42 2014 +0800
+
+    Update 2014-09-02-jvm-static-var.md
+
+commit b65fd050da3b40155779f56eb0c5f3bfaf0992df
+Author: xkz <xkzalpha@gmail.com>
+Date:   Wed Sep 3 20:09:54 2014 +0800
+
+    Update 2014-09-02-jvm-static-var.md
+
+commit 6d3c642ff82a0be21e1f5c2bc5df5883f4c3d904
+Author: xkz <xkzalpha@gmail.com>
+Date:   Wed Sep 3 17:05:46 2014 +0800
+
+    Update 2014-09-02-jvm-static-var.md
+
+commit 7e357c86d4992d6e794310528ca7a71a57cf36c8
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Sep 2 17:21:13 2014 +0800
+
+    Update 2014-09-02-jvm-static-var.md
+
+commit e4628b9dfcd0f83b90ad49d91cd6d064d02344d1
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Sep 2 17:10:56 2014 +0800
+
+    Update 2014-09-02-jvm-static-var.md
+
+commit 3962c8ffb34b8aaadf384bac496f69c45dc58bd5
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Sep 2 16:42:11 2014 +0800
+
+    Create 2014-09-02-jvm-static-var.md
+
+commit 5f7fa1440d4e676cdc471f0e1258e3aa738c36d1
+Author: xkz <xkzalpha@gmail.com>
+Date:   Mon Sep 1 22:48:26 2014 +0800
+
+    Create 2014-09-01-word-ladder.md
+
+commit 2ecef6c9791043799687d36a60664491f498c6d3
+Author: xkz <xkzalpha@gmail.com>
+Date:   Mon Sep 1 11:27:08 2014 +0800
+
+    Create 2014-09-01-substring-with-concatenation-of-all-words.md
+
+commit a8e5ca94bb770f85f385d169c094af56bb651e6f
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sun Aug 31 21:52:27 2014 +0800
+
+    Update 2014-08-31-median-of-two-sorted-arrays.md
+
+commit 8532bb82d0294cce1d2ca493718abe3ef061ad9b
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sun Aug 31 21:51:52 2014 +0800
+
+    Create 2014-08-31-median-of-two-sorted-arrays.md
+
+commit 4e747dbfe051b7e6778ce26bd24fd26e8e696037
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sat Aug 30 17:00:18 2014 +0800
+
+    Update 2014-08-30-largest-rectangle-in-histogram.md
+
+commit 60730ae448fed5fb3a9bf565aa1559b0d2b38b1a
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sat Aug 30 16:56:07 2014 +0800
+
+    Update 2014-08-30-largest-rectangle-in-histogram.md
+
+commit bfc9ad87c9aee144429ff8fe9fe06d264034a1e8
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sat Aug 30 16:54:59 2014 +0800
+
+    Create 2014-08-30-largest-rectangle-in-histogram.md
+
+commit c3b488f1d3cc4ab02fb64f19246b8cda90c0ce9f
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sat Aug 30 16:38:25 2014 +0800
+
+    Rename 2014-08-30-maximal-rectangle.md to _posts/2014-08-30-maximal-rectangle.md
+
+commit 80f039f3688d55ded1feda41a53fcb768f014fd0
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sat Aug 30 16:36:31 2014 +0800
+
+    Create 2014-08-30-maximal-rectangle.md
+
+commit 8dc7e89f3e9bd0acfda57ff7e1e0207ab36f8b1a
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sat Aug 30 14:40:37 2014 +0800
+
+    Create 2014-08-30-merge-intervals.md
+
+commit 3a28e20d9ff81fce3f21a6c7353d7d9306d63496
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sat Aug 30 13:48:05 2014 +0800
+
+    Rename 2014-08-21-surrounded-regions.md to 2014-08-30-surrounded-regions.md
+
+commit e3621cfee4fd4fa51253f84b0fecd4fe4db1be9a
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sat Aug 30 13:47:24 2014 +0800
+
+    Create 2014-08-21-surrounded-regions.md
+
+commit aefc9fc9fbf4f402eb4c3ee785ca5700dc2b93a0
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 28 21:44:45 2014 +0800
+
+    Update and rename 2014-08-28longest-palindromic-substring.md to 2014-08-28-longest-palindromic-substring.md
+
+commit b7a2f2d8f21c34f29dea99a1a11bcba3e43d4ded
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 28 21:43:33 2014 +0800
+
+    Create 2014-08-28longest-palindromic-substring.md
+
+commit 8aaf8304ecfd8c0e2305d0d88c4cab8bbf2a0360
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 28 16:43:05 2014 +0800
+
+    Update 2014-08-28-java-gc.md
+
+commit 4e5654fb4eca072885653b6c26553fc4b33511f7
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 28 16:32:25 2014 +0800
+
+    Update 2014-08-28-java-gc.md
+
+commit 1e8a30106b549f9e169984dc7fe4f1b4cfc0adea
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 28 15:52:48 2014 +0800
+
+    Update 2014-08-28-java-gc.md
+
+commit 121e905598932811a312a13d7d58df2084eabc94
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 28 15:13:12 2014 +0800
+
+    Update 2014-08-28-java-gc.md
+
+commit 99c837829681ac9c6c281723ae80420feca83675
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 28 14:44:13 2014 +0800
+
+    Create 2014-08-28-java-gc.md
+
+commit 2e0c4023bad3505296999d3774b92d35c30f1d17
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Aug 26 22:49:08 2014 +0800
+
+    Update 2014-08-26-divide-two-integers.md
+
+commit 9b750aecf24c5b00bde197855c6e6ffd8033600f
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Aug 26 22:48:55 2014 +0800
+
+    Update 2014-08-25-wildcard-matching.md
+
+commit 2415c388f8d175dcdfe7d119a45b060f4ba6b2e1
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Aug 26 22:47:46 2014 +0800
+
+    Update 2014-08-26-divide-two-integers.md
+
+commit d798df577ec8254dbe1165f7313f5db7f79c59af
+Author: xkz <xkzalpha@gmail.com>
+Date:   Tue Aug 26 22:46:48 2014 +0800
+
+    Create 2014-08-26-divide-two-integers.md
+
+commit e8b5af82512a3771880192f30ee2f157d8289824
+Author: xkz <xkzalpha@gmail.com>
+Date:   Mon Aug 25 21:05:20 2014 +0800
+
+    Update 2014-08-25-wildcard-matching.md
+
+commit 0b8879ebf2e6b55110bbadf86c5e750e979f0bae
+Author: xkz <xkzalpha@gmail.com>
+Date:   Mon Aug 25 21:03:29 2014 +0800
+
+    Create 2014-08-25-wildcard-matching.md
+
+commit a87936d7f8bd4888773cba4944864383569a027c
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sun Aug 24 22:27:43 2014 +0800
+
+    Update styles.css
+
+commit 4aacbc2758d25bab3e72c9492106101bff2dbe53
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sun Aug 24 22:24:51 2014 +0800
+
+    change wrapper width and header padding
+
+commit 1a37222ee3522213ece0fb6e8090dd205c653762
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sun Aug 24 22:17:39 2014 +0800
+
+    Update 2014-08-24-leetcode-scramble-string.md
+
+commit 8a491110cc9047e4850100ea0b16ad7f89fcce7b
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sun Aug 24 22:17:00 2014 +0800
+
+    Create 2014-08-24-leetcode-scramble-string.md
+
+commit e5a9fad7d0f2b8c95872de1cf9a0aad06dceb891
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sat Aug 23 11:02:11 2014 +0800
+
+    Update 2014-08-21-jvm-start-prog-run.md
+
+commit f144908a5cb4cb01f5daa595f57e0d39b9eaa21d
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sat Aug 23 10:02:05 2014 +0800
+
+    Update 2014-08-22-build-openjdk8-ubuntu.md
+
+commit 5ff8c2bf4cd19a73b7d3a27eaaee580893cf8732
+Author: xkz <xkzalpha@gmail.com>
+Date:   Sat Aug 23 09:18:58 2014 +0800
+
+    Update 2014-08-21-jvm-start-prog-run.md
+
+commit 1266f4c979bb02872c138f92b91436804afd38f5
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Aug 22 20:31:02 2014 +0800
+
+    Update 2014-08-22-build-openjdk8-ubuntu.md
+
+commit f2f90d47e93e5380be641b37872969e024353004
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Aug 22 20:24:35 2014 +0800
+
+    Update 2014-08-21-jvm-start-prog-run.md
+
+commit 401ab7de2dee330a3f4f6c4b0fae844f3d448818
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Aug 22 20:22:23 2014 +0800
+
+    Update 2014-08-21-jvm-start-prog-run.md
+
+commit 4e9212143be1307ccfb6e5e5687bf14f85579f14
+Author: xkz <xkzbeta@outlook.com>
+Date:   Fri Aug 22 20:16:30 2014 +0800
+
+    add invoke stack and images in windows
+
+commit 1fa8bd340d78d7d7930d534a289e25761502f2cd
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Aug 22 20:10:53 2014 +0800
+
+    Update 2014-08-21-jvm-start-prog-run.md
+
+commit ea41f1fb5804c1d19c9df264781b436e2853f54e
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Aug 22 20:07:11 2014 +0800
+
+    Update 2014-08-21-jvm-start-prog-run.md
+
+commit d5d754eb95d7d2b0b6af82e8214a1ad3d48fc9af
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Aug 22 17:39:50 2014 +0800
+
+    Update 2014-08-21-jvm-start-prog-run.md
+
+commit 588023e4521fe6d7e8253c27bc4a8f877dcc6739
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Aug 22 17:21:44 2014 +0800
+
+    Update 2014-08-22-build-openjdk8-ubuntu.md
+
+commit f560027c6f74a57eb58ec9c08da9a9e0c0563905
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Aug 22 14:11:54 2014 +0800
+
+    Update 2014-08-22-build-openjdk8-ubuntu.md
+
+commit 13fab2b31616f606e516f8dbe8cf45a38e3e79b9
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Aug 22 11:33:45 2014 +0800
+
+    Update 2014-08-22-build-openjdk8-ubuntu.md
+
+commit 648d5a88f809653e6576492f7b930f859113d906
+Author: xkz <xkzalpha@gmail.com>
+Date:   Fri Aug 22 11:32:02 2014 +0800
+
+    Create 2014-08-22-build-openjdk8-ubuntu.md
+
+commit 795b01d9d133b99fa171a5b87df3b42ed6e642c4
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 14:59:03 2014 +0800
+
+    Update 2014-08-21-jvm-start-prog-run.md
+
+commit bbaec0f57227944379dc5ca4cb77605a55cf5a29
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 11:24:46 2014 +0800
+
+    Update index.html
+
+commit 0ff02f96decfc98f0926d38afca2db194476f156
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 11:08:00 2014 +0800
+
+    Update README.md
+
+commit a11ed6cb5da8548aae2af60f1bbc8efd04c955b9
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 10:38:09 2014 +0800
+
+    Update default.html
+
+commit dc63ad3a9bdcd007aaca269453785d0f55583869
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 10:34:57 2014 +0800
+
+    Update default.html
+
+commit 1d7af4b90d086b5a18fd66d65056cced161f178f
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 10:33:21 2014 +0800
+
+    Update default.html
+
+commit 4a2d89221dd4a786cb7250e8166e8135bafec5c7
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 10:29:05 2014 +0800
+
+    Update 2014-08-21-jvm-start-prog-run.md
+
+commit 847933bba4622cbff1eea9dfcb7e2e7208af56e3
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 10:27:46 2014 +0800
+
+    Update default.html
+
+commit fe22f31f98a7120e1e7cf8528e122d447aff1586
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 10:24:38 2014 +0800
+
+    Update default.html
+
+commit 2f768876adeef88fe3da3f806eccd8cfa1b0d6ff
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 10:23:08 2014 +0800
+
+    Update styles.css
+
+commit f66d1e3eb8c1a4e6f3101d45066a6f3ed9533a78
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 10:21:40 2014 +0800
+
+    Update default.html
+
+commit 3c5e95b22aab4d79b3d5b7d4a7a77fcfcaa7d8fb
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 10:18:35 2014 +0800
+
+    Update default.html
+
+commit f30bfd84610275ea573b4402d5c6da5d6bb6f57a
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 10:15:29 2014 +0800
+
+    Update 2014-08-21-jvm-start-prog-run.md
+
+commit b7f1e32baf9559c628a88bb38445eea6cf45b72d
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 10:13:41 2014 +0800
+
+    Update index.html
+
+commit 227485e0fddcec720ff0fa252d35eef7570d3cab
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 10:11:02 2014 +0800
+
+    Update index.html
+
+commit 738095265aecaa5b30ff1a7f7015a230b72e4823
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 10:00:56 2014 +0800
+
+    Update index.html
+
+commit 6b87561ebfb1953bb225b85014cfb5f45ffcf4ff
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 09:58:43 2014 +0800
+
+    Create _config.yml
+
+commit dcdd4fa89b62654163562bd9c39d121dd9b1089f
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 09:55:52 2014 +0800
+
+    Update index.html
+
+commit 455edd0482cd987da9a63849628697ed56258279
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 09:55:01 2014 +0800
+
+    Create default.html
+
+commit 982ff78ed6cb10f90e8111e4e335ad50676a6c38
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 09:50:24 2014 +0800
+
+    Update index.html
+
+commit 1b4e2952852d48ce260780f651d59a846bb555a3
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 09:48:00 2014 +0800
+
+    Update index.html
+
+commit 3ef69b01513a78cdac7b2dbfd00fcedfac6b2545
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 09:47:50 2014 +0800
+
+    Update 2014-08-21-jvm-start-prog-run.md
+
+commit 5318655c7c6f114895c0702766aeb1a788ca6295
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 09:39:36 2014 +0800
+
+    Create 2014-08-21-jvm-start-prog-run.md
+
+commit bc421fce24ef3c70906914762b2239394cac1a96
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 09:31:18 2014 +0800
+
+    Update index.html
+
+commit 34e3573a9844ffce841e062e1389d6ce929de83d
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 09:28:24 2014 +0800
+
+    Create README.md
+
+commit 41f19ba7f2f4dda8a59a8aaaf032e602b1eade56
+Author: xkz <xkzalpha@gmail.com>
+Date:   Thu Aug 21 09:24:36 2014 +0800
+
+    Create gh-pages branch via GitHub
