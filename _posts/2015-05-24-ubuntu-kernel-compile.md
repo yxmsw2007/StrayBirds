@@ -1,6 +1,6 @@
 ---
 layout: post
-title: kernel-3.2.0编译-Ubuntu12.04 
+title: Kernel-3.2.0编译-Ubuntu12.04 
 comments: true
 category: Ubuntu
 tags: [kernel, 编译, linux, 内核]
