@@ -23,7 +23,7 @@ title: 文章目录
         <span>作者:<a href="http://{{site.username}}.github.io/">{{site.username}}</a></span>
     </div>
     {{ post.content  | strip_html | truncate: 100 }}
-    <p> <a href="{{site.baseurl}}/{{ post.url }}/#more" class="more-link"><span class="readmore">阅读全文 &raquo; </span></a></p>
+    <p> <a href="post/{{ post.url }}/#more" class="more-link"><span class="readmore">阅读全文 &raquo; </span></a></p>
 </div>
 {% endfor %}
 
