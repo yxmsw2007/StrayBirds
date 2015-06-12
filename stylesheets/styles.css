@@ -32,6 +32,19 @@ body {
   box-shadow: rgba(0, 0, 0, 0.2) 0 0 0 1px, rgba(0, 0, 0, 0.45) 0 3px 10px;
 }
 
+.right {
+	text-align: center;
+	//text-align: right;
+	width : 24%;
+	//position : absolute;
+	position : fixed;
+	border : 0px;
+	//top : 5%;
+	top : 0;
+	right : 1%;
+	height : 210px;
+}
+
 header, section, footer {
   display: block;
 }
