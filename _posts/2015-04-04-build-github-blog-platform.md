@@ -250,6 +250,71 @@ Git的安装就不多说了，这里提供下windows的下载地址：[http://ms
 
 1表示新修改的样式不对，你需要认真检查；2是正常情况，刷新即可看到效果。
 
+### 异常1
+
+```sh
+
+Configuration file: D:/4364/StrayBirds/_config.yml
+       Deprecation: The 'pygments' configuration option has been renamed to 'hig
+hlighter'. Please update your config file accordingly. The allowed values are 'r
+ouge', 'pygments' or null.
+
+```
+
+解决方法
+
+将_config.yml中的pygments: true修改为highlighter: pygments即可
+
+### 异常2
+
+```sh
+
+D:/Ruby22-x64/lib/ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+: cannot load such file -- nokogiri (LoadError)
+
+```
+
+>	注：在windows上尽管已安装但还是报错，ubuntu上正常
+
+解决方法
+
+安装bundler
+
+	gem install nokogiri
+
+### 异常3
+
+```sh
+
+ERROR:  While executing gem ... (Gem::RemoteFetcher::FetchError)
+    Errno::ECONNRESET: An existing connection was forcibly closed by the remote
+host. - SSL_connect (https://api.rubygems.org/quick/Marshal.4.8/nokogiri-1.4.3.1.gemspec.rz)
+
+```
+
+解决方法
+
+原因：是GFW的原因，他们提供了一个gem server。
+
+	$ gem sources --remove https://rubygems.org/
+	$ gem sources -a https://ruby.taobao.org/
+	$ gem sources -l
+	
+请确保只有 ruby.taobao.org
+
+### 异常4
+
+```sh
+
+D:/Ruby22-x64/lib/ruby/site_ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in
+ `require': cannot load such file -- iconv (LoadError)
+
+```
+
+	gem install iconv
+	
+>	注：在windows上尽管已安装但还是报错，ubuntu上正常
+
 ## 绑定域名
 
 本人暂时还未绑定域名，无从谈起，请参考[一步步在GitHub上创建博客主页(3)](http://www.pchou.info/web-build/2013/01/05/build-github-blog-page-03.html)。
