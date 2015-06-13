@@ -3,6 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="chrome=1">
+		<!-- 百度验证 -->
+		<meta name="baidu-site-verification" content="eIr152ORHO" />
 		<title> yxmsw2007 </title>
 
 		<link rel="stylesheet" href="/stylesheets/styles.css">
@@ -301,6 +303,52 @@ $git push origin master（or gh-pages）
 
 <p>1表示新修改的样式不对，你需要认真检查；2是正常情况，刷新即可看到效果。</p>
 
+<h3>异常1</h3>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">Configuration file: D:/4364/StrayBirds/_config.yml
+       Deprecation: The <span class="s1">&#39;pygments&#39;</span> configuration option has been renamed to <span class="s1">&#39;hig</span>
+<span class="s1">hlighter&#39;</span>. Please update your config file accordingly. The allowed values are <span class="s1">&#39;r</span>
+<span class="s1">ouge&#39;</span>, <span class="s1">&#39;pygments&#39;</span> or null.
+</code></pre></div>
+<p>解决方法</p>
+
+<p>将_config.yml中的pygments: true修改为highlighter: pygments即可</p>
+
+<h3>异常2</h3>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">D:/Ruby22-x64/lib/ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in <span class="sb">`</span>require<span class="err">&#39;</span>
+: cannot load such file -- nokogiri <span class="o">(</span>LoadError<span class="o">)</span>
+</code></pre></div>
+<blockquote>
+<p>注：在windows上尽管已安装但还是报错，ubuntu上正常</p>
+</blockquote>
+
+<p>解决方法</p>
+
+<p>安装bundler</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">gem install nokogiri
+</code></pre></div>
+<h3>异常3</h3>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">ERROR:  While executing gem ... <span class="o">(</span>Gem::RemoteFetcher::FetchError<span class="o">)</span>
+    Errno::ECONNRESET: An existing connection was forcibly closed by the remote
+host. - SSL_connect <span class="o">(</span>https://api.rubygems.org/quick/Marshal.4.8/nokogiri-1.4.3.1.gemspec.rz<span class="o">)</span>
+</code></pre></div>
+<p>解决方法</p>
+
+<p>原因：是GFW的原因，他们提供了一个gem server。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ gem sources --remove https://rubygems.org/
+$ gem sources -a https://ruby.taobao.org/
+$ gem sources -l
+</code></pre></div>
+<p>请确保只有 ruby.taobao.org</p>
+
+<h3>异常4</h3>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">D:/Ruby22-x64/lib/ruby/site_ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in
+ <span class="sb">`</span>require<span class="err">&#39;</span>: cannot load such file -- iconv <span class="o">(</span>LoadError<span class="o">)</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">gem install iconv
+</code></pre></div>
+<blockquote>
+<p>注：在windows上尽管已安装但还是报错，ubuntu上正常</p>
+</blockquote>
+
 <h2>绑定域名</h2>
 
 <p>本人暂时还未绑定域名，无从谈起，请参考<a href="http://www.pchou.info/web-build/2013/01/05/build-github-blog-page-03.html">一步步在GitHub上创建博客主页(3)</a>。</p>
@@ -363,15 +411,16 @@ $git push origin master（or gh-pages）
 
 
 </section>
-
-
+<section id="tree" class="ztree"></section>
 
 			</section >
-			<section id="tree" class="ztree"></section>
 			<section class="footer">
 				<a href="http://indexed.webmasterhome.cn/?domain=yxmblog.com" target="_blank"> 收录查询 </a>  |
 				<a href="http://www.coodir.com/" title="免费收录各类优秀网站" target="_blank" > 酷帝网站目录 </a>
 			</section>
+		</div>
+		<div class="right"> 
+			<img src="/images/QRCode/2015-06-13-0038456171.png" />
 		</div>
 		<footer>
 			<p> Project maintained by <a href="https://github.com/yxmsw2007" target="_blank">

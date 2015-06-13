@@ -62,145 +62,129 @@
 
 
 <div>
-    <h2 class="h2 entry-title"><a href="http://yxmsw2007.github.io/ubuntu/2015/05/24/ubuntu-kernel-compile.html" target="_blank">Kernel-3.2.0编译-Ubuntu12.04</a> </h2>
+    <h2 class="h2 entry-title"><a href="http://yxmsw2007.github.io/windows/2015/05/01/windows-commands.html" target="_blank">Windows常用命令</a> </h2>
     <div class="entry-meta">
-        更新: <span>2015-05-24</span>
+        更新: <span>2015-05-01</span>
         |
         <span>作者:<a href="http://yxmsw2007.github.io/">yxmsw2007</a></span>
     </div>
-    学习资料
+    命令行清屏
+$ cls
 
-英本网的免费视频，推荐给大家，讲的比较清楚，适合入门
+右键菜单添加Command
 
-01.Linux内核学习入门     
+1.win7/win8: Shift + 鼠标右键
 
-02.Linux内核介绍
-
-03.Linux内核编译
-
-04.Linux内核源码介绍及剪裁
-
-06.Linux内核模块例子
-
-超有用的资料网站
-
-kernel
-
-内核源码下载
-
-linux论坛
-
-在线阅读内核源码
-
-生成配置
+2.修改注册表
 
 
-make menuconfig //图形界面
+运行中输入：regedit
 
-mak...
-    <p> <a href="/ubuntu/2015/05/24/ubuntu-kernel-compile.html#more" class="more-link" target="_blank"><span class="readmore">阅读全文 &raquo; </span></a></p>
+在目录&quot;HKEYLOCALMACHINE/Software/Classes/Folder/Shell&quot;中添加&quot;command&quot;子项
+
+在子项中新建一个字符串值&quot;command&quot...
+    <p> <a href="/windows/2015/05/01/windows-commands.html#more" class="more-link" target="_blank"><span class="readmore">阅读全文 &raquo; </span></a></p>
 </div>
 
 <div>
-    <h2 class="h2 entry-title"><a href="http://yxmsw2007.github.io/c/c++/2015/05/19/thread-c.html" target="_blank">Thread编程-C</a> </h2>
+    <h2 class="h2 entry-title"><a href="http://yxmsw2007.github.io/android/2015/04/14/ubuntu12.04-compile-android4.3.html" target="_blank">Ubuntu12.04编译android4.3源码问题集锦</a> </h2>
     <div class="entry-meta">
-        更新: <span>2015-05-19</span>
+        更新: <span>2015-04-14</span>
         |
         <span>作者:<a href="http://yxmsw2007.github.io/">yxmsw2007</a></span>
     </div>
-    线程与进程关系
+    编译源码
 
-1.轻量级进程（light-weightprocess）,也有PCB,创建线程使用底层函数和进程一样，都是clone.
+问题1
+In file included from /usr/include/stdlib.h:25:0,
 
-2.从内核里看进程和线程是一样的，都有各自不同的PCB,但是PCB中指向内存资源的三级页表示相同的
+                from build/tools/acp/acp.c:11:
 
-3.进程可以蜕变成线程
+/usr/include/features.h:324:26: fatal error: bits/predefs.h: No such file or directory
 
-4.在美国人眼里，线程就是寄存器和栈
-
-5.在Linux下，线程是最小的执行单位；进程是最小的分配资源的单位
-
-
-
-进程原语
 ...
-    <p> <a href="/c/c++/2015/05/19/thread-c.html#more" class="more-link" target="_blank"><span class="readmore">阅读全文 &raquo; </span></a></p>
+    <p> <a href="/android/2015/04/14/ubuntu12.04-compile-android4.3.html#more" class="more-link" target="_blank"><span class="readmore">阅读全文 &raquo; </span></a></p>
 </div>
 
 <div>
-    <h2 class="h2 entry-title"><a href="http://yxmsw2007.github.io/c/c++/2015/05/16/socket-c.html" target="_blank">Socket编程-C</a> </h2>
+    <h2 class="h2 entry-title"><a href="http://yxmsw2007.github.io/ubuntu/2015/04/14/ubuntu-command.html" target="_blank">Ubuntu常用命令</a> </h2>
     <div class="entry-meta">
-        更新: <span>2015-05-16</span>
+        更新: <span>2015-04-14</span>
         |
         <span>作者:<a href="http://yxmsw2007.github.io/">yxmsw2007</a></span>
     </div>
-    sockaddr_in与sockaddr
+    屏幕截图
 
-sockaddr是在头文件 /usr/include/bits/socket.h 中定义的，如下：
-/* Structure describing a generic socket address.  */
-struct sockaddr
-{
-    __SOCKADDR_COMMON (sa_);    /* Common data: addre...
-    <p> <a href="/c/c++/2015/05/16/socket-c.html#more" class="more-link" target="_blank"><span class="readmore">阅读全文 &raquo; </span></a></p>
+命令：gnome-screenshot
+$ gnome-screenshot --help
+
+Usage:
+
+     gnome-screenshot [OPTION...] Take a picture of the screen
+
+Help Options:
+
+    -h, --help                     Show help options
+
+   ...
+    <p> <a href="/ubuntu/2015/04/14/ubuntu-command.html#more" class="more-link" target="_blank"><span class="readmore">阅读全文 &raquo; </span></a></p>
 </div>
 
 <div>
-    <h2 class="h2 entry-title"><a href="http://yxmsw2007.github.io/tools/2015/05/10/vim-commands.html" target="_blank">VIM常用命令</a> </h2>
+    <h2 class="h2 entry-title"><a href="http://yxmsw2007.github.io/android/2015/04/06/save-log-by-simple-way.html" target="_blank">Log保存文件-Android</a> </h2>
     <div class="entry-meta">
-        更新: <span>2015-05-10</span>
+        更新: <span>2015-04-06</span>
         |
         <span>作者:<a href="http://yxmsw2007.github.io/">yxmsw2007</a></span>
     </div>
-    对标点内的内容进行操作
+    前言
 
+在开发过程中尤其是项目进入测试后，为了方便定位问题，经常需要将log保存下来，当然你可以自己写个log辅助类又或者直接使用第三方的jar包，这里多多少少需要对系统的log类进行一些包装，调用也不再是系统的log类，如果你只希望调用系统的log类又想打印的log能按自己的规则保存到文件那么请继续往下看。
 
-ci&#39;、ci&quot;、ci(、ci[、ci{、ci&lt; - 分别更改这些配对标点符号中的文本内容
+原理
 
-di&#39;、di&quot;、di(或dib、di[、di{或diB、di&lt; - 分别删除这些配对标点符号中的文本内容
-
-yi&#39;、yi&quot;、yi(、yi[、yi{、yi&lt; - 分别复制这些配对标点符号中的文本内容
-
-v...
-    <p> <a href="/tools/2015/05/10/vim-commands.html#more" class="more-link" target="_blank"><span class="readmore">阅读全文 &raquo; </span></a></p>
+首先启动模拟器或者用手机连接电脑，进入命令行并且输入如下命令
+C:\Us...
+    <p> <a href="/android/2015/04/06/save-log-by-simple-way.html#more" class="more-link" target="_blank"><span class="readmore">阅读全文 &raquo; </span></a></p>
 </div>
 
 <div>
-    <h2 class="h2 entry-title"><a href="http://yxmsw2007.github.io/c/c++/2015/05/10/read_and_write_file_c.html" target="_blank">读写文件-C</a> </h2>
+    <h2 class="h2 entry-title"><a href="http://yxmsw2007.github.io/internet/2015/04/06/blogging-with-vim.html" target="_blank">用VIM写博客</a> </h2>
     <div class="entry-meta">
-        更新: <span>2015-05-10</span>
+        更新: <span>2015-04-06</span>
         |
         <span>作者:<a href="http://yxmsw2007.github.io/">yxmsw2007</a></span>
     </div>
-    open与fopen
+    
+系统：Ubuntu（部分内容不局限于Ubuntu）
 
-int open(const char *path, int access,int mode)
 
-path 要打开的文件路径和名称
+既然讲的就是vim写博客，那么首要的就是要了解vim是什么，要怎么使用，然后才是怎么用vim写出一片格式整洁的博客来，
 
-access 访问模式，宏定义和含义如下：
+下面我们先来看看vim部分
 
-O_RDONLY         1    只读打开
+vim是什么
 
-O_WRONLY         2    只写打开
+vim就是一个编辑器，就跟windows下的txt文本编辑器一样就是编辑文本用的，但它与文本编辑器不一样的地方是vim提供了
 
-O_RDWR           4    读写打开
-
-还可选择以下模式与以上...
-    <p> <a href="/c/c++/2015/05/10/read_and_write_file_c.html#more" class="more-link" target="_blank"><span class="readmore">阅读全文 &raquo; </span></a></p>
+大量的快捷键，使得我们在编辑文件的时候大...
+    <p> <a href="/internet/2015/04/06/blogging-with-vim.html#more" class="more-link" target="_blank"><span class="readmore">阅读全文 &raquo; </span></a></p>
 </div>
 
 
 <!-- Pagination links -->
 <div id="pagination">
     <div class="pagenavi">
-        <span class="page_number">第1页/共3页</span>
+        <span class="page_number">第2页/共3页</span>
         <a href="/">首页</a>
         
-        <span><<前页</span>
+        
+        <a href="/" class="current"><<前页</a>
         
         
         
-        <a href="/page2/">2</a>
+        
+        <span class="current-page">2</span>
         
         
         
@@ -208,7 +192,7 @@ O_RDWR           4    读写打开
         
         
         
-        <a href="/page2/">后页>></a>
+        <a href="/page3/">后页>></a>
         
         <a href="/page3/">末页</a>
     </div>
