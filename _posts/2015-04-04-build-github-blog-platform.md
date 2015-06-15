@@ -49,7 +49,8 @@ Git的安装就不多说了，这里提供下windows的下载地址：[http://ms
 进入Git命令窗口，切换到你想保存项目的路劲，执行如下操作：
 
 ### 下载模板（本人当前使用的模板）
-	#git clone https://github.com/minixalpha/StrayBirds.git
+
+	$git clone https://github.com/minixalpha/StrayBirds.git
 	
 ### 下载博客
 
@@ -80,6 +81,8 @@ Git的安装就不多说了，这里提供下windows的下载地址：[http://ms
 ![20150404201849](/images/2015-04-04-build-github-blog-platform/20150404201849.png)
 
 咦！为什么一样的代码我们的博客却是这鸟样呢，难道此处要省略一万字？先省点气力，继续往下看。
+
+>	注：最近回去看了下StrayBirds的博客主题，似乎已经换了一个，不过没关系，喜欢这个主题的可以到我这里[下载](https://github.com/yxmsw2007/yxmsw2007.github.io)
 
 ## 修改模版
 
