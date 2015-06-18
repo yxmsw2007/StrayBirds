@@ -81,12 +81,12 @@ function factor(opts, count, current) {
 	 * 渲染ztree
 	 */
 	function render_with_ztree(opts) {
-		if(opts._headers.length == 1 && opts._headers[0] < 3) {
+		/* if(opts._headers.length == 1 && opts._headers[0] < 3) {
 			opts.ztreeStyle.display = 'none';
 		} else {
 			opts.ztreeStyle.display = 'block';
 		}
-		log(opts.ztreeStyle);
+		log(opts.ztreeStyle); */
 	
 		var t = $(opts._zTree);
 		t = $.fn.zTree.init(t, opts.ztreeSetting, opts._header_nodes).expandAll(opts.is_expand_all);
