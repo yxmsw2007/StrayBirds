@@ -40,7 +40,7 @@ Jekyll官方介绍[Pagination](http://jekyllrb.com/docs/pagination/)
 
 *	在_config.yml中添加如下代码
 
-```js
+```vim
 
 paginate: 5
 paginate_path: "page:num"
@@ -49,7 +49,7 @@ paginate_path: "page:num"
 
 *	index.html换成如下内容
 
-```js
+```vim
 
 {% for post in paginator.posts %}
 <div>
@@ -108,7 +108,7 @@ Search engines(你的网址engine)->INTEGRATE->INSTALL SEARCH->CHANGE CONFIGURAT
 
 至此就可以看到安装代码了
 
-```js
+```vim
 
 <script type="text/javascript">
   (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
@@ -133,7 +133,7 @@ RSS订阅是站点用来和其他站点之间共享内容的一种简易方式,�
 
 *	在_config.yml文件 添加下列属性
 
-```js
+```vim
 
 username: yxmsw2007
 description: yxmsw2007's blog
@@ -147,7 +147,7 @@ baseurl: /yxmsw2007.github.io
 
 我的feed.xml代码如下：
 
-```js
+```vim
 
 ---
 layout: none
@@ -228,7 +228,7 @@ freewebsubmission网站批量提交：[http://www.freewebsubmission.com/](http:/
 
 如果你的根目录下没有Gemfile文件，新建一个并添加如下代码
 
-```js
+```vim
 
 # source "https://rubygems.org" //官方镜像地址，国内用户可能访问不了
 source 'https://ruby.taobao.org/'
@@ -238,7 +238,7 @@ gem 'jekyll-sitemap'
 
 *	在_config.yml中添加如下代码
 
-```js
+```vim
 
 gems:
 - jekyll-sitemap
@@ -261,7 +261,7 @@ gems:
 
 在head部分添加如下代码
 
-```html
+```vim
 
 <!-- ztree css -->
 <link rel="stylesheet" href="/stylesheets/zTreeStyle.css" type="text/css">
@@ -275,7 +275,7 @@ gems:
 
 *	添加js代码
 
-```html
+```vim
 
 $(document).ready(function () {
 	$('#tree').ztree_toc({
@@ -291,7 +291,7 @@ $(document).ready(function () {
 
 *	修改Table content容器控件ID和class
 
-```html
+```vim
 
 <section id="tree" class="ztree"></section>
 
@@ -303,7 +303,7 @@ $(document).ready(function () {
 
 另外我还对ztree的样式进行了如下修改
 
-```js
+```vim
 
 ztreeStyle : {
 	//background:'#333',
@@ -340,7 +340,7 @@ ztreeStyle : {
 
 _layouts/post.html
 
-```js
+```vim
 
 <section>
 <h1>Related Posts</h1>
