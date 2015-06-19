@@ -6,7 +6,7 @@ gems:
 - jekyll-sitemap
 markdown: redcarpet
 redcarpet: 
-    extensions: ["tables"]
+    extensions: ["fenced_code_blocks", "tables"]
 #   extensions: ["fenced_code_blocks", "tables", "highlight", "with_toc_data", "strikethrough", "underline"]
 safe: false
 #pygments: true
