@@ -12,17 +12,21 @@ tags: [command, 命令]
 
 ## 右键菜单添加Command
 
-1.win7/win8: Shift + 鼠标右键
+###	win7/win8
 
-2.修改注册表
+	Shift + 鼠标右键
 
->  运行中输入：regedit
+###	修改注册表
 
->  在目录"HKEY_LOCAL_MACHINE/Software/Classes/Folder/Shell"中添加"command"子项
+运行中输入
 
->  在子项中新建一个字符串值"command"值修改为"cmd.exe /k pushd %1"
+	regedit
 
-3.更多
+在目录"HKEY_LOCAL_MACHINE/Software/Classes/Folder/Shell"中添加"command"子项
+
+在子项中新建一个字符串值"command"值修改为"cmd.exe /k pushd %1"
+
+###	更多
 
 请参考[https://www.petri.com/add_command_prompt_here_shortcut_to_windows_explorer](https://www.petri.com/add_command_prompt_here_shortcut_to_windows_explorer)
 
@@ -32,11 +36,11 @@ tags: [command, 命令]
 
 ## 定时关机
 
-1.win7/win8
+###	win7/win8
 
->   控制面板->管理工具->计划任务->创建基本任务->任务名称(shutdown)->选择时间->程序或脚本(shutdown)
+控制面板->管理工具->计划任务->创建基本任务->任务名称(shutdown)->选择时间->程序或脚本(shutdown)
 
-2.命令行
+###	命令行
 
 延时指定时间后关机
 

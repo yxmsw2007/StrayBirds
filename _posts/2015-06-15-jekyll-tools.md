@@ -16,21 +16,21 @@ tags: [Jekyll, 流量统计, 分页, 插件, 工具]
 
 这里我们就不得不对网站进行流量统计了，Jekyll搭建的博客平台已经内置了Google统计，但由于GFW的原因，国内用户使用很不方便，所以我们选择了百度统计，下面就来总结下百度统计的添加步骤。
 
-*	注册登录
+### 注册登录
 
 不用多说，第一步肯定是注册登录了，[http://tongji.baidu.com/web/welcome/login](http://tongji.baidu.com/web/welcome/login)
 
-*	添加网址并获取js代码
+### 添加网址并获取js代码
 
 进入后选择网站中心将你的网址添加进去，成功后将鼠标移到新增的网址那一栏上会显示出“获取代码”选项，点进去就可以看到js代码了，复制一下
 
-*	添加js代码
+### 添加js代码
 
 将上面复制的代码添加到你的主题模板中，本人是添加在_layouts/default.html中。
 
 网上有不少人是将这部分代码放到了一个js脚本中，然后再导入这个脚本，这样也是可以的，不过这种方式在你验证代码是否成功的时候会检测失败。
 
-*	检测代码安装是否成功
+### 检测代码安装是否成功
 
 回到百度统计，“首页代码状态”栏有个刷新按钮，点击检测下，正常就会返回成功。检测成功后可能无法立即查看数据需要等一会。
 
@@ -38,7 +38,7 @@ tags: [Jekyll, 流量统计, 分页, 插件, 工具]
 
 Jekyll官方介绍[Pagination](http://jekyllrb.com/docs/pagination/)
 
-*	在_config.yml中添加如下代码
+### 在_config.yml中添加如下代码
 
 ```vim
 
@@ -47,18 +47,22 @@ paginate_path: "page:num"
 
 ```
 
-*	index.html换成如下内容
+### index.html换成如下内容
 
 ```vim
 
+{% raw %}
 {% for post in paginator.posts %}
 <div>
     <h2 class="h2 entry-title"><a href="http://{{site.username}}.github.io{{ post.url }}" target="_blank">{{ post.title }}</a> </h2>
+    <!-- 如果文章是转发的，则不显示作者和更新日期 -->
+		{% unless post.title contains "(转)"%}
     <div class="entry-meta">
         更新: <span>{{ post.date | date:"%Y-%m-%d" }}</span>
         |
         <span>作者:<a href="http://{{site.username}}.github.io/">{{site.username}}</a></span>
     </div>
+		{% endunless %}
     {{ post.content  | strip_html | truncate: 200 }}
     <p> <a href="{{ post.url }}#more" class="more-link" target="_blank"><span class="readmore">阅读全文 &raquo; </span></a></p>
 </div>
@@ -93,6 +97,7 @@ paginate_path: "page:num"
         <a href="/page{{paginator.total_pages}}/">末页</a>
     </div>
 </div>
+{% endraw %}
 
 ```
 
@@ -131,7 +136,7 @@ Search engines(你的网址engine)->INTEGRATE->INSTALL SEARCH->CHANGE CONFIGURAT
 
 RSS订阅是站点用来和其他站点之间共享内容的一种简易方式,即Really Simple Syndication(简易信息聚合)。Jekyll添加RSS订阅步骤如下：
 
-*	在_config.yml文件 添加下列属性
+### 在_config.yml文件 添加下列属性
 
 ```vim
 
@@ -143,12 +148,13 @@ baseurl: /yxmsw2007.github.io
 
 >	注：如果你的配置文件中已有类似的属性，如name或url等则无需按我这个添加，不过对应的feed.xml要做相应的修改
 
-*	在网站根目录下添加 feed.xml
+### 在网站根目录下添加 feed.xml
 
 我的feed.xml代码如下：
 
 ```vim
 
+{% raw %}
 ---
 layout: none
 ---
@@ -171,20 +177,21 @@ layout: none
 		{% endfor %}
 	</channel> 
 </rss>
+{% endraw %}
 
 ```
 
 >	注：如果你用jekyll进行本地调试，启动服务的时候可能会报找不到layout：none的情况，不需要管他。
 
-*	发布
+### 发布
 
 在你网站的合适地方添加如下代码：
 
-<a href="{{ site.url }}/feed.xml" target="_blank">RSS订阅</a>
+	<a href="{{ site.url }}/feed.xml" target="_blank">RSS订阅</a>
 
 ##	网址收录
 
-*	网站提交
+### 网站提交
 
 将网站提交给百度： [http://www.baidu.com/search/url_submit.html](http://www.baidu.com/search/url_submit.html)
 
@@ -202,7 +209,7 @@ layout: none
 
 freewebsubmission网站批量提交：[http://www.freewebsubmission.com/](http://www.freewebsubmission.com/)
 
-*	博客提交
+### 博客提交
 
 将博客提交给百度博客搜索： [http://utility.baidu.com/blogsearch/submit.php](http://utility.baidu.com/blogsearch/submit.php)
 
@@ -216,15 +223,15 @@ freewebsubmission网站批量提交：[http://www.freewebsubmission.com/](http:/
 
 将博客提交给IceRocket： [http://www.icerocket.com/c?p=ping](http://www.icerocket.com/c?p=ping)
 
-*	收录查询
+### 收录查询
 
 网站、博客收录情况查询： [http://indexed.webmasterhome.cn/](http://indexed.webmasterhome.cn/)
 
 ##	jekyll Sitemap
 
-[jekyll-sitemap](https://github.com/jekyll/jekyll-sitemap)
+官网[jekyll-sitemap](https://github.com/jekyll/jekyll-sitemap)
 
-*	在Gemfile中添加如下代码
+###	在Gemfile中添加如下代码
 
 如果你的根目录下没有Gemfile文件，新建一个并添加如下代码
 
@@ -236,7 +243,7 @@ gem 'jekyll-sitemap'
 
 ```
 
-*	在_config.yml中添加如下代码
+###	在_config.yml中添加如下代码
 
 ```vim
 
@@ -247,7 +254,7 @@ gems:
 
 >	注：如果你在本地用jekyll调试可能会报找不到jekyll-sitemap的错，需要在本地安装才行，另外window上发现装了也不行，可能环境配错了，总之不管你做不做本地调试，上传到github后就可以用了
 
-*	验证
+###	验证
 
 如果你能在_site目录下看到sitemap.xml文件就说明配置成功了。
 
@@ -257,7 +264,7 @@ gems:
 
 本人使用的Table of Content原型来源于[markdown_toc](https://github.com/i5ting/markdown_toc)，有兴趣的可以下下来研究研究。
 
-*	修改default.html
+###	修改default.html
 
 在head部分添加如下代码
 
@@ -273,15 +280,14 @@ gems:
 
 ```
 
-*	添加js代码
+###	添加js代码
 
 ```vim
 
 $(document).ready(function () {
 	$('#tree').ztree_toc({
-		//is_posion_top:true
-		//is_auto_number: true,
-		//documment_selector: '.first_part'
+		is_posion_top: false,
+		is_auto_number: true,	//自动添加标题序号
 	});
 });
 
@@ -289,7 +295,7 @@ $(document).ready(function () {
 
 >	注：markdown_toc项目的Usages是让添加到html中，不过本人不想那么麻烦就直接放在了ztree_toc.js的最前面
 
-*	修改Table content容器控件ID和class
+###	修改Table content容器控件ID和class
 
 ```vim
 
@@ -299,9 +305,41 @@ $(document).ready(function () {
 
 >	注：建议不要放到default中，如果ztree容器在网页内容之前被加载会闪现一下混乱样式，所以建议放到post.html并且放在content后面
 
-*	修改ztree_toc.js
+###	修改ztree_toc.js
 
-另外我还对ztree的样式进行了如下修改
+对_rename_header_content函数进行修改，这个在标题前添加序列号
+
+```vim
+
+/*
+ * 将已有header编号，并重命名
+ */
+function _rename_header_content(opts, header_obj, level) {
+	if (opts._headers.length == level) {
+		opts._headers[level - 1]++;
+	} else if (opts._headers.length > level) {
+		opts._headers = opts._headers.slice(0, level);
+		opts._headers[level - 1]++;
+	} else if (opts._headers.length < level) {
+		for (var i = 0; i < (level - opts._headers.length); i++) {
+			// console.log('push 1');
+			opts._headers.push(1);
+		}
+	}
+
+	//本人博客内容在第二个H1中并且以H2为一级标题，所以本人做了以下修改
+	if (opts.is_auto_number == true && opts._headers[0] == 2) {
+		var temp = "";
+		for(var i=1;i<opts._headers.length;i++) { 
+			temp += opts._headers[i] + ".";
+		} 
+		$(header_obj).text(temp + "	" + $(header_obj).text());
+	}
+}
+
+```
+
+对ztree的样式进行如下修改
 
 ```vim
 
@@ -314,14 +352,10 @@ ztreeStyle : {
 	border : '0px none',
 	top : '50%',
 	right : '1%',
-	//bottom:'10px',
+	bottom:'0px',
 	color : '#ffffff',
 	height : '50%',
-	//visibility:'visible',
-	//visibility:'hidden',
-	display : 'none',
-	//display : 'block',
-	//vertical-align:'middle'
+	display : 'block'
 },
 		
 ```

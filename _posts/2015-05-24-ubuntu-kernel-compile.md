@@ -10,25 +10,25 @@ tags: [kernel, 编译, linux, 内核]
 
 英本网的免费视频，推荐给大家，讲的比较清楚，适合入门
 
-[01.Linux内核学习入门](http://v.youku.com/v_show/id_XNjc1NzEzODAw.html)     
+*	[Linux内核学习入门](http://v.youku.com/v_show/id_XNjc1NzEzODAw.html)     
   
-[02.Linux内核介绍](http://v.youku.com/v_show/id_XNjc1NzE0OTAw.html)
+*	[Linux内核介绍](http://v.youku.com/v_show/id_XNjc1NzE0OTAw.html)
 
-[03.Linux内核编译](http://v.youku.com/v_show/id_XNjc1NzE1NDQ0.html)
+*	[Linux内核编译](http://v.youku.com/v_show/id_XNjc1NzE1NDQ0.html)
 
-[04.Linux内核源码介绍及剪裁](http://v.youku.com/v_show/id_XNjc1NzE2MjQw.html)
+*	[Linux内核源码介绍及剪裁](http://v.youku.com/v_show/id_XNjc1NzE2MjQw.html)
 
-[06.Linux内核模块例子](http://v.youku.com/v_show/id_XNjc1NzE3MDI4.html)
+*	[Linux内核模块例子](http://v.youku.com/v_show/id_XNjc1NzE3MDI4.html)
 
 ## 超有用的资料网站
 
-[kernel](https://www.kernel.com/)
+*	[kernel](https://www.kernel.com/)
 
-[内核源码下载](https://www.kernel.org/)
+*	[内核源码下载](https://www.kernel.org/)
 
-[linux论坛](http://www.linuxsir.org/)
+*	[linux论坛](http://www.linuxsir.org/)
 
-[在线阅读内核源码](http://lxr.linux.no/)
+*	[在线阅读内核源码](http://lxr.linux.no/)
 
 ## 生成配置
 

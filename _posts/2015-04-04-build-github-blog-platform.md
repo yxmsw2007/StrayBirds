@@ -241,6 +241,16 @@ Git的安装就不多说了，这里提供下windows的下载地址：[http://ms
 
 ![markdown_syntax](/images/2015-04-04-build-github-blog-platform/markdown_syntax.png)
 
+### 代码块Liquid命令文本显示
+
+```vim
+
+{ % raw %}			#{ %中间的空格删除
+
+{ % endraw %}		#{ %中间的空格删除
+
+```
+
 ## Jekyll本地调试
 
 安装就不多介绍了，请参考[Jekyll Installation](http://jekyllrb.com/docs/installation/)或者[http://www.pchou.info/web-build/2013/01/05/build-github-blog-page-04.html](http://www.pchou.info/web-build/2013/01/05/build-github-blog-page-04.html)

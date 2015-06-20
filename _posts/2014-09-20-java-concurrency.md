@@ -1,11 +1,10 @@
 ---
 layout: post
-title: Java 中的并发
+title: Java 中的并发(转)
 comments: true
 category: Java
 tags: [Thread, 并发]
 ---
-
 
 ## 如何创建一个线程
 
@@ -129,3 +128,7 @@ JDK 中的线程池通过 HashSet 存储工作者线程，通过 BlockingQueue �
 者数目是不是小于最大工作者数目，如果小于，则创建工作者线程执行这个任务。否则，拒绝执行这个任务。
 
 另外，如果待处理队列中没有任务要处理，并且工作者线程数目超过了核心工作者数目，那么，需要减少工作者线程数目。
+
+##	参考资料
+
+[Java 中的并发](http://minixalpha.github.io/StrayBirds/%E6%8A%80%E6%9C%AF/2014/09/20/java-concurrency.html)

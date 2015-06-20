@@ -2,9 +2,8 @@
 
 $(document).ready(function () {
 	$('#tree').ztree_toc({
-		//is_posion_top:true
-		//is_auto_number: true,
-		//documment_selector: '.first_part'
+		is_posion_top: false,
+		is_auto_number: true,
 	});
 });
 
@@ -68,11 +67,7 @@ function factor(opts, count, current) {
 	function create_toc(opts) {
 		$(opts.documment_selector).find(':header').each(function () {
 			var level = parseInt(this.nodeName.substring(1), 10);
-			log("this.nodeName: " + this.nodeName);
-			log("level: " + level);
 			_rename_header_content(opts, this, level);
-			log(opts._headers);
-			log("opts._headers.length： " + opts._headers.length);
 			_add_header_node(opts, $(this));
 		}); //end each
 	}
@@ -81,18 +76,10 @@ function factor(opts, count, current) {
 	 * 渲染ztree
 	 */
 	function render_with_ztree(opts) {
-		if(opts._headers.length == 1 && opts._headers[0] < 3) {
-			opts.ztreeStyle.display = 'none';
-		} else {
-			opts.ztreeStyle.display = 'block';
-		}
-		log(opts.ztreeStyle);
-	
 		var t = $(opts._zTree);
 		t = $.fn.zTree.init(t, opts.ztreeSetting, opts._header_nodes).expandAll(opts.is_expand_all);
 		// alert(opts._headers * 88);
 		//$(opts._zTree).height(opts._headers  * 33 + 33);
-		//opts.ztreeStyle.height = opts._headers  * 80 + "px";
 
 		if (opts.is_posion_top == true) {
 			opts.ztreeStyle.top = '0px';
@@ -125,12 +112,13 @@ function factor(opts, count, current) {
 			}
 		}
 
-		if (opts.is_auto_number == true) {
-			//另存为的文件里会有编号，所以有编号的就不再重新替换
-			if ($(header_obj).text().indexOf(opts._headers.join('.')) != -1) {}
-			else {
-				$(header_obj).text(opts._headers.join('.') + '. ' + $(header_obj).text());
-			}
+		//本人博客内容在第二个H1中并且以H2为一级标题，所以本人做了以下修改
+		if (opts.is_auto_number == true && opts._headers[0] == 2) {
+			var temp = "";
+			for(var i=1;i<opts._headers.length;i++) { 
+				temp += opts._headers[i] + ".";
+			} 
+			$(header_obj).text(temp + "	" + $(header_obj).text());
 		}
 	}
 
@@ -162,11 +150,9 @@ function factor(opts, count, current) {
 		// 设置锚点id
 		$(header_obj).attr('id', anchor);
 
-		log($(header_obj).text());
 
 		opts._header_offsets.push($(header_obj).offset().top - opts.highlight_offset);
 
-		log('h offset =' + ($(header_obj).offset().top - opts.highlight_offset));
 
 		opts._header_nodes.push({
 			id : id,
@@ -193,12 +179,12 @@ function factor(opts, count, current) {
 					highlighted;
 
 					if (opts.debug)
-						console.log('top=' + top);
+						 console.log('top=' + top);
 
 					for (var i = 0, c = opts._header_offsets.length; i < c; i++) {
 						// fixed: top+5防止点击ztree的时候，出现向上抖动的情况
 						if (opts._header_offsets[i] >= (top + 5)) {
-							console.log('opts._header_offsets[' + i + '] = ' + opts._header_offsets[i]);
+							 console.log('opts._header_offsets[' + i + '] = ' + opts._header_offsets[i]);
 							$('a').removeClass('curSelectedNode');
 
 							// 由于有root节点，所以i应该从1开始
@@ -234,8 +220,6 @@ function factor(opts, count, current) {
 	$.fn.ztree_toc = function (options) {
 		// 将defaults 和 options 参数合并到{}
 		var opts = $.extend({}, $.fn.ztree_toc.defaults, options);
-
-		log(opts);
 
 		return this.each(function () {
 			opts._zTree = $(this);
@@ -286,7 +270,7 @@ function factor(opts, count, current) {
 		/*
 		 * ztree的位置，默认是在上部
 		 */
-		is_posion_top : false,
+		is_posion_top: true,
 		/*
 		 * 默认是否显示header编号
 		 */
@@ -309,14 +293,10 @@ function factor(opts, count, current) {
 			border : '0px none',
 			top : '50%',
 			right : '1%',
-			//bottom:'10px',
+			bottom:'0px',
 			color : '#ffffff',
 			height : '50%',
-			//visibility:'visible',
-			//visibility:'hidden',
-			display : 'none',
-			//display : 'block',
-			//vertical-align:'middle'
+			display : 'block'
 		},
 		ztreeSetting : {
 			view : {
