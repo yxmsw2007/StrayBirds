@@ -14,3 +14,5 @@ highlighter: pygments
 title: yxmsw2007
 paginate: 5
 paginate_path: "page:num"
+categories_path: category.html
+tags_path: tag.html

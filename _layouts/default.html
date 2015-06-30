@@ -16,7 +16,9 @@
 		
 		<!-- ztree css -->
 		<link rel="stylesheet" href="/stylesheets/zTreeStyle.css" type="text/css">
-		
+
+		<!-- sidebar css -->
+  		<link rel="stylesheet" href="/stylesheets/sidebar.css" type="text/css">
 		<script src="/javascripts/scale.fix.js"> </script>
 		
 		<!-- ztree js -->
@@ -58,6 +60,9 @@
 		<![endif]-->
 	</head>
 	<body>
+		<div id="left-side" class="col-sm-3 sidebar hidden-xs">
+			{% include sidebar.html %}
+		</div>
 		<div class="wrapper">
 			<header>
 				<h1>
