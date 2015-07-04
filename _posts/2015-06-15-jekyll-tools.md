@@ -376,6 +376,7 @@ _layouts/post.html
 
 ```vim
 
+{% raw %}
 <section>
 <h1>Related Posts</h1>
 <table>
@@ -388,6 +389,357 @@ _layouts/post.html
 {% endfor %}
 </table>
 </section>
+{% endraw %}
+
+```
+
+##	sidebar、category和tag
+
+在这里网页侧边栏、category和tag放到一起介绍，因为我把它们放在了一起。
+
+###	添加sidebar.html页面
+
+在_indudes中添加一个sidebar.html页面，内容如下
+
+```vim
+
+{% raw %}
+{% for post in site.categories[page.category] %}
+{% unless post.draft %}
+    <li>{{ post.date | date: "%Y-%m-%d" }} <a href="{{ post.url }}">{{ post.title }}</a></li>
+{% endunless %}
+{% endfor %}
+
+<div class='category'>
+	<ul>
+		<li><a href="/">Home</a></li>
+		{% for cat in site.categories %}
+			<li><a href="/category.html#{{ cat[0] }}">{{ cat[0] }}<span>{{ cat[1].size }}</span></a></li>
+		{% endfor %}
+	</ul>
+</div>
+
+<div class='tags'>
+	{% for tag in site.tags %}
+		<a href="/tag.html#{{ tag[0] }}" style='font-size:{{ tag[1].size | times: 2 | plus: 15  }}px;'>{{ tag[0] }}</a> <a>|</a>
+	{% endfor %}
+</div>
+{% endraw %}
+
+```
+
+### 添加category.html页面
+
+在根目录下添加一个category.html页面，内容如下：
+
+```vim
+
+{% raw %}
+---
+layout: default
+title: 文章分类
+header: 文章分类
+group: navigation
+---
+
+<!-- Tab panes -->
+<article>
+  {% for category in site.categories %}
+    <div>
+      <a name="{{category[0]}}"></a>
+      <h2>{{ category[0] }}({{category[1].size}})</h2>
+		<ul class="list-unstyled">
+        {% assign pages_list = category[1] %}
+        {% for node in pages_list %}
+          {% if node.title != null %}
+            {% if group == null or group == node.group %}
+				{{ node.date | date: "%F" }} 	<a href="{{node.url}}"> {{ node.title }} </a> <br>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+        {% assign pages_list = nil %} 
+      </ul>
+    </div>
+  {% endfor %}
+</article>
+
+<div class="clearfix"></div> 
+{% endraw %}
+
+```
+
+### 添加tag.html页面
+
+在根目录下添加一个tag.html页面，内容如下：
+
+```vim
+
+{% raw %}
+---
+layout: default
+title: 文章标签
+header: 文章标签
+group: navigation
+---
+
+{% capture site_tags %}{% for tag in site.tags %}{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
+{% assign tag_words = site_tags | split:',' | sort %}
+
+<!-- Tab panes -->
+<!-- <div class="tab-content col-sm-9 col-xs-6"> -->
+<article>
+  {% for item in (0..site.tags.size) %}{% unless forloop.last %}
+    {% capture this_word %}{{ tag_words[item] | strip_newlines }}{% endcapture %}
+    <div>
+      <a name="{{this_word}}"></a>
+      <h2 name="{{ this_word }}" style="margin-top: 0px">{{ this_word }}</h2>
+      <ul class="list-unstyled">
+        {% for post in site.tags[this_word] %}{% if post.title != null %}
+          <li style="line-height: 35px;list-style:none;"><a href="{{post.url}}">{{post.title}}</a> <span class="text-muted">- {{ post.date | date: "%B %d, %Y" }}</span></li>
+        {% endif %}{% endfor %}
+      </ul>
+    </div>
+  {% endunless %}{% endfor %}
+</article>
+
+<div class="clearfix"></div>
+{% endraw %}
+
+```
+
+### 添加sidebar.css
+
+在stylesheets添加一个sidebar.css文件，内容如下：
+
+```css
+
+body{
+	background-color: #333;
+}
+
+@font-face {
+  font-family: 'iconfont';
+  src: url("http://at.alicdn.com/t/font_1395307880_4954178.eot");
+  /* IE9*/
+  src: url("http://at.alicdn.com/t/font_1395307880_4954178.eot?#iefix") format("embedded-opentype"), url("http://at.alicdn.com/t/font_1395307880_9161122.woff") format("woff"), url("http://at.alicdn.com/t/font_1395307880_4053228.ttf") format("truetype"), url("http://at.alicdn.com/t/font_1395307880_9707928.svg#iconfont") format("svg");
+  /* iOS 4.1- */ }
+
+.iconfont {
+  font-family: 'iconfont'; }
+
+.sidebar {
+	padding-top: 5%;
+	background-color: #333333;
+	color: #fff;
+}
+
+.sidebar-header {
+	text-align: center;
+	margin-bottom: 10px;
+}
+.sidebar-header .title{
+	letter-spacing: 3px;
+	text-transform: uppercase;
+}
+
+.sidebar-header .title a{
+	text-decoration: none;
+	color: #fff;
+}
+
+.sidebar .navigator a {
+    padding: 10px;
+    font-family: 'iconfont';
+    -display: inline-block;
+    border-radius: 50% 50% 50% 50%;
+    color: #aaaaaa;
+    border: 1px solid #000;
+    box-shadow: inset 0 1px 10px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.1), 0 -1px 0 rgba(0, 0, 0, 0.5);
+    text-decoration: none; 
+}
+
+.sidebar .navigator a:hover {
+	color: white;
+}
+
+.sidebar .category ul {
+      list-style: none;
+      margin: 40px 40px;
+      -webkit-padding-start: 0px; }
+      .sidebar .category ul li {
+        border-bottom: 1px solid #aaaaaa;
+        height: 40px; }
+        .sidebar .category ul li a {
+          display: block;
+          line-height: 40px;
+          text-decoration: none;
+          color: #aaaaaa;
+          width: 100%; }
+          .sidebar .category ul li a:hover, .sidebar .category ul li a:focus {
+            color: #fff; }
+            .sidebar .category ul li a:hover span, .sidebar .category ul li a:focus span {
+              border: 1px solid #fff; }
+          .sidebar .category ul li a span {
+            display: inline-block;
+            float: right;
+            border: 1px solid #aaaaaa;
+            border-radius: 15px 15px 15px 15px;
+            padding: 0px 8px;
+            line-height: 20px;
+            margin-top: 10px; }
+
+.sidebar .tags {
+	line-height: 1.5; margin: 40px 40px; }
+  .sidebar .tags a {
+    color: #aaaaaa;
+    display: inline;
+    text-decoration: none; }
+    .sidebar .tags a:focus, .sidebar .tags a:hover {
+      color: white;
+      text-decoration: underline; }
+.sidebar .foot a {
+  color: #aaaaaa;
+  text-decoration: none; }
+  .sidebar .foot a:focus, .sidebar .foot a:hover {
+    color: white; }
+
+
+#bio {
+	font-size: 11px;
+	margin: 0 auto;
+	margin-bottom: 22px;
+}
+
+.page-header {
+	padding: 0 5% 0;
+  margin: 0 0 20px;
+}
+
+@media(min-width:768px){
+  .pager li.hidden-xs{
+    display: inline!important;
+  }
+}
+
+
+article .share .facebook:hover {
+	color: #43609C;
+	border-color: #43609C;
+}
+article .share .gplus:hover {
+	color: #C13929;
+	border-color: #C13929;
+}
+
+article{
+	margin-bottom: 40px;
+}
+
+.article_body{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+/*.post-date {
+	text-transform: uppercase;
+	font-size: 14px;
+	letter-spacing: 3px;
+}*/
+
+article {
+	padding: 0 5% 0;
+}
+
+article.home div a, article.home pre a { color: #2c3e50; }
+article.home div a:hover, article.home pre a:hover { color: #2c3e50; text-decoration: none; }
+article img { max-width: 100%; }
+
+#sideBar {
+	margin-top: 30px;
+}
+
+#sideBarContents dl{
+	font-size: 12px;
+    margin:0;
+    padding:0;
+}
+
+#sideBarContents dt{
+    margin-top:5px;
+    margin-left:8px;
+}
+
+#sideBarContents dd, dt {
+    cursor: pointer;
+}
+
+#sideBarContents dd {
+    margin-left: 30px;
+}
+
+#sideBarContents dd:hover, dt:hover {
+    color:#1abc9c;
+}
+
+```
+
+### 修改_config.yml
+
+在_config.yml添加如下内容
+
+```vim
+
+categories_path: category.html
+tags_path: tag.html
+
+```
+
+### 修改default.html
+
+在_layouts中的default.html添加如下内容
+
+header部分
+
+```vim
+
+<!-- sidebar css -->
+<link rel="stylesheet" href="/stylesheets/sidebar.css" type="text/css">
+
+```
+
+body部分
+
+```vim
+
+{% raw %}
+<div id="left-side" class="col-sm-3 sidebar hidden-xs">
+	{% include sidebar.html %}
+</div>
+{% endraw %}
+
+```
+
+### 修改styles.css
+
+在stylesheets中的styles.css文件中添加如下内容：
+
+```vim
+
+#left-side {
+  float:left;
+  position: fixed;
+  overflow: auto; 
+  width : 24%;
+  height : 100%;
+  border : 0px;
+  top : 10px;
+  bottom: 20px;
+  left : 0;
+  -webkit-box-pack:center; 
+  -moz-box-pack:center; 
+  -webkit-box-align:center; 
+  -moz-box-align:center; 
+}
 
 ```
 
