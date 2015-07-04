@@ -16,6 +16,6 @@
 
 <div class='tags'>
 	{% for tag in site.tags %}
-		<a href="/tag.html#{{ tag[0] }}" style='font-size:{{ tag[1].size | times: 2 | plus: 15  }}px;'>{{ tag[0] }}</a>
+		<a href="/tag.html#{{ tag[0] }}" style='font-size:{{ tag[1].size | times: 2 | plus: 15  }}px;'>{{ tag[0] }}</a> <a>|</a>
 	{% endfor %}
 </div>
