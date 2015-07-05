@@ -6,7 +6,7 @@ category: Android
 tags: [Activity与Service通信, Service, 广播通信, 接口通信]
 ---
 
-在开发Android过程中，常常遇到Activity与Service之间的通信，我们都知道在Activity或Service启动的时候我们可以传递一个Intent对象进去已达到传参数的目的，当然如果Activity或Service已经启动还想通过这种方式传值也是可以的。但是如果我们想直接给某个函数直接传参，这种方式就很不方便了，那有没有更简单直接的方法呢？答案是肯定的。 接下来我就介绍两种方式来实现Service与Activity之间的通信问题
+在开发Android过程中，常常遇到Activity与Service之间的通信，我们都知道在Activity或Service启动的时候我们可以传递一个Intent对象进去已达到传参数的目的，当然如果Activity或Service已经启动还想通过这种方式传值也是可以的。但是如果我们想给某个函数直接传参，这种方式就不是很方便了，那有没有更简单直接的方法呢？答案是肯定的。 下面我就介绍实现Service与Activity之间的通信的两种方式。
 
 ##	通过broadcast(广播)的形式
 
