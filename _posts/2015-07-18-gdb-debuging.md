@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: GDB常用命令介绍 
 comments: true
 category: Tools 
