@@ -2,7 +2,7 @@
 layout: post
 title: Linux应用开发-gcc（一）
 comments: true
-category: ubuntu
+category: Ubuntu
 tags: [gcc, ubuntu, application]
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: Ubuntu命令行编译QT程序
 comments: true
-category: ubuntu
+category: Ubuntu
 tags: [QT, 命令行]
 ---
 
