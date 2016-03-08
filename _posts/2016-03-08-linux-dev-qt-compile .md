@@ -3,7 +3,7 @@ layout: post
 title: arm-linux-gnueabihf-gcc4.8.2编译QT5.3.2
 comments: true
 category: Ubuntu
-tags: [QT, 编译，arm-linux-gnueabihf-gcc]
+tags: [QT, 编译, arm-linux-gnueabihf-gcc]
 ---
 
 ## 环境
