@@ -122,10 +122,15 @@ QT源码：qt-everywhere-opensource-src-5.3.2（或qt-everywhere-opensource-src-
 	exit
 	
 -prefix			qt的安装目录（make install的安装目录）
+
 -opensource		开源声明
+
 -confirm-license 	接受上面的开源声明，如果没有这项，每次执行是都需要手动确认
+
 -xplatform		编译平台选择，参数填qmake.conf所在的文件夹名称
+
 -qreal float		指定qreal类型，默认是double，（只有在Arm平台上，qreal是float，其他情况下qreal是double）
+
 -v			输出详细信息
 
 更多的参数可以通过以下命令查看
