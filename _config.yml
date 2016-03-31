@@ -4,7 +4,8 @@ description: yxmsw2007's blog
 baseurl: /yxmsw2007.github.io
 gems:
 - jekyll-sitemap
-markdown: redcarpet
+# markdown: redcarpet
+markdown: kramdown 
 redcarpet: 
     extensions: ["fenced_code_blocks", "tables"]
 #   extensions: ["fenced_code_blocks", "tables", "highlight", "with_toc_data", "strikethrough", "underline"]
