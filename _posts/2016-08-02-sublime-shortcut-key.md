@@ -8,34 +8,34 @@ tags: [Sublime3]
 
 ## 自带快捷键
 
-| 快捷键                    		| 功能         																											|
-| :---------------          		| :---------- 																											|
+| 快捷键                    			| 功能         																										|
+| :---------------          		| :---------- 																										|
 | Alt+O                  			| 可以实现头文件和源文件之间的快速切换         																			|
 | Ctrl+Shift+T						| 可以打开之前关闭的tab页																								|
-| Ctrl+D 							| 选词 （反复按快捷键，即可继续向下同时选中下一个相同的文本<br>进行同时编辑）											|
+| Ctrl+D 							| 选词 （反复按快捷键，即可继续向下同时选中下一个相同的文本<br>进行同时编辑）														|
 | Ctrl+G 							| 跳转到相应的行																										|
 | Ctrl+J 							| 合并行（已选择需要合并的多行时）																						|
 | Ctrl+L 							| 选择整行（按住-继续选择下行）																							|
 | Ctrl+M 							| 光标移动至括号内开始或结束的位置																						|
 | Ctrl+T 							| 词互换																												|
 | Ctrl+U 							| 软撤销																												|
-| Ctrl+P 							| 查找当前项目中的文件和快速搜索；输入 @ 查找文件主标题/函<br>数；或者输入 : 跳转到文件某行								|
+| Ctrl+P 							| 查找当前项目中的文件和快速搜索；输入 @ 查找文件主标题/函<br>数；或者输入 : 跳转到文件某行										|
 | Ctrl+R 							| 快速列出/跳转到某个函数																								|
 | Ctrl+K Backspace 					| 从光标处删除至行首																									|
 | Ctrl+KB 							| 开启/关闭侧边栏																										|
 | Ctrl+KK 							| 从光标处删除至行尾																									|
-| Ctrl+KT 							| 折叠属性																												|
-| Ctrl+KU 							| 改为大写																												|
-| Ctrl+KL 							| 改为小写																												|
-| Ctrl+K0 							| 展开所有																												|
+| Ctrl+KT 							| 折叠属性																											|
+| Ctrl+KU 							| 改为大写																											|
+| Ctrl+KL 							| 改为小写																											|
+| Ctrl+K0 							| 展开所有																											|
 | Ctrl+Enter   						| 插入行后（快速换行）																									|
-| Ctrl+Tab 	   						| 当前窗口中的标签页切换																								|
-| Ctrl+Shift+A 						| 选择光标位置父标签对儿																								|
+| Ctrl+Tab 	   						| 当前窗口中的标签页切换																									|
+| Ctrl+Shift+A 						| 选择光标位置父标签对儿																									|
 | Ctrl+Shift+D 						| 复制光标所在整行，插入在该行之前																						|
-| ctrl+shift+F 						| 在文件夹内查找，与普通编辑器不同的地方是sublime允许添加多<br>个文件夹进行查找											|
-| Ctrl+Shift+K 						| 删除整行																												|
-| Ctrl+Shift+L 						| 鼠标选中多行（按下快捷键），即可同时编辑这些行																		|
-| Ctrl+Shift+M 						| 选择括号内的内容（按住-继续选择父括号）																				|
+| ctrl+shift+F 						| 在文件夹内查找，与普通编辑器不同的地方是sublime允许添加多<br>个文件夹进行查找													|
+| Ctrl+Shift+K 						| 删除整行																											|
+| Ctrl+Shift+L 						| 鼠标选中多行（按下快捷键），即可同时编辑这些行																				|
+| Ctrl+Shift+M 						| 选择括号内的内容（按住-继续选择父括号）																					|
 | Ctrl+Shift+P 						| 打开命令面板																											|
 | Ctrl+Shift+/ 						| 注释已选择内容																										|
 | Ctrl+Shift+↑ 						| 可以移动此行代码，与上行互换																							|
@@ -48,8 +48,8 @@ tags: [Sublime3]
 | Ctrl+Y							| 恢复撤销																												|
 | Ctrl+F2 							| 设置/删除书签																											|
 | Ctrl+/ 							| 注释整行（如已选择内容，同“Ctrl+Shift+/”效果）																		|
-| Ctrl+鼠标左键 					| 可以同时选择要编辑的多处文本																							|
-| Shift+鼠标右键（或鼠标中键）		| 可以用鼠标进行竖向多行选择																							|
+| Ctrl+鼠标左键 						| 可以同时选择要编辑的多处文本																							|
+| Shift+鼠标右键（或鼠标中键）			| 可以用鼠标进行竖向多行选择																							|
 | Shift+F2 							| 上一个书签																											|
 | Shift+Tab 						| 去除缩进																												|
 | Alt+Shift+1~9（非小键盘）			| 屏幕显示相等数字的小窗口																								|
@@ -60,7 +60,7 @@ tags: [Sublime3]
 | F9 								| 行排序(按a-z)																											|
 | F11 								| 全屏模式																												|
 | Shift+F11 						| 全屏免打扰模式，只编辑当前文件																						|
-| ctrl+[或] 						| 增加和减少缩进																										|
+| ctrl+[或] 							| 增加和减少缩进																										|
 | ctrl+x 							| 剪切行或选中项																										|
 | ctrl+shift+v 						| 粘贴并保持缩进																										|
 | alt+shift+w 						| 用标签包裹行或选中项																									|
@@ -68,19 +68,19 @@ tags: [Sublime3]
 | ctrl+shift+y 						| 计算数学表达式																										|
 | alt+shift+↑ 或 ↓，ctrl+ ↑ 或 ↓  	| 递增和递减（按住shift将以10的步长改变数字, 不按住以1为步长. <br>同时注意到你不需要选择数字, 默认更新本行最近的数字）	|
 | Alt+数字 							| 切换打开第N个文件																										|
-| Shift+右键拖动 					| 多光标，用来更改或插入列内容																							|
+| Shift+右键拖动 						| 多光标，用来更改或插入列内容																							|
 
 ## CoolFormat
 
-| 快捷键                    		| 功能         																											|
+| 快捷键                    			| 功能         																											|
 | :---------------          		| :---------- 																											|
 | Ctrl+Shift+Alt+Q              	| Quick Format         																									|
 | Ctrl+Shift+Alt+S                  | Selected Format         																								|
 
 ## Ctags
 
-| 快捷键              |  Alt绑定     	| 鼠标绑定					| 功能         													|
-| :---------------    | :----------: 	| :----------: 				| :---------- 													|
+| 快捷键              	|  Alt绑定     	| 鼠标绑定					| 功能         													|
+| :---------------    | :----------: 	| :----------:				| :---------- 													|
 | ctrl+t, ctrl+r      |        			| 							| rebuild_ctags         										|
 | ctrl+t, ctrl+t      | ctrl+>          | ctrl+shift+left_click		| navigate_to_definition         								|
 | ctrl+t, ctrl+b      | ctrl+<          | ctrl+shift+right_click	| jump_prev         											|
@@ -108,7 +108,7 @@ tags: [Sublime3]
 	
 ## SublimeCodeIntel
 
-| 快捷键                    		| 功能         																											|
+| 快捷键                    			| 功能         																											|
 | :---------------          		| :---------- 																											|
 | Alt+Click              			| Jump to definition         																							|
 | Control+Windows+Alt+Up            | Jump to definition         																							|
@@ -119,7 +119,7 @@ tags: [Sublime3]
 
 	cscope -R -b	//生成cscope.out命令：
 
-| 快捷键                    		| 功能         																											|
+| 快捷键                    			| 功能         																											|
 | :---------------          		| :---------- 																											|
 | Ctrl/Super + \              		| Show Cscope options         																							|
 | Ctrl/Super + LCtrl/Super + S      | Look up symbol under cursor         																					|
