@@ -9,6 +9,7 @@ tags: [Sublime3]
 ## 自带快捷键
 
 | 快捷键                    			| 功能         																										|
+
 | :---------------          		| :---------- 																										|
 | Alt+O                  			| 可以实现头文件和源文件之间的快速切换         																			|
 | Ctrl+Shift+T						| 可以打开之前关闭的tab页																								|
@@ -73,7 +74,7 @@ tags: [Sublime3]
 ## CoolFormat
 
 | 快捷键                    			| 功能         																											|
-| :---------------          		| :---------- 																											|
+| :---------------          		| :---------- |
 | Ctrl+Shift+Alt+Q              	| Quick Format         																									|
 | Ctrl+Shift+Alt+S                  | Selected Format         																								|
 
