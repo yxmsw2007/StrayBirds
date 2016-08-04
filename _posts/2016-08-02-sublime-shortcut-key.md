@@ -8,9 +8,8 @@ tags: [Sublime3]
 
 ## 自带快捷键
 
-| 快捷键                    			| 功能         																										|
-
-| :---------------          		| :---------- 																										|
+| 快捷键                    		| 功能         																										|
+| :---------------                  | :---------- 																										|
 | Alt+O                  			| 可以实现头文件和源文件之间的快速切换         																			|
 | Ctrl+Shift+T						| 可以打开之前关闭的tab页																								|
 | Ctrl+D 							| 选词 （反复按快捷键，即可继续向下同时选中下一个相同的文本<br>进行同时编辑）														|
@@ -74,14 +73,14 @@ tags: [Sublime3]
 ## CoolFormat
 
 | 快捷键                    			| 功能         																											|
-| :---------------          | :---------- |
-| Ctrl+Shift+Alt+Q              	| Quick Format         																									|
-| Ctrl+Shift+Alt+S                  | Selected Format         																								|
+| :---------------                      | :---------- 																										|
+| Ctrl+Shift+Alt+Q              		| Quick Format         																									|
+| Ctrl+Shift+Alt+S                  	| Selected Format         																								|
 
 ## Ctags
 
 | 快捷键              	|  Alt绑定     	| 鼠标绑定					| 功能         													|
-| :---------------    | :----------: 	| :----------:				| :---------- 													|
+| :---------------    | :----------: | :----------: | :---------- |
 | ctrl+t, ctrl+r      |        			| 							| rebuild_ctags         										|
 | ctrl+t, ctrl+t      | ctrl+>          | ctrl+shift+left_click		| navigate_to_definition         								|
 | ctrl+t, ctrl+b      | ctrl+<          | ctrl+shift+right_click	| jump_prev         											|
@@ -92,7 +91,7 @@ tags: [Sublime3]
 ## SublimeClang
 
 | 快捷键                    | 功能         																																|
-| :---------------          | :---------- 																																|
+| :---------------           | :---------- 																															|
 | alt+d,alt+d 				|Go to the parent reference of whatever is under the current cursor position																|
 | alt+d,alt+i 				|Go to the implementation																													|
 | alt+d,alt+b 				|Go back to where you were before hitting alt+d,alt+d or alt+d,alt+i 																		|
@@ -110,7 +109,7 @@ tags: [Sublime3]
 ## SublimeCodeIntel
 
 | 快捷键                    			| 功能         																											|
-| :---------------          		| :---------- 																											|
+| :--------------- 				| :----------  |
 | Alt+Click              			| Jump to definition         																							|
 | Control+Windows+Alt+Up            | Jump to definition         																							|
 | Control+Windows+Alt+Left          | Go back         																										|
@@ -121,7 +120,7 @@ tags: [Sublime3]
 	cscope -R -b	//生成cscope.out命令：
 
 | 快捷键                    			| 功能         																											|
-| :---------------          		| :---------- 																											|
+| :--------------- 					| :----------																											|
 | Ctrl/Super + \              		| Show Cscope options         																							|
 | Ctrl/Super + LCtrl/Super + S      | Look up symbol under cursor         																					|
 | Ctrl/Super + LCtrl/Super + D      | Look up definition under cursor    																					|
