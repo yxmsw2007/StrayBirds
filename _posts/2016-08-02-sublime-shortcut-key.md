@@ -74,7 +74,7 @@ tags: [Sublime3]
 ## CoolFormat
 
 | 快捷键                    			| 功能         																											|
-| :---------------          		| :---------- |
+| :---------------         | :---------- |
 | Ctrl+Shift+Alt+Q              	| Quick Format         																									|
 | Ctrl+Shift+Alt+S                  | Selected Format         																								|
 
