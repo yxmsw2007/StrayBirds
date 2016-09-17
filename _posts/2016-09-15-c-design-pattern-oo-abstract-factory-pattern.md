@@ -6,6 +6,8 @@ category: C/C++
 tags: [设计模式, 抽象工厂模式]
 ---
 
+## 抽象工厂模式
+
 之前的工厂模式实际上是对产品的抽象。对于不同的用户需求，我们可以给予不同的产品，
 
 而且这些产品的接口都是一致的。而抽象工厂呢？顾名思义，就是说我们的工厂是不一定的。
@@ -105,6 +107,7 @@ FruitShop* create_fruit_shop(int color)
 }
 
 ```
+
 ## 源码下载
 
 [SampleC-CPP](https://github.com/yxmsw2007/SampleC-CPP.git)
