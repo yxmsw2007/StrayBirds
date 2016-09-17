@@ -31,6 +31,10 @@ void* get_data()
 
 ```
 
+## 源码下载
+
+[SampleC-CPP](https://github.com/yxmsw2007/SampleC-CPP.git)
+
 ## 参考资料
 
 [C语言和设计模式（之单件模式）](http://blog.csdn.net/feixiaoxing/article/details/7071202)

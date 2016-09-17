@@ -87,6 +87,10 @@ typedef struct _Play
 
 ```
 
+## 源码下载
+
+[SampleC-CPP](https://github.com/yxmsw2007/SampleC-CPP.git)
+
 ## 参考资料
 
 [C语言和设计模式（继承、封装、多态）](http://blog.csdn.net/feixiaoxing/article/details/7192302)

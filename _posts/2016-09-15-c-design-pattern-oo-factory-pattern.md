@@ -55,6 +55,10 @@ Shoe* manufacture_new_shoe(int type)
 
 ```
 
+## 源码下载
+
+[SampleC-CPP](https://github.com/yxmsw2007/SampleC-CPP.git)
+
 ## 参考资料
 
 [C语言和设计模式（工厂模式）](http://blog.csdn.net/feixiaoxing/article/details/7081243)
