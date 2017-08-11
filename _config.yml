@@ -1,7 +1,7 @@
 projectname: yxmsw2007.github.io
 username: yxmsw2007
 description: yxmsw2007's blog
-;baseurl: /yxmsw2007.github.io
+baseurl: /yxmsw2007.github.io
 gems:
 - jekyll-sitemap
 # markdown: redcarpet
