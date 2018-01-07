@@ -1,6 +1,6 @@
 ---
 layout: post
-title: load: id=memtrack != hmi->id=memtrack   
+title: id=memtrack != hmi->id=memtrack   
 comments: true
 category: Android
 tags: [memtrack]
