@@ -1,9 +1,9 @@
 ---
 layout: post
-title: cvc-complex-type.2.4.a: Invalid content was found starting with element 'description' 
+title: cvc-complex-type.2.4.a: Invalid content was found starting with element 'description'
 comments: true
 category: Java
-tags: [cvc-complex-type, Invalid content]
+tags: [cvc-complex-type, Invalid, content]
 ---
 
 导入工程后在spring-form.tld中报这个错

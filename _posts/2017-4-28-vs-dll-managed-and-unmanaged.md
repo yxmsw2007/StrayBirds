@@ -48,8 +48,8 @@ dumpbin -exports D:\WorkSpace\DLLTutorial\Debug\DLLTutorial.dll
  
 ## 参考资料
 
-http://www.cnblogs.com/dyllove98/archive/2013/06/20/3146922.html
+[VS自带工具：dumpbin的使用](http://www.cnblogs.com/dyllove98/archive/2013/06/20/3146922.html)
 
-http://bbs.csdn.net/topics/330234201
+[判断dll是托管还是非托管，请教高手](http://bbs.csdn.net/topics/330234201)
 
 
