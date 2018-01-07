@@ -13,7 +13,7 @@ safe: false
 #pygments: true
 highlighter: pygments
 title: yxmsw2007
-paginate: 9
+paginate: 8
 paginate_path: "page:num"
 categories_path: category.html
 tags_path: tag.html
