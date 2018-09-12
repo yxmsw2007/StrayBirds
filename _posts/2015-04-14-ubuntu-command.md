@@ -6,6 +6,29 @@ category: Ubuntu
 tags: [command, 常用命令]
 ---
 
+## 桌面常用快捷键
+
+    Alt + F1：聚焦到桌面左侧任务导航栏，可按上下键进行导航
+
+    Alt + F2：运行命令
+    
+    Alt + F4：关闭当前窗口
+    
+    Alt + Tab：切换程序窗口
+    
+    Alt + 空格：打开窗口菜单
+    
+    PrtSc：桌面截图
+    
+    Win + A：搜索/浏览程序
+    
+    Win + F：搜索/浏览文件
+    
+    Win + M：搜索/浏览音乐文件
+    
+    Win：搜索/浏览程序、文件、音乐文件等
+
+
 ## 屏幕截图
 
 命令：gnome-screenshot
