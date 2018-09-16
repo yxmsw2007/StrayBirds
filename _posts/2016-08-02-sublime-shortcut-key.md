@@ -129,3 +129,7 @@ tags: [Sublime3]
 | Ctrl/Super + Shift + [       | Jump back                                                 |
 | Ctrl/Super + Shift + ]       | Jump forward                                              |
 
+## 参考资料
+
+[sublime text3 修改左侧栏背景样式](https://blog.csdn.net/lkh1992/article/details/70832860)
+
