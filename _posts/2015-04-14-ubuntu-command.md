@@ -424,6 +424,20 @@ Linux系统中的wc(Word Count)命令的功能为统计指定文件中的字节�
 
     !-n:gs/str1/str2/
 
+## 开机启动时间分析
 
+查看每个服务的启动耗时
 
+    systemd-analyze blame
 
+显示瀑布状的启动过程流
+
+    systemd-analyze critical-chain
+
+显示指定服务的启动流
+
+    systemd-analyze critical-chain atd.service
+
+## 参考资料 
+
+[Systemd 入门教程：命令篇](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
