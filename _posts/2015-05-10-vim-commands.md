@@ -166,3 +166,4 @@ e       ：  忽略执行过程中的错误。
 
 ## 参考资料
 
+[Vim 实用插件推荐](https://blog.csdn.net/guyue35/article/details/54412428)
